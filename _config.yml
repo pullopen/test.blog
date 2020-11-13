@@ -1,15 +1,15 @@
 # Site settings
-author: kasmine
-title: Kasmine Blog
-SEOTitle: 廖晓娟的博客 | Kasmine Blog
-header-img: home-bg.jpg
-post-img: post-bg.jpg
-email: momo736929286@gmail.com
+author: pullopen
+title: Mastodon搭建指南
+SEOTitle: 技术小白搭建Mastodon站点指南
+header-img: universe.jpg
+post-img: universe2.jpg
+email: admin@pullopen.xyz
 description: ""
-keyword: ""
+keyword: "Mastodon, Fediverse"
 # url: "https://kasmine.com"              # your host, for absolute URL
-baseurl: "/kasmine.blog"  
-imgurl: "/kasmine.blog/assets/img"
+baseurl: "/test.blog"  
+imgurl: "/test.blog/assets/img"
 # baseurl: ""                             # 本地调试使用
 # imgurl: "/assets/img"
 
@@ -21,12 +21,12 @@ sass:
 
 
 # SNS settings
-RSS: false
-weibo_username:     kasmine
+RSS: true
+#weibo_username:     kasmine
 # zhihu_username:     kasmine
-github_username:    Me-Momo
+github_username:    pullopen
 #twitter_username:  kasmine
-facebook_username:  kasmineLiao
+#facebook_username:  kasmineLiao
 # linkedin_username:  firstname-lastname-idxxxx
 
 
@@ -68,8 +68,8 @@ disqus_username: _your_disqus_short_name_
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "认真学习 n(*≧▽≦*)n <br />拥抱大前端 "
-sidebar-avatar: /assets/img/avatar-kasmine.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-about-description: "没有任何IT背景的技术小白要如何搭建一个Mastodon实例？这里给你提供详细指南！"
+sidebar-avatar: /assets/img/fediverse.png      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 # Progressive Web Apps
@@ -93,18 +93,32 @@ tags: [{
 
 # Friends
 friends: [{
-        title: "前端外刊评论",
-        href: "http://qianduan.guru/"
+        title: "长毛象（Mastodon）社区搭建详解",
+        href: "https://guide.mastodon.im"
     },{
-      title: "前端周刊",
-      href: "http://www.feweekly.com"
+      title: "奇想齋",
+      href: "https://i.nebula.moe/"
+    },{
+      title: "影子屋",
+      href: "https://blog.bgme.me/"
     }
 ]
 
 # 推荐top书籍
-topbook: {
-  name: "JavaScript高级程序设计（第3版）",
-  author: "[美] Nicholas C·Zakas ",
-  star: "★★★★★ 9.3   1360人评价",
-  introduction: "全书从JavaScript 语言实现的各个组成部分——语言核心、DOM、BOM、事件模型讲起，深入浅出地探讨了面向对象编程、Ajax 与Comet 服务器端通信，HTML5 表单、媒体、Canvas（包括WebGL）及Web Workers、地理定位、跨文档传递消息、客户端存储（包括IndexedDB）等新API，还介绍了离线应用和与维护、性能、部署相关的最佳开发实践。本书附录展望了未来的API 和ECMAScript Harmony 规范。"
-}
+#topbook: {
+#  name: "JavaScript高级程序设计（第3版）",
+#  author: "[美] Nicholas C·Zakas ",
+#  star: "★★★★★ 9.3   1360人评价",
+#  introduction: "全书从JavaScript 语言实现的各个组成部分——语言核心、DOM、BOM、事件模型讲起，深入浅出地探讨了面向对象编程、Ajax 与Comet 服务器端通信，HTML5 表单、媒体、Canvas（包括WebGL）及Web Workers、地理定位、跨文档传递消息、客户端存储（包括IndexedDB）等新API，还介绍了离线应用和与维护、性能、部署相关的最佳开发实践。本书附录展望了未来的API 和ECMAScript Harmony 规范。"
+#}
+
+# To use Gittalk comments  https://github.com/gitalk/gitalk#Usage
+# jekyll synatx: https://jekyllrb.com/docs/liquid/
+gittalk:
+  # Note: A GitHub Application is needed for authorization, if you don't have one, going to https://github.com/settings/applications/new register a new one.
+  # You must specify the website domain url in the Authorization callback URL field.
+  clientID: f449c28cc7aa6f14a5d5 # 改成你的 GitHub Application Client ID
+  clientSecret: 70f56a6387a1183216801d1b14c6ae75fdf0f93f  # 改成你的 GitHub Application Client Secret,
+  repository: pullopen.github.io  # 改成你的 Storage gittalk's repository
+  owner: pullopen  # 改成你的 GitHub repo owner,
+  admin: pullopen  # 改成你的 GitHub repo owner and collaborators, only these guys can initialize github issues eg. 'colynn,daattali'
