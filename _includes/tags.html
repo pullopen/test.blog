@@ -1,8 +1,9 @@
 <div class="tags">
-    <span>标签：</span>
-      <span class="posttags">
-        {% for tag in post.tags %}
-         <a href="{{site.baseurl}}/tags/#{{ tag }}">{{tag}}</a> &nbsp;
-        {% endfor %}
-   </span>
+  <span>标签：
+  {% assign tags = page.tags %}
+  {% for tag in tags %}
+    <a href="{{site.baseurl}}/tags/#{{ tag }}">{{tag}}</a>
+    {% unless forloop.last %}&nbsp;{% endunless %} 
+  {% endfor %}
+</span>
 </div>
