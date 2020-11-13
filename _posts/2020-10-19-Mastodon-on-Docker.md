@@ -4,6 +4,7 @@ layout: post
 tags: [技术, Mastodon, Docker]
 image: assets/img/docker-logo.png
 catalog: true 
+category: 基础搭建
 #gif: mygif
 description: "Docker，一个也许更适合新手维护的搭建方案。"
 customexcerpt: "Docker，一个也许更适合新手维护的搭建方案。"

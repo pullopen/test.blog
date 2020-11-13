@@ -4,6 +4,7 @@ layout: post
 tags: [技术, Mastodon]
 image: assets/img/scaleway.png
 catalog: true 
+category: 站点维护
 #gif: mygif
 description: "担心服务器被媒体撑爆？上了云储存，再也不用担心硬盘！"
 customexcerpt: "担心服务器被媒体撑爆？上了云储存，再也不用担心硬盘！"

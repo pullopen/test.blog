@@ -4,6 +4,7 @@ layout: post
 tags: [技术, Mastodon]
 image: assets/img/mastodon-preview.jpg
 catalog: true 
+category: 基础搭建
 #gif: mygif
 description: "没有IT背景的技术小白，如何搭建一个Mastodon实例？"
 customexcerpt: "没有IT背景的技术小白，如何搭建一个Mastodon实例？"

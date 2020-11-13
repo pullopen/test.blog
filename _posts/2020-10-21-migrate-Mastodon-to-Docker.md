@@ -4,6 +4,7 @@ layout: post
 tags: [技术, Mastodon, Docker]
 image: assets/img/docker-logo-2.png
 catalog: true 
+category: 站点维护
 #gif: mygif
 description: "以从非docker迁移到docker为主，补充其他平台间迁移要点。"
 customexcerpt: "以从非docker迁移到docker为主，补充其他平台间迁移要点。"

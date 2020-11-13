@@ -4,6 +4,7 @@ layout: post
 tags: [技术, Mastodon]
 image: assets/img/elephant_throwing_cs.png
 catalog: true 
+category: 基础搭建
 #gif: mygif
 description: "如果我实在不想碰程序方面的内容，只想出钱，怎么办？"
 customexcerpt: "如果我实在不想碰程序方面的内容，只想出钱，怎么办？"

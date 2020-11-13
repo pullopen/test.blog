@@ -4,6 +4,7 @@ layout: post
 tags: [技术, Mastodon, Docker]
 image: assets/img/docker-logo-3.png
 catalog: true 
+category: 进阶魔改
 #gif: mygif
 description: "如何在Docker系统上维持你的魔改"
 customexcerpt: "如何在Docker系统上维持你的魔改"
