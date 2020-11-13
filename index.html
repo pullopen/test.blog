@@ -32,7 +32,6 @@ description: "将社交网络掌握在自己手中"
                         {% else %}
                             {{ post.content | strip_html | truncatewords:50 }}
                         {% endif %}
-                        <span class = "continue-reading"><a href="{{ post.url | relative_url }}">继续阅读...</a></span>
                     </p></span>
                   {% endfor %}
                 </span>
