@@ -1,7 +1,7 @@
 ---
 title: 将Mastodon站点从非Docker迁移至Docker：兼谈其他平台迁移
 layout: post
-tags: [技术, Mastodon, Docker]
+tags: [站点迁移, Mastodon, Docker]
 image: docker-logo-2.png
 catalog: true 
 category: 站点维护

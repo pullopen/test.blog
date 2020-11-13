@@ -1,7 +1,7 @@
 ---
 title: 技术小白如何搭建Mastodon实例
 layout: post
-tags: [技术, Mastodon]
+tags: [基础搭建, Mastodon]
 image: mastodon-preview.jpg
 catalog: true 
 category: 基础搭建

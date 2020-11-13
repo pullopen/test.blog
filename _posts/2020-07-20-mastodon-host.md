@@ -1,7 +1,7 @@
 ---
 title: 关于Mastodon托管服务的简介
 layout: post
-tags: [技术, Mastodon]
+tags: [托管服务, Mastodon]
 image: elephant_throwing_cs.png
 catalog: true 
 category: 基础搭建

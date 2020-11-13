@@ -1,7 +1,7 @@
 ---
 title: 如何将Mastodon媒体上传至Scaleway云储存（附Cloudflare使用）
 layout: post
-tags: [技术, Mastodon]
+tags: [站点维护, Mastodon, 媒体储存]
 image: scaleway.png
 catalog: true 
 category: 站点维护

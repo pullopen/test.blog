@@ -1,7 +1,7 @@
 ---
 title: 如何利用Docker搭建Mastodon实例（二）：进阶魔改篇
 layout: post
-tags: [技术, Mastodon, Docker]
+tags: [进阶魔改, Mastodon, Docker]
 image: docker-logo-3.png
 catalog: true 
 category: 进阶魔改
