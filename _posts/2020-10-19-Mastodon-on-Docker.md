@@ -2,7 +2,7 @@
 title: 如何利用Docker搭建Mastodon实例（一）：基础搭建篇
 layout: post
 tags: [技术, Mastodon, Docker]
-image: assets/img/docker-logo.png
+image: docker-logo.png
 catalog: true 
 category: 基础搭建
 #gif: mygif
