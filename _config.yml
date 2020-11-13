@@ -128,3 +128,6 @@ related-posts:
   active: true
   title: "相关文章"
 
+catagories:
+  active: true
+
