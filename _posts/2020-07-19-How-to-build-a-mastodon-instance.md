@@ -191,7 +191,7 @@ Domain Name: 输入你的域名
 
 然后配置邮箱。以Zoho为例：
 
-{% highlight ruby linenos %}
+```bash
 SMTP server: smtp.zoho.eu
 port: 587
 user: 你第二步设置的邮箱名
@@ -199,7 +199,7 @@ password: 你第二步对该邮箱设置的密码
 authentication: plain
 OpenSSL verify mode: none（这两步可以按两下回车）
 from: 你第二步设置的邮箱名
-{% endhighlight %}
+```
 
 之后它会让你发一封测试邮件测试一下这个配置能否发送邮件，如果不对，可以修改邮箱配置。
 
@@ -219,21 +219,21 @@ from: 你第二步设置的邮箱名
 
 首先，了解一些基本命令：
 
-{% highlight shell linenos %}
+```bash
 su - mastodon    #进入Mastodon用户
 exit             #从mastodon用户退出，回到root用户
 cd 文件夹         #进入文件夹。你对mastodon的设置操作一般都在mastodon用户的live文件夹中。
 nano 文件名       #编辑文件。Ctrl+X可退出保存。
 ls -a            #列出所在文件夹中所有的文件名（包括隐藏文件）
-{% endhighlight %}
+```
 
 此外，如果你遇到了一些问题，有时候能通过**重启**解决：
 
-{% highlight shell linenos %}
+```bash
 systemctl restart mastodon-sidekiq
 systemctl reload mastodon-web
 systemctl restart mastodon-streaming       #偶尔需要
-{% endhighlight %}
+```
 
 
 在你了解了这些基本命令之后
