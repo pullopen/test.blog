@@ -26,6 +26,7 @@ description: "将社交网络掌握在自己手中"
                      {% for tag in post.tags %}
                       <a href="{{site.baseurl}}/tags/#{{ tag }}">{{tag}}</a> &nbsp;
                      {% endfor %}
+                </span>
                 <span class="excerpt">
                 <p>
                     {% if post.customexcerpt %}
@@ -34,8 +35,6 @@ description: "将社交网络掌握在自己手中"
                         {{ post.content | strip_html | truncatewords:200}}
                     {% endif %}
                 </p></span>
-
-                </span>
             </li>
             {% endfor %}
         </ul>
