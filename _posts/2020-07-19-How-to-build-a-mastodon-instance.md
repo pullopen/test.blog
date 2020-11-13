@@ -6,8 +6,8 @@ image: mastodon-preview.jpg
 catalog: true 
 category: 基础搭建
 #gif: mygif
-description: "没有IT背景的技术小白，如何搭建一个Mastodon实例？"
-customexcerpt: "没有IT背景的技术小白，如何搭建一个Mastodon实例？"
+subtitle: "没有IT背景的技术小白，如何搭建一个Mastodon实例？"
+customexcerpt: "从购买域名和服务器，到使用Digital-Ocean镜像一键建站：手把手教零基础的你如何将社交网络掌握在自己手中。"
 ---
 
 首先，如果你点开了这个博客，那我相信你已经对Mastodon及整个Fediverse的概念有了一定了解，并且在一定程度上理解了这种去中心化的社交模式为何能够最大程度地避免资本剥削，本文在此不再赘述。引用奈奈一句通俗的话来说就是：
