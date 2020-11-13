@@ -126,6 +126,14 @@ header.intro-header {
 
 </article>
 
+{% if site.data.settings.related-posts.active %}
+     {% include related-posts.html %}
+{% endif %}
+
+{% if site.gittalk.clientID and site.gittalk.clientSecret %}
+     {% include gitalk-comment.html %}
+{% endif %}
+
  {% if site.anchorjs %}
 <!-- async load function -->
 <script>
