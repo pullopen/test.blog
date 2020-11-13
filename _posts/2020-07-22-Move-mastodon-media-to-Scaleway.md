@@ -203,7 +203,7 @@ nano .env.production     #编辑.env.production
 
 在文件最后添加下面几行，fr-par同样按照你的地区决定是否需要修改成nl-ams。如果上一步没有设置nginx，则S3_HOSTNAME设置为s3.fr-par.scw.cloud或s3.nl-ams.scw.cloud（**前面后面什么都不用加**）。
 
-```ruby linenos
+```ruby
 S3_ENABLED=true
 S3_BUCKET=【你的bucket名】
 AWS_ACCESS_KEY_ID=【你的Access key】
