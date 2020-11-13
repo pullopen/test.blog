@@ -101,6 +101,7 @@ customexcerpt: "没有IT背景的技术小白，如何搭建一个Mastodon实例
 
 可选的邮件服务有很多家，如Sendgrid、MailGun、Sparkpost等，各有缺点，如Sendgrid热爱锁账号，Sparkpost自动屏蔽.xyz域名、Mailgun可能收费（也有小伙伴说绑卡之后每月有一千多封免费额度）等。这里给大家推荐的是**Zoho Mail**。请注意，Zoho Mail免费方案可能无法应对短时大量的邮件请求，更适合小型站点，大型站点可以考虑Mailgun等其他邮件服务。
 
+　　
 
 ##### 2.1 注册Zoho Mail
 
@@ -117,6 +118,7 @@ customexcerpt: "没有IT背景的技术小白，如何搭建一个Mastodon实例
 
   注意：这里请不要用Google直接登录，否则你还需要自己设置密码，操作上会有些麻烦。
 
+　　
 
 ##### 2.2 验证域名
 

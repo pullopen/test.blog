@@ -73,19 +73,19 @@ customexcerpt: "担心服务器被媒体撑爆？上了云储存，再也不用�
 
 - 打开服务器，进入root用户。输入：
 
-     {% highlight shell linenos %}
+     ```bash
      apt install python-pip
      pip install awscli
-     {% endhighlight %}
+     ```
 
      安装aws-cli。
 
 - 进入mastodon用户并调试aws-cli
 
-     {% highlight shell linenos %}
+     ```bash
      su - mastodon        #进入mastodon用户
      aws configure        #调试
-     {% endhighlight %}
+     ```
 
      按指示依次输入Access Key和Secret Key。Region部分，如果你创建时选择的是巴黎则填写`fr-par`，阿姆斯特丹则填写`nl-ams`。Default output format直接回车即可。
 
@@ -94,12 +94,12 @@ customexcerpt: "担心服务器被媒体撑爆？上了云储存，再也不用�
 
 - 进入mastodon用户的live文件夹，运行同步命令：
 
-     {% highlight shell linenos %}
+     ```bash
      cd live      #进入live文件夹
      RAILS_ENV=production bin/tootctl media remove
      RAILS_ENV=production bin/tootctl media remove-orphans       #清理外站缓存和无嘟文媒体，为一会儿的迁移减少工作量
      aws s3 sync public/system s3://【你的bucket名】/ --endpoint-url=https://s3.fr-par.scw.cloud --acl public-read        
-     {% endhighlight %}
+     ```
 
      请注意最后一步命令，如果你选择的是巴黎则url为https://s3.fr-par.scw.cloud ，阿姆斯特丹则需更换为https://s3.nl-ams.scw.cloud 。另外**请务必不要遗漏最后的`--acl public-read`，**因为如果不加这一句，上传的所有文件都会设置为私有，无法显示。
 
@@ -120,10 +120,10 @@ customexcerpt: "担心服务器被媒体撑爆？上了云储存，再也不用�
 - 找到自己的nginx配置文件，如果你和我一样都是在Digital Ocean上直接用的一键安装包，那么该文件应该位于root用户的/etc/nginx文件夹里。
 
 
-     {% highlight shell linenos %}
+     ```bash
      exit                            #进入root用户
      nano /etc/nginx/sites-available/media      #修改nginx文件
-     {% endhighlight %}
+     ```
 
      - 添加以下部分。注意
          - 修改其中所有的media.your.domain为**自己的实例媒体域名**（一共三处）。
@@ -135,7 +135,7 @@ customexcerpt: "担心服务器被媒体撑爆？上了云储存，再也不用�
      如果你修改正确，一共应该有**5个地方**需要修改。
 
 
-     {% highlight nginx linenos %}
+     ```nginx
      proxy_cache_path /tmp/nginx_mstdn_media levels=1:2 keys_zone=mastodon_media:100m max_size=1g inactive=24h;
  
      server {
@@ -175,35 +175,35 @@ customexcerpt: "担心服务器被媒体撑爆？上了云储存，再也不用�
  
      }
 
-     {% endhighlight %}
+     ```
 
      * 注意：Mastodon3.2.0版本后，需要在location部分加上一行`add_header 'Access-Control-Allow-Origin' '*';`，上面的模板已经加入，在这之前设置的朋友请自行检查。
 
      建立镜像文件：
 
-     {% highlight shell linenos %}
+     ```bash
      ln -s /etc/nginx/sites-available/media /etc/nginx/sites-enabled/media
-     {% endhighlight %}
+     ```
 
 
 - 重启Nginx
 
-     {% highlight shell linenos %}
+     ```bash
      sudo nginx -s reload
-     {% endhighlight %}
+     ```
 
 
 ### 修改.env.production
 
-{% highlight shell linenos %}
+```bash
 su - mastodon     #再次进入mastodon用户
 cd live
 nano .env.production     #编辑.env.production
-{% endhighlight %}
+```
 
 在文件最后添加下面几行，fr-par同样按照你的地区决定是否需要修改成nl-ams。如果上一步没有设置nginx，则S3_HOSTNAME设置为s3.fr-par.scw.cloud或s3.nl-ams.scw.cloud（**前面后面什么都不用加**）。
 
-{% highlight ruby linenos %}
+```ruby linenos
 S3_ENABLED=true
 S3_BUCKET=【你的bucket名】
 AWS_ACCESS_KEY_ID=【你的Access key】
@@ -212,21 +212,21 @@ S3_PROTOCOL=https
 S3_HOSTNAME=media.your.domain【你的媒体域名】
 S3_ENDPOINT=https://s3.fr-par.scw.cloud/
 S3_REGION=fr-par
-{% endhighlight %}
+```
 
 现在，再运行一次魔法步骤，确保你操作期间所有的媒体已经上传：
 
-{% highlight shell linenos %}
+```bash
 aws s3 sync public/system s3://【你的bucket名】/ --endpoint-url=https://s3.fr-par.scw.cloud --acl public-read  
-{% endhighlight %}
+```
 
 重启Mastodon
 
-{% highlight shell linenos %}
+```bash
 exit
 systemctl restart mastodon-sidekiq
 systemctl reload mastodon-web
-{% endhighlight %}
+```
 
 
 
@@ -236,11 +236,11 @@ systemctl reload mastodon-web
 
 如果是的话，那么恭喜你，成功啦！你现在可以安全地删除储存在本地public/system文件夹的媒体文件：
 
-{% highlight shell linenos %}
+```bash
 su - mastodon
 cd live
 rm -rf public/system
-{% endhighlight %}
+```
 
 成功！从此再也不用担心硬盘爆炸啦！
 
