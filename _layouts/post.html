@@ -126,6 +126,10 @@ header.intro-header {
 
 </article>
 
+{% if post.tags %}
+     {% include tags.html %}
+{% endif %}
+
 {% if site.related-posts.active %}
      {% include related-posts.html %}
 {% endif %}

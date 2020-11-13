@@ -1,0 +1,10 @@
+<div class="categories">
+    <span><p>表情：</p>
+    {% assign tags = page.tags %}
+    {% for tag in tags %}
+      <a href="{% capture url %}/tags/#{{ tag | slugify }}{% endcapture %}
+      {{ url | relative_url }}">{{tag}}</a>
+      {% unless forloop.last %}&nbsp;{% endunless %} 
+    {% endfor %}
+  </span>
+</div>
