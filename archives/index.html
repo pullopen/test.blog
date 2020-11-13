@@ -54,13 +54,12 @@ header-img: "library.jpg"
 								<time datetime="{{ post.date | date:" %Y-%m-%d " }}">{{ post.date | date:"%Y-%m-%d" }}</time>
 							</small>
 						</h4>
-						{{ post.excerpt }}
+						{{ post.customexcerpt }}
 					</div>
-					{% if post.header-img %}
-						<div class="extra-img" style="background:no-repeat center/100%  url('{{ site.imgurl }}/{{ post.header-img }}');"></div>
+					{% if post.image %}
+						<div class="extra-img" style="background:no-repeat center/100%  url('{{ site.imgurl }}/{{ post.image }}');"></div>
 					{% else %}
 						<div class="extra-img" style="background:no-repeat center/100%  url('{{ site.imgurl }}/archive/denise-johnson-426641.jpg');"></div>
-						<small>Photo by <b>Denise Johnson on Unsplash</b></small>
 					{% endif %}
 				</div>
 			</div>
