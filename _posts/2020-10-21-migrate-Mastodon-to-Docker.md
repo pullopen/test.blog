@@ -33,28 +33,28 @@ customexcerpt: "以从非docker迁移到docker为主，补充其他平台间迁�
 
    到旧服务器中，
 
-   {% highlight shell linenos %}
+   ```bash
    su - mastodon
    cd live
    rsync -azv ./.env.production root@新服务器IP:/home/mastodon/mastodon/
-   {% endhighlight %}
+   ```
 
    将`.env.production`复制入新服务器。
 
    在新服务器中
 
-   {% highlight shell linenos %}
+   ```bash
    cd /home/mastodon/mastodon
    nano .env.production
-   {% endhighlight %}
+   ```
 
    修改`.env.production`文件，将下列条目修改成：
 
-   {% highlight ruby linenos %}
+   ```ruby
    DB_HOST=db
    REDIS_HOST=redis
    ES_HOST=es
-   {% endhighlight %}
+   ```
 
    保存退出。
 
@@ -68,80 +68,80 @@ customexcerpt: "以从非docker迁移到docker为主，补充其他平台间迁�
 
    关闭Mastodon服务：
 
-   {% highlight shell linenos %}
+   ```bash
    systemctl stop 'mastodon-*.service'
-   {% endhighlight %}
+   ```
 
    然后备份数据：
 
-   {% highlight shell linenos %}
+   ```bash
    su - mastodon
    cd live
    pg_dump -Fc mastodon_production -f backup.dump
-   {% endhighlight %}
+   ```
 
    生成`backup.dump`文件后
 
-   {% highlight shell linenos %}
+   ```bash
    rsync -azv ./backup.dump root@新服务器ip:/home/mastodon/mastodon/
-   {% endhighlight %}
+   ```
 
    复制到新服务器。
 
    随后到新服务器中：
 
-   {% highlight shell linenos %}
+   ```bash
    cd /home/mastodon/mastodon
    docker ps | grep mastodon_db | awk '{print $1}'
-   {% endhighlight %}
+   ```
 
    查看数据库容器`mastodon_db_1`的代码，然后
 
-   {% highlight shell linenos %}
+   ```bash
    docker cp ./backup.dump 刚查到的代码:/tmp/backup.dump
-   {% endhighlight %}
+   ```
 
    将数据库文件拷贝到docker内。
 
    `cat .env.production`查看DB设置内容，如果你之前是DO一键注册，应该会看到：
 
-   {% highlight ruby linenos %}
+   ```ruby
    DB_NAME=mastodon_production
    DB_USER=mastodon
-   {% endhighlight %}
+   ```
 
    并且不设密码。
 
    进入docker db容器：
 
-   {% highlight shell linenos %}
+   ```bash
    docker exec -it  mastodon_db_1 /bin/bash
    su - postgres
    createdb -T template0 mastodon_production
-   {% endhighlight %}
+   ```
 
    建立新的空白数据库。
 
    然后
 
-   {% highlight shell linenos %}
+   ```bash
    psql
-   {% endhighlight %}
+   ```
 
    进入数据库，依次输入以下几行，注意要包括分号：
 
-   {% highlight shell linenos %}
+   ```bash
    CREATE USER mastodon WITH PASSWORD '密码';         #没有密码则WITH PASSWORD部分不要。
    GRANT ALL PRIVILEGES ON DATABASE mastodon_production TO mastodon;
    \q
-   {% endhighlight %}
+   ```
 
    退出数据库，执行：
 
-   {% highlight shell linenos %}
+   ```bash
    pg_restore -U mastodon -n public --no-owner --role=mastodon \
      -d mastodon_production /tmp/backup.dump
-   {% endhighlight %}
+   ```
 
    然后两次`exit`退出docker容器。
 
@@ -155,10 +155,10 @@ customexcerpt: "以从非docker迁移到docker为主，补充其他平台间迁�
 
    在复制之前，建议在mastodon用户live文件夹中运行：
 
-   {% highlight shell linenos %}
+   ```bash
    RAILS_ENV=production bin/tootctl media remove
    RAILS_ENV=production bin/tootctl media remove-orphans
-   {% endhighlight %}
+   ```
 
    两步，移除远程媒体文件给整个文件夹瘦身。
 
@@ -166,22 +166,22 @@ customexcerpt: "以从非docker迁移到docker为主，补充其他平台间迁�
 
    在root用户下：
 
-   {% highlight shell linenos %}
+   ```bash
    apt install screen
-   {% endhighlight %}
+   ```
 
    然后
 
-   {% highlight shell linenos %}
+   ```bash
    su - mastodon
    screen
-   {% endhighlight %}
+   ```
 
    第一次运行会让你看简介，两次空格按到底后：
 
-   {% highlight shell linenos %}
+   ```bash
    rsync -azv ~/live/public/system/ root@新服务器ip:/home/mastodon/mastodon/public/system/
-   {% endhighlight %}
+   ```
 
    开始传输后，`ctrl+A+D`将任务转到后台。这样你断网了也不用担心。
 
@@ -193,21 +193,21 @@ customexcerpt: "以从非docker迁移到docker为主，补充其他平台间迁�
 
    回到新服务器中：
 
-   {% highlight shell linenos %}
+   ```bash
    cd /home/mastodon/mastodon
    docker-compose down
    docker-compose run --rm web rails assets:precompile              #编译
    docker-compose run --rm web bin/tootctl feeds build              #构建用户首页时间流
    docker-compose up -d
-   {% endhighlight %}
+   ```
 
    *注：我是根据官方文档在`tootctl feeds build`前面加了一步`docker-compose run --rm web rails assets:precompile`进行编译，但我自己操作时，结果显示为“Everything is up-to-date. Nothing to do”，怀疑这一步对docker系统并无必要？大家可以先不执行试试，如果不行再`docker-compose down`，编译后重启。也期待大家的反馈。
 
    如果你在新服务器上的版本高于原先版本，根据官方升级指导，可能需要进行
 
-   {% highlight shell linenos %}
+   ```bash
    docker-compose run --rm web rails db:migrate
-   {% endhighlight %}
+   ```
 
    等步骤。
 
@@ -229,23 +229,23 @@ customexcerpt: "以从非docker迁移到docker为主，补充其他平台间迁�
 
    这一步是Docker独有步骤。`/public/system/`文件夹传输完毕后，在新服务器：
 
-   {% highlight shell linenos %}
+   ```bash
    cd /home/mastodon/mastodon
    chown 991:991 -R ./public
    chown -R 70:70 ./postgres
-   {% endhighlight %}
+   ```
 
    如果启动了全文搜索，则需
 
-   {% highlight shell linenos %}
+   ```bash
    chown 1000:1000 -R ./elasticsearch
-   {% endhighlight %}
+   ```
    重启
 
-   {% highlight shell linenos %}
+   ```bash
    docker-compose down
    docker-compose up -d
-   {% endhighlight %}
+   ```
 
 　　
 
@@ -261,17 +261,17 @@ customexcerpt: "以从非docker迁移到docker为主，补充其他平台间迁�
 
 步骤和上文基本类似，但在第三步转移数据库时，仅需要将相应文件夹中的postgres和redis文件夹传输过去之后，对新服务器中的postgres文件夹赋权即可：
 
-{% highlight shell linenos %}
+```bash
 chown -R 70:70 ./postgres
-{% endhighlight %}
+```
 
 不需要使用pg_dump和pg_restore命令。
 
 另外，如果本身设置就启动了全文搜索，同样需要重新对新服务器上的elsaticsearch文件夹赋权：
 
-{% highlight shell linenos %}
+```bash
 chown -R 1000:1000 ./elasticsearch
-{% endhighlight %}
+```
 
 其他步骤同上。
 
@@ -295,9 +295,9 @@ chown -R 1000:1000 ./elasticsearch
 
 请参考[官方迁移教程](https://docs.joinmastodon.org/zh-cn/admin/migrating/){:target="_blank"}。中间可能让人看不太懂的的只有rsync步骤，其实基本命令就是在旧服务器上：
 
-{% highlight shell linenos %}
+```bash
 rsync -azv 旧文件路径 root@新服务器ip:新文件路径
-{% endhighlight %}
+```
 
 即可。
 

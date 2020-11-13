@@ -68,9 +68,9 @@ customexcerpt: "如何在Docker系统上维持你的魔改"
 
    按照mastodon采用的AGPL3.0协议，站长作为服务提供者，任何对源代码的改动都要开源，并在站内公开repo地址。可在`.env.production`文件里加一行配置：
 
-   {% highlight ruby linenos %}
+   ```ruby
    GITHUB_REPOSITORY=你的GitHub名/mastodon
-   {% endhighlight %}
+   ```
 
 　　
 
@@ -114,20 +114,20 @@ customexcerpt: "如何在Docker系统上维持你的魔改"
 
    到服务器中：
    
-   {% highlight shell linenos %}
+   ```bash
    cd /home/mastodon/mastodon        #进入所在文件夹
    docker pull 你的DOCKERHUB用户名/mastodon:你设置的TAG名        #比如 docker pull starainrt/mastodon:latest
    nano docker-compose.yml
-   {% endhighlight %}
+   ```
 
    修改`docker-compose.yml`文件，将下列三处（web、streaming和sidekiq）修改为“你的DOCKERHUB用户名/mastodon:你设置的TAG名”：
 
    [![](https://s1.ax1x.com/2020/11/01/B0IhMn.png)](https://s1.ax1x.com/2020/11/01/B0IhMn.png){:target="_blank"}
 
 
-   {% highlight shell linenos %}
+   ```bash
    docker-compose up -d
-   {% endhighlight %}
+   ```
 
 
    启动，你的魔改版站点就上线啦！
@@ -140,11 +140,11 @@ customexcerpt: "如何在Docker系统上维持你的魔改"
 
    未来如果魔改，只需要在电脑中修改好代码，一口气push到GitHub中，GitHub会自动编译并且推送到DockerHub中去。如果你设置的tag一直都是latest，那么每次只要等待编译完成后：
 
-   {% highlight shell linenos %}
+   ```bash
    cd /home/mastodon/mastodon
    docker pull 你的DOCKERHUB用户名/mastodon:lastest
    docker-compose up -d
-   {% endhighlight %}
+   ```
 
    即可。
    
@@ -162,22 +162,22 @@ customexcerpt: "如何在Docker系统上维持你的魔改"
 
    在命令行中：
 
-   {% highlight shell linenos %}
+   ```bash
    git remote -v
-   {% endhighlight %}
+   ```
 
    查看远程库版本是否包含了官方“tootsuite/mastodon”和“你自己/mastodon”，以及它们分别叫什么名字（一般为origin和upstream）。如果没有，需要用“`git remote add 自己起个名 GitHub地址`”命令进行添加，比如：
 
-   {% highlight shell linenos %}
+   ```bash
    git remote add upstream https://github.com/tootsuite/mastodon.git
-   {% endhighlight %}
+   ```
 
    然后拉取官方版本的进展（假设你这里官方版本的名字是upstream）：
 
-   {% highlight shell linenos %}
+   ```bash
    git fetch --tags upstream
    git merge upstream/v3.2.1(要升级的tag名)
-   {% endhighlight %}
+   ```
 
    进行融合操作，然后在GitHub Desktop上一键推送到你的远程库中，或者直接使用`git push`命令。
 
@@ -187,11 +187,11 @@ customexcerpt: "如何在Docker系统上维持你的魔改"
 
    推送到远程库后，后续操作则和上一部分一样：待编译完成后，
 
-   {% highlight shell linenos %}
+   ```bash
    cd /home/mastodon/mastodon
    docker pull 你的DOCKERHUB用户名/mastodon:lastest
    docker-compose up -d
-   {% endhighlight %}
+   ```
 
    然后根据官方升级指示，看是否需要执行其他步骤如`docker-compose run --rm web rails db:migrate`等。
 
