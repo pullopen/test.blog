@@ -8,8 +8,8 @@ email: admin@pullopen.xyz
 description: ""
 keyword: "Mastodon, Fediverse"
 # url: "https://kasmine.com"              # your host, for absolute URL
-baseurl: "/test.blog"  
-imgurl: "/test.blog/assets/img"
+baseurl: ""  
+imgurl: "/assets/img"
 # baseurl: ""                             # 本地调试使用
 # imgurl: "/assets/img"
 
