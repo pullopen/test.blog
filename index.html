@@ -28,9 +28,7 @@ description: "将社交网络掌握在自己手中"
                 <span class="excerpt">
                       <p>
                         {% if post.customexcerpt %}
-                            {{post.customexcerpt | strip_html | truncatewords:50}}
-                        {% else %}
-                            {{ post.content | strip_html | truncatewords:50 }}
+                            {{post.customexcerpt}}
                         {% endif %}
                     </p></span>
                   {% endfor %}
