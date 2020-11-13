@@ -123,12 +123,15 @@ header.intro-header {
                 </div>
             </div>
             {% endif %}
-
+            
+            <p><span class="tags">
+                {% for tag in post.tags %}
+                 <a href="{{site.baseurl}}/tags/#{{ tag }}">{{tag}}</a> &nbsp;
+                {% endfor %}
+           </span></p>
 </article>
 
-{% if post.tags %}
-     {% include tags.html %}
-{% endif %}
+
 
 {% if site.related-posts.active %}
      {% include related-posts.html %}
