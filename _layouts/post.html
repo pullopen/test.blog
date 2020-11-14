@@ -28,7 +28,7 @@ header.intro-header {
                     <h1>{{ page.title }}</h1>
                     {% comment %} always create a h2 for keeping the margin , Hux {% endcomment %} {% comment %} if page.subtitle {% endcomment
                     %}
-                    <span class="subheading">{{ post.description }}</span>
+                    <span class="subheading">{{ page.description }}</span>
                     {% comment %} endif {% endcomment %}
                             <span class="meta visible-xs">Posted by {% if page.author %}{{ page.author }}{% else %}{{ site.title }}{% endif %} on {{ page.date | date: "%B %-d, %Y" }}</span>
 
