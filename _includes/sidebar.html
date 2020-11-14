@@ -104,11 +104,11 @@
     <!-- Friends Blog -->
     {% if site.friends %}
     <hr>
-    <h5>推荐读物,博客</h5>
+    <h5>推荐博客</h5>
     <ul class="list-inline">
         {% for friend in site.friends %}
         <li>
-            <a href="{{friend.href}}" target="_blank">{{friend.title}}</a><br>
+            <a href="{{friend.href}}" target="_blank">{{friend.title}}</a>
         </li>
         {% endfor %}
     </ul>

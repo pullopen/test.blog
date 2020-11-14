@@ -718,7 +718,7 @@ footer .copyright a:focus {
 }
 
 .posts .tags a {
-  color: rgb(122, 195, 195);
+  color: #c51f72;
   font-size: 13px;
   font-weight: 600;
   font-family: 'Lato';
@@ -839,7 +839,7 @@ footer .copyright a:focus {
   font-size: 14px;
 }
 .sidebar-container h5 {
-  color: #009a61;
+  color: #c200a8;
   padding-bottom: 1em;
 }
 .sidebar-container h5 a {
