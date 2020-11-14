@@ -24,6 +24,8 @@ customexcerpt: "从购买域名和服务器，到使用Digital-Ocean镜像一键
 
 另外，O3O站长也详细撰写了一本 **[Mastodon搭建参考手册](https://guide.mastodon.im/){:target="_blank"}**，从购买域名开始进行了极为详尽的指导，建议大家参考。
 
+同样推荐新手的搭站方案还包括 **[Docker搭站方案](https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/10/19/Mastodon-on-Docker.html){:target="_blank"}**，本站也包括详细教程，欢迎大家参考。
+
 　　
 
 ## 0. 准备
@@ -264,8 +266,11 @@ systemctl restart mastodon-streaming       #偶尔需要
 
    如果你没有进行过任何魔改，那么请在**开启了足够SWAP的基础上**，参考官方的 **[升级教程](https://docs.joinmastodon.org/zh-cn/admin/upgrading/){:target="_blank"}**进行升级。
 
+- 第四步，推荐大家可以使用Cloudflare加速，大多数地区都可以通过Cloudflare获得速度提升的效果。具体可以参见 **[O3O搭站指南](https://guide.mastodon.im/cloudflare){:target="_blank"}**或者本博客 **[上云教程](https://pullopen.github.io/%E7%AB%99%E7%82%B9%E7%BB%B4%E6%8A%A4/2020/07/22/Move-mastodon-media-to-Scaleway.html){:target="_blank"}第一部分**。
+
 
 - 无论如何，请仔细阅读 **[官方文档](https://docs.joinmastodon.org/zh-cn/admin/install/){:target="_blank"}**，里面的一切都很有用。
+
 
 　　
 
@@ -273,24 +278,3 @@ systemctl restart mastodon-streaming       #偶尔需要
 
 
 现在，将你原先账号的关注对象都转移到自己站内，在自己的站点愉快享受Mastodon的冲浪生活吧！
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
