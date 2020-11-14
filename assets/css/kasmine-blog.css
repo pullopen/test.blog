@@ -1,4 +1,5 @@
 body {
+  background-color: #d5e5e2;
   position: relative;
 }
 
@@ -690,7 +691,7 @@ footer .copyright a:focus {
 }
 
 .posts .title:hover {
-  color:rgb(139, 195, 74);
+  color:rgb(255, 145, 231);
   transform: scale(1.1);
 }
 
@@ -842,15 +843,15 @@ footer .copyright a:focus {
   padding-bottom: 1em;
 }
 .sidebar-container h5 a {
-  color: #009a61 !important;
+  color: #c200a8 !important;
   text-decoration: none;
 }
 .sidebar-container a {
-  color: #bfbfbf !important;
+  color: #7c7c7c !important;
 }
 .sidebar-container a:hover,
 .sidebar-container a:active {
-  color: #76bf76 !important;
+  color: #ff8ff0 !important;
 }
 .sidebar-container .tags a {
   border-color: #bfbfbf;
