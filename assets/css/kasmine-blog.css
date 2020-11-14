@@ -458,6 +458,7 @@ text-shadow:7px 4px 6px #8d8d83
 
 .tags {
   margin-bottom: -5px;
+  margin-top:12px;
 }
 
 .tags a,
@@ -1068,8 +1069,13 @@ header.intro-header {
 
 @media (max-width: 615px) {
   .posts .title {
-    font-size: 14px;
+    font-size: 15px;
   }
+
+  .excerpt-text{
+    font-size: 13px
+  }
+
   .navbar-default .navbar-toggle {
     width: 80px;
   }
@@ -1091,7 +1097,7 @@ header.intro-header {
 
 .posttags{
   line-height: 0;
-  margin: 0em auto;
+  margin: 1em auto;
 }
 
 .posttags a,
