@@ -45,7 +45,7 @@ anchorjs: true                          # 如何设置
 
 # Gems -> Rename to plugins
 # from PR#40, to support local preview for Jekyll 3.0
-plugins: [jekyll-paginate]
+plugins: [jekyll-paginate, jekyll-feed]
 
 
 markdown: kramdown
@@ -131,11 +131,7 @@ related-posts:
 tagson:
   active: true
 
-# Add RSS
-plugins:
-  - jekyll-feed
-title: Mastodon搭建指南
-description: 没有任何IT背景的技术小白要如何搭建一个Mastodon实例？这里给你提供详细指南！
-author: pullopen
+
+
 
 
