@@ -947,8 +947,7 @@ footer .copyright a:focus {
   text-overflow: ellipsis;
 }
 .side-catalog .catalog-body .h1_nav,
-.side-catalog .catalog-body .h2_nav,
-.side-catalog .catalog-body .h3_nav {
+.side-catalog .catalog-body .h2_nav {
   margin-left: 0;
   font-size: 15px;
   font-weight: bold;
