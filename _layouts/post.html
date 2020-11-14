@@ -103,6 +103,18 @@ header.intro-header {
                     {% endif %}
                 </ul>
 
+                {% if site.tagson.active %}
+                    {% include tags.html %}
+                {% endif %}
+
+                {% if site.related-posts.active %}
+                    {% include related-posts.html %}
+                {% endif %}
+
+                {% if site.gittalk.clientID and site.gittalk.clientSecret %}
+                    {% include gitalk-comment.html %}
+                {% endif %}
+
                {% include disqus.html %}
 
             </div>
@@ -126,17 +138,7 @@ header.intro-header {
 
 </article>
 
-{% if site.tagson.active %}
-     {% include tags.html %}
-{% endif %}
 
-{% if site.related-posts.active %}
-     {% include related-posts.html %}
-{% endif %}
-
-{% if site.gittalk.clientID and site.gittalk.clientSecret %}
-     {% include gitalk-comment.html %}
-{% endif %}
 
  {% if site.anchorjs %}
 <!-- async load function -->
