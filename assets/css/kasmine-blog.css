@@ -1112,7 +1112,11 @@ text-decoration: none;
 
 .related{
   line-height: 2;
-  margin: 1em auto;
+  margin: 5em auto;
+}
+
+.related-posts{
+  text-indent: 15px;
 }
 
 .related-posts a{
