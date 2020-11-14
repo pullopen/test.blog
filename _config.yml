@@ -131,6 +131,8 @@ related-posts:
 tagson:
   active: true
 
+feed:
+  excerpt_only: true
 
 
 
