@@ -15,7 +15,7 @@
           {% if post.url != page.url %}
             {% if page.tags contains tag %}
               {% assign sameTagCount = sameTagCount | plus: 1 %}
-              {% capture tagmarkup %} <span class="label label-default">{{ category }}</span> {% endcapture %}
+              {% capture tagmarkup %} <span class="label label-default">{{ tag }}</span> {% endcapture %}
               {% assign commonTags = commonTags | append: tagmarkup %}
             {% endif %}
           {% endif %}
@@ -23,7 +23,7 @@
     
         {% if sameTagCount >= minCommonTags %}
           <div class = "related-posts">
-          <h5><a href="{{ post.url | relative_url}}">• {{ post.title  }}</a></h5>
+          <span><a href="{{ post.url | relative_url}}">• {{ post.title  }}</a></span>
           </div>
           {% assign maxRelatedCounter = maxRelatedCounter | plus: 1 %}
           {% if maxRelatedCounter >= maxRelated %}
