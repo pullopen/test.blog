@@ -31,6 +31,10 @@ header.intro-header {
                     <span class="subheading">{{ page.description }}</span>
                     {% comment %} endif {% endcomment %}
                             <span class="meta visible-xs">Posted by {% if page.author %}{{ page.author }}{% else %}{{ site.title }}{% endif %} on {{ page.date | date: "%B %-d, %Y" }}</span>
+      
+                    {% if site.tagson.active %}
+                        {% include tags.html %}
+                    {% endif %}
 
                     <div class="meta-box hidden-sm">
                         <ul>
@@ -78,10 +82,6 @@ header.intro-header {
                 col-md-9 col-md-offset-1
                 posts-container">
 
-                {% if site.tagson.active %}
-                    {% include tags.html %}
-                {% endif %}
-                
                 {{ content | remove: 'excerpt_end' }}
 
                 <hr style="visibility: hidden;">
