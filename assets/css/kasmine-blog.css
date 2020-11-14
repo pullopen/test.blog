@@ -738,7 +738,7 @@ footer .copyright a:focus {
 .post-heading .meta-box {
     position: absolute;
     color: rgb(255, 255, 255);
-    background: rgb(34, 34, 34);
+    background: rgb(196, 22, 103);
     border-radius: 5px;
     padding: 20px;
     right: 0;
@@ -843,7 +843,7 @@ footer .copyright a:focus {
   padding-bottom: 1em;
 }
 .sidebar-container h5 a {
-  color: #c200a8 !important;
+  color: #c20081 !important;
   text-decoration: none;
 }
 .sidebar-container a {
@@ -898,6 +898,7 @@ footer .copyright a:focus {
 .side-catalog.fixed {
   position: fixed;
   top: -21px;
+  width: 24em;
 }
 .side-catalog.fold .catalog-toggle::before {
   content: "+";
@@ -926,7 +927,7 @@ footer .copyright a:focus {
 }
 .side-catalog .catalog-body li a {
   padding-left: 10px;
-  max-width: 180px;
+  max-width: 23em;
   display: inline-block;
   vertical-align: middle;
   height: 30px;
@@ -940,7 +941,7 @@ footer .copyright a:focus {
 .side-catalog .catalog-body .h2_nav,
 .side-catalog .catalog-body .h3_nav {
   margin-left: 0;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: bold;
 }
 .side-catalog .catalog-body .h2_nav {
@@ -951,13 +952,13 @@ footer .copyright a:focus {
   font-size: 11px;
 }
 .side-catalog .catalog-body .h4_nav {
-  text-indent: 20px;
-  font-size: 9px;
+  text-indent: 16px;
+  font-size: 15px;
 }
 .side-catalog .catalog-body .h5_nav,
 .side-catalog .catalog-body .h6_nav {
   text-indent: 24px;
-  font-size: 8px;
+  font-size: 12px;
 }
 .side-catalog .catalog-body .h4_nav a,
 .side-catalog .catalog-body .h5_nav a,
@@ -969,7 +970,7 @@ footer .copyright a:focus {
   background-color: #F5F5F5;
 }
 .side-catalog .catalog-body .active a {
-  color: #76bf76!important;
+  color: #df4a95!important;
 }
 @media (max-width: 1200px) {
   .side-catalog {
