@@ -4,7 +4,7 @@ layout: post
 tags: [基础搭建, Mastodon]
 image: mastodon-preview.jpg
 catalog: true 
-category: [基础搭建, Mastodon]
+category: 基础搭建
 #gif: mygif
 subtitle: "没有IT背景的技术小白，如何搭建一个Mastodon实例？"
 customexcerpt: "从购买域名和服务器，到使用Digital-Ocean镜像一键建站：手把手教零基础的你如何将社交网络掌握在自己手中。提示：本文最后一步限制了服务器供应商只能选择Digital Ocean，其最近超售严重，风评不佳。因此大家可以参考本站其他搭建文章，如通过Docker搭建，同样适合新手，选择余地更大。"
