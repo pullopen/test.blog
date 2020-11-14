@@ -154,7 +154,9 @@ customexcerpt: "从购买域名和服务器，到使用Digital-Ocean镜像一键
 
 在这一步，如果你在之后愿意使用Docker搭建站点（详见本站的[Docker搭建指南](https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/10/19/Mastodon-on-Docker.html){:target="_blank"}，同样适合新手），或者跟着[官方文档](https://docs.joinmastodon.org/zh-cn/admin/prerequisites/){:target="_blank"}的一步一步用命令行搭建，那你可选的服务器商很多，如国人常用的Vultur、Digital Ocean，或者位于德国的Contabo、Hetzner等。你可以参考[主机测评网站](https://www.zhujiceping.com/){:target="_blank"}）以及[O3O站长搭站指南](https://guide.mastodon.im/server){:target="_blank"}。
 
-而本文要介绍的是[DigitalOcean](https://www.digitalocean.com){:target="_blank"}一键安装，要求只能在DigitalOcean上注册。DigitalOcean本身也是比较老牌的服务器提供商，但价格不算优惠，且近来时有超售、压缩性能等现象，可能会影响用户体验，因此请仔细考虑后再选择这种方式。
+同样，无论你选择哪家服务器，请都**不要使用位于国内服务器**，最好**不要选择国内的服务器提供商**，否则你可能会面临无法与其他站点互联互通、甚至站点下线的风险。
+
+而本文要介绍的是[DigitalOcean](https://www.digitalocean.com){:target="_blank"}一键安装，要求只能在DigitalOcean上注册。DigitalOcean本身也是比较老牌的服务器提供商，但价格不算优惠，且近来时有超售、压缩性能等现象，可能会影响用户体验，因此请仔细考虑后再选择。
 
 在注册DigitalOcean时我碰到了一个问题，就是注册后如果我选择使用PayPal，就会立刻锁定我的账号，但朋友并没有碰到这个问题，这可能与我PayPal账号地址与IP地址不统一有关。另外，可能会要求你通过第三方网站验证护照身份证信息，据说和使用Protonmail，同IP多账号，或者使用代理有关。
 
@@ -182,7 +184,7 @@ customexcerpt: "从购买域名和服务器，到使用Digital-Ocean镜像一键
 
 **请注意：此时你的DNS Setting里除了你刚才亲自设置的内容之外，别的任何由Namecheap自动生成内容请都删光。**
 
-回到DigitalOcean，左侧选择Access，点击Launch Console。第一次登陆会让你输入用户名和密码。用户名为root，密码是你刚刚设置的那个。（如果忘了也可以在面板选择Reset Root Passward，会自动生成密码发到你邮箱。）
+你可以使用Xshell等软件，通过输入密码等方式进行服务器远程控制（推荐）。或者你可以回到DigitalOcean，左侧选择Access，点击Launch Console。第一次登陆会让你输入用户名和密码。用户名为root，密码是你刚刚设置的那个。（如果忘了也可以在面板选择Reset Root Passward，会自动生成密码发到你邮箱。）
 
 请注意，这里输入密码什么都不会显示，所以大胆输就行了。第一次登陆会提醒你修改密码。
 
@@ -242,7 +244,7 @@ systemctl restart mastodon-streaming       #偶尔需要
 在你了解了这些基本命令之后
 
 
-- 首先我推荐的第一步，就是尽快**设置SSH**，彻底摆脱难用的Digital Console。在Windows上你可以使用Xshell，Mac上可以选择Termius等等，可以自行搜索，都比在DigitalOcean上方便很多。
+- 首先我推荐的第一步，就是尽快**设置SSH**，较密码登录而言安全性更高。在Windows上你可以使用Xshell，Mac上可以选择Termius等等，可以自行搜索，都比在DigitalOcean上方便很多。
 
    **[SSH具体配置方法](https://www.digitalocean.com/docs/droplets/how-to/add-ssh-keys/){:target="_blank"}**
 
@@ -267,7 +269,7 @@ systemctl restart mastodon-streaming       #偶尔需要
 
 　　
 
-在进行了这几步之后，我相信你对一些操作也逐渐熟悉，可以开始进行其他改动，比如使用Git在编辑器中提交和推送自己的改动、开启全文搜索、修改字数上限、媒体上限、投票上限、添加主题、媒体文件上云、添加备用域名等等。这些，如果你有兴趣，可以参考 **[这几篇日志](https://blog.pullopen.xyz/tag/%e9%95%bf%e6%af%9b%e8%b1%a1%e5%bb%ba%e7%ab%99/){:target="_blank"}**。
+在进行了这几步之后，我相信你对一些操作也逐渐熟悉，可以开始进行其他改动，比如使用Git在编辑器中提交和推送自己的改动、开启全文搜索、修改字数上限、媒体上限、投票上限、添加主题、媒体文件上云、添加备用域名等等。这些，在未来的博文中会详细写出。
 
 
 现在，将你原先账号的关注对象都转移到自己站内，在自己的站点愉快享受Mastodon的冲浪生活吧！
