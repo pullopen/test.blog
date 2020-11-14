@@ -259,7 +259,7 @@ header:after {
   .intro-header .site-heading,
   .intro-header .post-heading,
   .intro-header .page-heading {
-    padding: 150px 0;
+    padding: 130px 0;
   }
 }
 
@@ -269,7 +269,7 @@ header:after {
 
 @media only screen and (min-width: 768px) {
   .intro-header .site-heading {
-    padding: 150px 0;
+    padding: 130px 0;
   }
 }
 
@@ -1082,8 +1082,8 @@ header.intro-header {
 }
 
 .posttags{
-  line-height: 2;
-  margin: 2em auto;
+  line-height: 0;
+  margin: 0em auto;
 }
 
 .posttags a,
@@ -1092,7 +1092,7 @@ display: inline-block;
 border: 1px solid #eee;
 border-radius: 999em;
 padding: 0 10px;
-color: #4d4d4d;
+color: #eee;
 line-height: 24px;
 font-size: 13px;
 text-decoration: none;
