@@ -24,13 +24,13 @@ customexcerpt: "如果需要搬迁服务器，应该怎么做？本文以从非d
 
 　　
 
-#### 1. 在新服务器中安装Mastodon
+### 1. 在新服务器中安装Mastodon
 
    请依照[Docker安装Mastodon教程](https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/10/19/Mastodon-on-Docker.html){:target="_blank"}，在新服务器中安装mastodon，**到“配置Mastodon”一步前停下。**
 
 　　
 
-#### 2. 复制并修改旧配置文件
+### 2. 复制并修改旧配置文件
 
    到旧服务器中，
 
@@ -63,7 +63,7 @@ customexcerpt: "如果需要搬迁服务器，应该怎么做？本文以从非d
 
 　　
 
-#### 3. 复制数据库
+### 3. 复制数据库
 
    到旧服务器中：
 
@@ -148,7 +148,7 @@ customexcerpt: "如果需要搬迁服务器，应该怎么做？本文以从非d
 
 　　
 
-#### 4. 复制媒体文件
+### 4. 复制媒体文件
 
    如果你之前已经将媒体文件上传至云端，本步你可以跳过。
 
@@ -190,7 +190,7 @@ customexcerpt: "如果需要搬迁服务器，应该怎么做？本文以从非d
 
 　　
 
-#### 5. 继续配置
+### 5. 继续配置
 
    回到新服务器中：
 
@@ -214,7 +214,7 @@ customexcerpt: "如果需要搬迁服务器，应该怎么做？本文以从非d
 
 　　
 
-#### 6. 配置nginx
+### 6. 配置nginx
 
    新服务器中按照[Docker安装Mastodon教程](https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/10/19/Mastodon-on-Docker.html){:target="_blank"}配置nginx。
    
@@ -226,7 +226,7 @@ customexcerpt: "如果需要搬迁服务器，应该怎么做？本文以从非d
 
 　　
 
-#### 7. 赋权
+### 7. 赋权
 
    这一步是Docker独有步骤。`/public/system/`文件夹传输完毕后，在新服务器：
 

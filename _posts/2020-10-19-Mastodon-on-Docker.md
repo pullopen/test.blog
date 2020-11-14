@@ -56,7 +56,7 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
 
 　　
 
-#### 1. 配置系统
+### 1. 配置系统
 
    * 配置ssh-key：
 
@@ -107,7 +107,7 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
 
 　　
 
-#### 2. 安装docker和docker-compose
+### 2. 安装docker和docker-compose
 
   注意：这里第一步使用了官方提供的一键脚本安装docker。如果你对此感到不放心，请通过[官网步骤](https://docs.docker.com/engine/install/ubuntu/){:target="_blank"}自行安装，同样也是复制粘贴命令行。
 
@@ -121,7 +121,7 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
 
 　　
 
-#### 3. 拉取Mastodon镜像
+### 3. 拉取Mastodon镜像
 
    * 拉取镜像
 
@@ -153,7 +153,7 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
 
 　　
 
-#### 4. 配置Mastodon
+### 4. 配置Mastodon
 
    * 配置文件
 
@@ -214,7 +214,7 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
 
 　　
 
-#### 5. 安装并配置nginx
+### 5. 安装并配置nginx
 
    * 安装nginx
 
