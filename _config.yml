@@ -132,7 +132,7 @@ tagson:
   active: true
 
 feed:
-  excerpt_only: true
+  customexcerpt_only: true
 
 
 
