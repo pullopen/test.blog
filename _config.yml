@@ -131,3 +131,11 @@ related-posts:
 tagson:
   active: true
 
+# Add RSS
+plugins:
+  - jekyll-feed
+title: Mastodon搭建指南
+description: 没有任何IT背景的技术小白要如何搭建一个Mastodon实例？这里给你提供详细指南！
+author: pullopen
+
+
