@@ -844,6 +844,7 @@ footer .copyright a:focus {
 .sidebar-container {
   color: #bfbfbf;
   font-size: 14px;
+  margin-left:5%!important;
 }
 .sidebar-container h5 {
   color: #c200a8;
