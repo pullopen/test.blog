@@ -638,9 +638,14 @@ footer .copyright a:focus {
 
 /*HOME POST*/
 
-.posts li:not(:last-child) {
-    border-bottom: 1px solid rgba(158, 158, 158, 0.25);
+.posts li:not(:first-child) {
+  border-top: 1px solid rgba(158, 158, 158, 0.25);
 }
+
+.posts li:last-child {
+  min-height: 20em;
+}
+
 .posts li {
     display: block;
     clear: both;
@@ -650,6 +655,8 @@ footer .copyright a:focus {
     position: relative;
     line-height: 1.1;
 }
+
+
 .posts li img {
   float: left;
   width: 38px;
@@ -1123,3 +1130,29 @@ text-decoration: none;
   color: #4d4d4d;
 }
 
+.excerpt-img{
+  height: auto !important;
+  max-width: 200px;
+  max-height: 200px;
+  float: right!important;
+  width: 25% !important;
+  margin: 10px 0 50px 0 !important;
+}
+
+.excerpt-img img{
+  width:100%!important;
+  height:auto!important;
+  float: right!important;
+  margin: 0 0 0 0 !important;
+}
+
+.excerpt-text {
+  float: left;
+  width: 70%;
+  line-height: 2;
+  margin: 0 2% 50px 0 !important;
+}
+
+.excerpt {
+  margin: 50px 0 50px 0!important;
+}
