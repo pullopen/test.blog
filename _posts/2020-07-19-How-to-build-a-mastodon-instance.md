@@ -106,7 +106,7 @@ customexcerpt: "从购买域名和服务器，到使用Digital-Ocean镜像一键
 
 　　
 
-##### 2.1 注册Zoho Mail
+### 2.1 注册Zoho Mail
 
 - 打开[ZohoMail](https://www.zoho.com/mail/){:target="_blank"}
 
@@ -123,7 +123,7 @@ customexcerpt: "从购买域名和服务器，到使用Digital-Ocean镜像一键
 
 　　
 
-##### 2.2 验证域名
+### 2.2 验证域名
 
 注册完毕之后，会自动跳转让你验证你的域名，也可以在 **[这里](https://mailadmin.zoho.eu/cpanel/index.do#domains){:target="_blank"}**，点击你在Zoho中添加的域旁边的验证图标 (!)，进入验证设置向导。
 
