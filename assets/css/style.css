@@ -405,8 +405,9 @@ form .row:first-child .floating-label-form-group {
   color: white;
 }
 .pager {
-  margin: 20px 0 0 !important;
-  padding: 0px !important;
+  margin: 100px 0 0 !important;
+  padding: 20px 0 0 !important;
+  border-top: 1px solid #eee;
 }
 .pager li > a,
 .pager li > span {
