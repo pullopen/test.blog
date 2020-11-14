@@ -78,6 +78,10 @@ header.intro-header {
                 col-md-9 col-md-offset-1
                 posts-container">
 
+                {% if site.tagson.active %}
+                    {% include tags.html %}
+                {% endif %}
+                
                 {{ content | remove: 'excerpt_end' }}
 
                 <hr style="visibility: hidden;">
@@ -102,10 +106,6 @@ header.intro-header {
                     </li>
                     {% endif %}
                 </ul>
-
-                {% if site.tagson.active %}
-                    {% include tags.html %}
-                {% endif %}
 
                 {% if site.related-posts.active %}
                     {% include related-posts.html %}

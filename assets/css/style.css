@@ -77,8 +77,8 @@ blockquote p {
   word-wrap: break-word;
 }
 p {
-    font-size: 15px;
-    line-height: 23px;
+    font-size: 16px;
+    line-height: 2;
     margin-top: 20px;
     margin-bottom: 20px;
     color: #4d4d4d;
@@ -145,7 +145,7 @@ pre code {
 }
 .post-container a:hover,
 .post-container a:focus {
-  color: #76bf76;
+  color: #df4a95;
 }
 .post-container h1,
 .post-container h2 {
@@ -179,7 +179,7 @@ pre code {
     clear: both;
     padding: 3px 0;
     color: #444;
-    font-size: 14px;
+    font-size: 16px;
 }
 .post-container ul,
 .post-container ol {
@@ -233,7 +233,7 @@ pre code {
 .post-container li p {
   margin: 0;
   /*margin-bottom: 15px;*/
-  line-height: 1.5;
+  line-height: 2;
 }
 .post-container li h1,
 .post-container li h2,
@@ -439,8 +439,8 @@ form .row:first-child .floating-label-form-group {
 .pager li > a:hover,
 .pager li > a:focus {
   color: white;
-  background-color: #76bf76;
-  border: 1px solid #59b559;
+  background-color: #df4a95;
+  border: 1px solid #ca1e74;
 }
 .pager li > a > span {
     color: rgb(128, 128, 128);

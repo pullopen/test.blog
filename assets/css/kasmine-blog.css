@@ -771,7 +771,7 @@ footer .copyright a:focus {
     margin: 0 0 16px 0;
 }
 .post-heading .meta-box span.name {
-    color: rgb(145, 145, 145);
+    color: #d1d1d1;
 }
 .post-heading .meta-box span {
     margin-bottom: .3em;
@@ -1081,6 +1081,42 @@ header.intro-header {
   }
 }
 
+.posttags{
+  line-height: 2;
+  margin: 2em auto;
+}
 
+.posttags a,
+.posttags .tag {
+display: inline-block;
+border: 1px solid #eee;
+border-radius: 999em;
+padding: 0 10px;
+color: #4d4d4d;
+line-height: 24px;
+font-size: 13px;
+text-decoration: none;
+margin: 0 1px;
+margin-bottom: 6px;
+}
+
+.posttags a:hover,
+.posttags .tag:hover,
+.posttags a:active,
+.posttags .tag:active {
+color: #df4a95;
+border-color: #eee;
+background-color: rgba(255, 255, 255, 0.4);
+text-decoration: none;
+}
+
+.related{
+  line-height: 2;
+  margin: 1em auto;
+}
+
+.related-posts a{
+  color: #4d4d4d;
+}
 
 
