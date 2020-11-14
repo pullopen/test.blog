@@ -176,14 +176,14 @@ ol>li {
   }
   .navbar-custom.is-fixed .navbar-brand:hover,
   .navbar-custom.is-fixed .navbar-brand:focus {
-    color: #76bf76;
+    color: #df4a95;
   }
   .navbar-custom.is-fixed .nav li a {
     color: #404040;
   }
   .navbar-custom.is-fixed .nav li a:hover,
   .navbar-custom.is-fixed .nav li a:focus {
-    color: #76bf76;
+    color: #df4a95;
   }
   .navbar-custom.is-visible {
     /* if the user changes the scrolling direction, we show the header */
@@ -519,7 +519,7 @@ text-shadow:7px 4px 6px #8d8d83
 #tag_cloud .tag:hover,
 #tag_cloud a:active,
 #tag_cloud .tag:active {
-  background-color: #76bf76 !important;
+  background-color: #df4a95 !important;
 }
 
 @media only screen and (min-width: 768px) {
@@ -543,7 +543,7 @@ text-shadow:7px 4px 6px #8d8d83
 }
 
 .listing-seperator {
-  color: #76bf76;
+  color: #df4a95;
   font-size: 21px !important;
 }
 
@@ -858,7 +858,7 @@ footer .copyright a:focus {
 }
 .sidebar-container .tags a:hover,
 .sidebar-container .tags a:active {
-  border-color: #76bf76;
+  border-color: #df4a95;
 }
 .sidebar-container .short-about img {
   width: 80%;
