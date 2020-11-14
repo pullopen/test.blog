@@ -7,7 +7,7 @@ catalog: true
 category: 站点维护
 #gif: mygif
 description: "担心服务器被媒体撑爆？上了云储存，再也不用担心硬盘！"
-customexcerpt: "将媒体储存放到云端后，不用再担心服务器硬盘容量满溢导致的站点"
+customexcerpt: "如果你的服务器硬盘容量较小，那你可能需要注意媒体文件的增长可能会导致硬盘撑满、站点下线。但是，如果你将所有媒体文件都自动同步到云端硬盘，那你就永远不需要担心这个问题。本文就将教你如何将站点的媒体文件同步到Scaleway云端网盘，再也不用担心这种可能。另外对于小型实例而言，配合定期清理缓存，Scaleway的免费容量足够支撑很长时间，是很不错的选择。"
 ---
 
 小型实例最担心的是什么？是每天增长的媒体文件会不会撑爆硬盘。虽然靠着清理外站缓存可以坚持很久，可万一有朝一日满了，难道只有服务器扩容一条路可以选择了吗？
@@ -18,43 +18,18 @@ customexcerpt: "将媒体储存放到云端后，不用再担心服务器硬盘�
 
 那么，要怎么做呢？
 
+　　
 
-## 非必需步骤：通过Cloudflare代理你的网站
-
-
-这一步实际上和上云没有任何关系，但如果你是参照了[第一篇博文](https://pullopen.github.io/2020/07/19/How-to-build-a-mastodon-instance.html){:target="_blank"}在DigitalOcean上购买的服务器，那我个人推荐你进行这一步操作。原因只有一个：DigitalOcean服务器的大陆访问速度**太慢了**。
-
-具体操作步骤非常简单：到[Cloudflare官网](https://www.cloudflare.com/){:target="_blank"}注册账号，选择Add Website输入你自己的域名，Cloudflare会自动读取你的DNS记录并且要求你修改域名服务器（NameServer）。如果你是NameCheap上购买的域名，则点开你的域名，在Domain那一栏下面选择Custom DNS，填入Cloudflare提供的两个NameServer，静静等待生效即可。如果是其他地方购买的域名，Cloudflare也提供了相应[教程](https://support.cloudflare.com/hc/zh-cn/articles/205195708-%E5%B0%86%E6%82%A8%E7%9A%84%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9B%B4%E6%94%B9%E4%B8%BA-Cloudflare){:target="_blank"}，通常非常简单就能完成。
-
-![NameCheap设置](https://s1.ax1x.com/2020/07/22/U7oZrR.png)
-
-生效之后会有邮件通知，这时打开Cloudflare，进入你的域名。
-
-推荐您点开“速度/Speed - 优化”，将下图Auto Minify的三个勾勾选上。
-
-![AutoMinify](https://s1.ax1x.com/2020/07/22/U7TYpF.png)
-
-同时**请注意**，**Rocket Loader™**这个开关，请务必确保它**关闭**，否则你的Mastodon会变成白屏。
-
-![RocketLoader](https://s1.ax1x.com/2020/07/22/U7T79S.png)
-
-打开**SSL设置**，将模式改成Full/完全：
-
-![SSLSetting](https://s1.ax1x.com/2020/07/23/UXkujS.png)
-
-现在请打开测试，您的网站速度有没有变快？每个人每个地区情况可能不同，对我而言确实有肉眼可见的速度提升，对于各位可能需要测试。如果速度反而变慢，可以直接在Cloudflare的DNS设定中将橘色的云朵按灰，即可取消代理。
-
-
-
-## 上传云储存
+## 选择云储存供应商
 
 
 可以选择的云储存服务很多，比如Wasabi、Amazon AWS、DigitalOcean Space等等。对于小型实例而言，一个比较合适的方案就是使用Scaleway的云储存：没有最低月费，提供75G免费空间和每月75G流量，超出部分按0.01刀/G/月计算。如果你有Visa信用卡的话，这是小型实例非常优秀的选择。
 
 让我们开始。
 
+　　
 
-### 创建储存库
+## 创建储存库
 
 - 首先，注册[Scaleway](https://www.scaleway.com/){:target="_blank"}。
 
@@ -62,15 +37,17 @@ customexcerpt: "将媒体储存放到云端后，不用再担心服务器硬盘�
 
 - 命名，选择地区（巴黎/阿姆斯特丹），公开性选择Public，创建。
 
+　　
 
-### 生成API Key
+## 生成API Key
 
 - 点击右上角头像 - Cridentials，下拉到API Tokens栏，点击**Generate New Token**。
 
 - 目的可以自行填写，然后会自动生成一个Access Key和Secret Key。**注意，这里的Secret Key只会出现这一次，请务必复制保存！！！**
 
+　　
 
-### 安装并调试Aws-Cli
+## 安装并调试Aws-Cli
 
 - 打开服务器，进入root用户。输入：
 
@@ -90,8 +67,9 @@ customexcerpt: "将媒体储存放到云端后，不用再担心服务器硬盘�
 
      按指示依次输入Access Key和Secret Key。Region部分，如果你创建时选择的是巴黎则填写`fr-par`，阿姆斯特丹则填写`nl-ams`。Default output format直接回车即可。
 
+　　
 
-### 魔法步骤：同步已有媒体！
+## 魔法步骤：同步已有媒体！
 
 - 进入mastodon用户的live文件夹，运行同步命令：
 
@@ -108,10 +86,12 @@ customexcerpt: "将媒体储存放到云端后，不用再担心服务器硬盘�
 
      迁移需要等待一段时间，开着窗口即可。
 
+　　
 
-### 设置Nginx（可选）
+## 设置Nginx（可选）
 
 这一步是可选步骤，但是设置Nginx一方面可以使你媒体打开的速度和打开你网址的速度变得一样（亦即同样可以使用Cloudflare加速），另一方面，也可以大大节省媒体库流量部分的费用，所以推荐大家可以一起设置。
+
 
 - 首先，到域名商网站，在DNS添加一个A记录，设置你想用的媒体子域名（我设置的是media.我的域名），指向你的服务器地址。（如果你添加了Cloudflare，则在Cloudflare中设置。）
 
@@ -126,12 +106,16 @@ customexcerpt: "将媒体储存放到云端后，不用再担心服务器硬盘�
      nano /etc/nginx/sites-available/media      #修改nginx文件
      ```
 
+     * *2020-07-28 附注：官方文档在最近一次升级后也为大家提供了 **[Nginx设置模板](https://docs.joinmastodon.org/admin/optional/object-storage-proxy/){:target="_blank"}**，可以参考官方文档进行设置，本文仅作补充和存档。*
+
+     * *2020-11-14 补充：官方文档后来经过一次修改，我本人使用修改前的nginx设置可以顺利生效，但是改成修改以后的就无法显示图片，暂时没有排查出原因。因此如果按照官方文档设置不能生效，那么作为备选方案，请找到`set $s3_backend`一行将后面设置为 `'https://s3.fr-par.scw.cloud';`（根据你自己bucket地区不同改变），找到后面的`proxy_pass`一行，将官方的`$s3_backend$uri`改成`$s3_backend/YOUR-MEDIA-BUCKET$uri`（填入自己的bucket名）。*
+
      - 添加以下部分。注意
-         - 修改其中所有的media.your.domain为**自己的实例媒体域名**（一共三处）。
+         - 修改其中所有的MEDIA.YOUR.DOMAIN为**自己的实例媒体域名**（一共三处）。
          
-         - 在location一行后面，修改your-media-bucket修改为**自己的bucket名**。
+         - 在location一行后面，修改YOUR-MEDIA-BUCKET修改为**自己的bucket名**。
          
-         - 最后一行 https://s3.fr-par.scw.cloud/your-media-bucket/ 按照**自己的bucket地区和bucket名**进行修改。
+         - 最后一行 https://s3.fr-par.scw.cloud/YOUR-MEDIA-BUCKET/ 按照**自己的bucket地区和bucket名**进行修改。
          
      如果你修改正确，一共应该有**5个地方**需要修改。
 
@@ -142,8 +126,8 @@ customexcerpt: "将媒体储存放到云端后，不用再担心服务器硬盘�
      server {
          listen 80;
          listen [::]:80;
-         server_name media.your.domain;
-         return 301 https://media.your.domain$request_uri;
+         server_name MEDIA.YOUR.DOMAIN;
+         return 301 https://MEDIA.YOUR.DOMAIN$request_uri;
  
          access_log /dev/null;
          error_log /dev/null;
@@ -152,14 +136,12 @@ customexcerpt: "将媒体储存放到云端后，不用再担心服务器硬盘�
      server {
          listen 443 ssl http2;
          listen [::]:443 ssl http2;
-         server_name media.your.domain;
+         server_name MEDIA.YOUR.DOMAIN;
  
          access_log /var/log/nginx/mstdn-media-access.log;
          error_log /var/log/nginx/mstdn-media-error.log;
  
-         # Add your certificate and HTTPS stuff here
- 
-         location /your-media-bucket/ {
+         location /YOUR-MEDIA-BUCKET/ {
                 proxy_cache mastodon_media;
                 proxy_cache_revalidate on;
                 proxy_buffering on;
@@ -171,7 +153,7 @@ customexcerpt: "将媒体储存放到云端后，不用再担心服务器硬盘�
                 proxy_ignore_headers Cache-Control;
                 add_header X-Cached $upstream_cache_status;
                 add_header 'Access-Control-Allow-Origin' '*';
-                proxy_pass https://s3.fr-par.scw.cloud/your-media-bucket/;
+                proxy_pass https://s3.fr-par.scw.cloud/YOUR-MEDIA-BUCKET/;
          }
  
      }
@@ -193,8 +175,15 @@ customexcerpt: "将媒体储存放到云端后，不用再担心服务器硬盘�
      sudo nginx -s reload
      ```
 
+- 安装证书
+     ```bash
+     sudo certbot --nginx -d 你的媒体域名
+     systemctl reload nginx
+     ```
 
-### 修改.env.production
+　　
+
+## 修改.env.production
 
 ```bash
 su - mastodon     #再次进入mastodon用户
@@ -210,9 +199,9 @@ S3_BUCKET=【你的bucket名】
 AWS_ACCESS_KEY_ID=【你的Access key】
 AWS_SECRET_ACCESS_KEY=【你的Secret key】
 S3_PROTOCOL=https
-S3_HOSTNAME=media.your.domain【你的媒体域名】
-S3_ENDPOINT=https://s3.fr-par.scw.cloud/
-S3_REGION=fr-par
+S3_HOSTNAME=MEDIA.YOUR.DOMAIN  【你的媒体域名】
+S3_ENDPOINT=https://s3.fr-par.scw.cloud/  【根据你的地址进行相应改变】
+S3_REGION=fr-par  【根据你的地址进行相应改变】
 ```
 
 现在，再运行一次魔法步骤，确保你操作期间所有的媒体已经上传：
@@ -231,7 +220,7 @@ systemctl reload mastodon-web
 
 
 
-### 清理本地文件
+## 清理本地文件
 
 打开你自己的站点，随便点开一个媒体看看地址，是不是已经变成了你设置的媒体地址呢？
 
@@ -245,11 +234,12 @@ rm -rf public/system
 
 成功！从此再也不用担心硬盘爆炸啦！
 
+　　
 
-以上是将媒体文件转移到Scaleway云储存的方法。如果你需要转移到其他的储存如Wasabi，请具体参考 **[这个教程](https://stanislas.blog/2018/05/moving-mastodon-media-files-to-wasabi-object-storage/){:target="_blank"}**，前面需要增加设置Policy的过程。
+以上是将媒体文件转移到Scaleway云储存的方法。 **[O3O搭站指南](https://guide.mastodon.im/media){:target="_blank"}**对这一步也有详尽的描述，步骤稍有不同，没有通过nginx而是通过设置CHAME跳转的方式。如果你需要转移到其他的储存如Wasabi，请具体参考 **[这个教程](https://stanislas.blog/2018/05/moving-mastodon-media-files-to-wasabi-object-storage/){:target="_blank"}**，前面需要增加设置Policy的过程。
 
 
-*2020-07-28 附注：官方文档在最近一次升级后也为大家提供了 **[Nginx设置模板](https://docs.joinmastodon.org/admin/optional/object-storage-proxy/){:target="_blank"}**，也可以参考官方文档进行设置。
+
 
 
 

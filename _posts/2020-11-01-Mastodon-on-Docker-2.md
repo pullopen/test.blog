@@ -7,14 +7,14 @@ catalog: true
 category: 进阶魔改
 #gif: mygif
 description: "如何在Docker系统上维持你的魔改"
-customexcerpt: "如何在Docker系统上维持你的魔改"
+customexcerpt: "Docker的缺点在于官方镜像灵活性较低。那么如果需要对Docker上搭建的站点进行轻量魔改，需要怎么做才能轻松应对：既不用在本地编译镜像导致服务器压力过高，又不用每次升级都重新魔改一次呢？"
 ---
 
 
 ## 谁有这样的需求
 
 
-前一篇[教程](https://pullopen.github.io/2020/10/19/Mastodon-on-Docker.html){:target="_blank"}中我曾提到Docker搭建长毛象的优缺点：
+前一篇[教程](https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/10/19/Mastodon-on-Docker.html){:target="_blank"}中我曾提到Docker搭建长毛象的优缺点：
 
 
 **优点：**

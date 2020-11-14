@@ -7,7 +7,7 @@ catalog: true
 category: 基础搭建
 #gif: mygif
 description: "Docker，一个也许更适合新手维护的搭建方案。"
-customexcerpt: "Docker，一个也许更适合新手维护的搭建方案。"
+customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更加轻松，安全性更高，不容易导致整个系统崩溃；比起使用DigitalOcean一键建站，简易程度相当，但服务器选择范围大大扩展。缺点则是只适合轻量魔改，不适合进行开发。本文提供了从头开始用Docker搭建站点的指南，无脑复制命令行即可快速建站，大家有兴趣可以试试。另外本文在最后还提供了Docker建站之后的维护，供大家参考。"
 ---
 
 
@@ -35,7 +35,7 @@ customexcerpt: "Docker，一个也许更适合新手维护的搭建方案。"
 
   1. 可用教程较少，许多命令需要重新学起。
 
-  2. 魔改字数等相对而言不太方便，需要增加一个步骤，在下面会详细列出。
+  2. 魔改字数等相对而言不太方便，需要增加一个步骤，在之后的博文会详细列出。
 
   3. 需要学习docker相关命令。
 
@@ -50,7 +50,7 @@ customexcerpt: "Docker，一个也许更适合新手维护的搭建方案。"
 
 ## 如何在Docker上从头搭建Mastodon
 
-首先，购买域名、购买服务器、配置SMTP服务等，在此不再赘述，大家可以参考本站[之前的教程](https://pullopen.github.io/2020/07/19/How-to-build-a-mastodon-instance.html){:target="_blank"}。
+首先，购买域名、购买服务器、配置SMTP服务等，在此不再赘述，大家可以参考本站[之前的教程](https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/07/19/How-to-build-a-mastodon-instance.html){:target="_blank"}。
 
 本文所用服务器操作系统为**Ubuntu 18.04或Debian 10**，请各位于购买时确认。
 
@@ -177,9 +177,9 @@ customexcerpt: "Docker，一个也许更适合新手维护的搭建方案。"
 
      * postsql和redis部分都直接回车
 
-     * Store uploaded files on the cloud? 这个我们先填否，之后再参考[上云教程](https://pullopen.github.io/2020/07/22/Move-mastodon-media-to-Scaleway.html){:target="_blank"}配置。
+     * Store uploaded files on the cloud? 这个我们先填否，之后再参考[上云教程](https://pullopen.github.io/%E7%AB%99%E7%82%B9%E7%BB%B4%E6%8A%A4/2020/07/22/Move-mastodon-media-to-Scaleway.html){:target="_blank"}配置。
 
-     * Send e-mails from localhost? 否。然后填入邮件服务设置，具体参考[第一篇教程](https://pullopen.github.io/2020/07/19/How-to-build-a-mastodon-instance.html){:target="_blank"}。
+     * Send e-mails from localhost? 否。然后填入邮件服务设置，具体参考[第一篇教程](https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/07/19/How-to-build-a-mastodon-instance.html){:target="_blank"}。
 
      * This configuration will be written to .env.production
      Save configuration? 是
@@ -434,7 +434,7 @@ docker-compose up -d
 
 本步脚本由兔子写就，感谢ta！
 
-注册Scaleway，申请token，创建Bucket，此三步参考[Scaleway上云教程](https://pullopen.github.io/2020/07/22/Move-mastodon-media-to-Scaleway.html){:target=blank}。
+注册Scaleway，申请token，创建Bucket，此三步参考[Scaleway上云教程](https://pullopen.github.io/%E7%AB%99%E7%82%B9%E7%BB%B4%E6%8A%A4/2020/07/22/Move-mastodon-media-to-Scaleway.html){:target=blank}。
 
 在服务器中安装rclone、fuse和zip：
 
@@ -502,7 +502,7 @@ pg容器名一般为mastodon_db_1（通过docker ps查看），密码为你设�
 chmod 751 /backup.sh
 ```
 
-然后试运行一下，看看Scaleway中有没有zip文件生成。如果出现zip文件则成功。之后恢复则可参考[迁移教程](https://pullopen.github.io/2020/10/21/migrate-Mastodon-to-Docker.html){:target=blank}。
+然后试运行一下，看看Scaleway中有没有zip文件生成。如果出现zip文件则成功。之后恢复则可参考[迁移教程](https://pullopen.github.io/%E7%AB%99%E7%82%B9%E7%BB%B4%E6%8A%A4/2020/10/21/migrate-Mastodon-to-Docker.html){:target=blank}。
 
 ```bash
 crontab -e

@@ -6,7 +6,7 @@ image: mastodon-preview.jpg
 catalog: true 
 category: 基础搭建
 #gif: mygif
-subtitle: "没有IT背景的技术小白，如何搭建一个Mastodon实例？"
+description: "没有IT背景的技术小白，如何搭建一个Mastodon实例？"
 customexcerpt: "从购买域名和服务器，到使用Digital-Ocean镜像一键建站：手把手教零基础的你如何将社交网络掌握在自己手中。提示：本文最后一步限制了服务器供应商只能选择Digital Ocean，其最近超售严重，风评不佳。因此大家可以参考本站其他搭建文章，如通过Docker搭建，同样适合新手，选择余地更大。"
 ---
 
@@ -266,7 +266,29 @@ systemctl restart mastodon-streaming       #偶尔需要
 
    如果你没有进行过任何魔改，那么请在**开启了足够SWAP的基础上**，参考官方的 **[升级教程](https://docs.joinmastodon.org/zh-cn/admin/upgrading/){:target="_blank"}**进行升级。
 
-- 第四步，推荐大家可以使用Cloudflare加速，大多数地区都可以通过Cloudflare获得速度提升的效果。具体可以参见 **[O3O搭站指南](https://guide.mastodon.im/cloudflare){:target="_blank"}**或者本博客 **[上云教程](https://pullopen.github.io/%E7%AB%99%E7%82%B9%E7%BB%B4%E6%8A%A4/2020/07/22/Move-mastodon-media-to-Scaleway.html){:target="_blank"}第一部分**。
+- 第四步，推荐大家可以使用Cloudflare加速，尤其对于DigitalOcean来说，大多数地区都可以通过Cloudflare获得速度提升的效果。大致步骤如下：
+
+    到[Cloudflare官网](https://www.cloudflare.com/){:target="_blank"}注册账号，选择Add Website输入你自己的域名，Cloudflare会自动读取你的DNS记录并且要求你修改域名服务器（NameServer）。如果你是NameCheap上购买的域名，则点开你的域名，在Domain那一栏下面选择Custom DNS，填入Cloudflare提供的两个NameServer，静静等待生效即可。如果是其他地方购买的域名，Cloudflare也提供了相应[教程](https://support.cloudflare.com/hc/zh-cn/articles/205195708-%E5%B0%86%E6%82%A8%E7%9A%84%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9B%B4%E6%94%B9%E4%B8%BA-Cloudflare){:target="_blank"}，通常非常简单就能完成。
+    
+    ![NameCheap设置](https://s1.ax1x.com/2020/07/22/U7oZrR.png)
+    
+    生效之后会有邮件通知，这时打开Cloudflare，进入你的域名。
+    
+    推荐您点开“速度/Speed - 优化”，将下图Auto Minify的三个勾勾选上。
+    
+    ![AutoMinify](https://s1.ax1x.com/2020/07/22/U7TYpF.png)
+    
+    同时**请注意**，**Rocket Loader™**这个开关，请务必确保它**关闭**，否则你的Mastodon会变成白屏。
+    
+    ![RocketLoader](https://s1.ax1x.com/2020/07/22/U7T79S.png)
+    
+    打开**SSL设置**，将模式改成Full/完全：
+    
+    ![SSLSetting](https://s1.ax1x.com/2020/07/23/UXkujS.png)
+    
+    现在请打开测试，您的网站速度有没有变快？每个人每个地区情况可能不同，对我而言确实有肉眼可见的速度提升，对于各位可能需要测试。如果速度反而变慢，可以直接在Cloudflare的DNS设定中将橘色的云朵按灰，即可取消代理。
+
+　　另外，更详细的设置可以参见 **[O3O搭站指南](https://guide.mastodon.im/cloudflare){:target="_blank"}**。
 
 
 - 无论如何，请仔细阅读 **[官方文档](https://docs.joinmastodon.org/zh-cn/admin/install/){:target="_blank"}**，里面的一切都很有用。

@@ -7,7 +7,7 @@ catalog: true
 category: 站点维护
 #gif: mygif
 description: "以从非docker迁移到docker为主，补充其他平台间迁移要点。"
-customexcerpt: "以从非docker迁移到docker为主，补充其他平台间迁移要点。"
+customexcerpt: "如果需要搬迁服务器，应该怎么做？本文以从非docker迁移到docker为例详细阐述了搬迁方法，也补充了其他平台之间的迁移要点。"
 ---
 
 
@@ -26,7 +26,7 @@ customexcerpt: "以从非docker迁移到docker为主，补充其他平台间迁�
 
 #### 1. 在新服务器中安装Mastodon
 
-   请依照[Docker安装Mastodon教程](https://pullopen.github.io/2020/10/19/Mastodon-on-Docker.html){:target="_blank"}，在新服务器中安装mastodon，**到“配置Mastodon”一步前停下。**
+   请依照[Docker安装Mastodon教程](https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/10/19/Mastodon-on-Docker.html){:target="_blank"}，在新服务器中安装mastodon，**到“配置Mastodon”一步前停下。**
 
 　　
 
@@ -216,7 +216,7 @@ customexcerpt: "以从非docker迁移到docker为主，补充其他平台间迁�
 
 #### 6. 配置nginx
 
-   新服务器中按照[Docker安装Mastodon教程](https://pullopen.github.io/2020/10/19/Mastodon-on-Docker.html){:target="_blank"}配置nginx。
+   新服务器中按照[Docker安装Mastodon教程](https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/10/19/Mastodon-on-Docker.html){:target="_blank"}配置nginx。
    
    或者可以直接将旧服务器中位于`/etc/nginx/sites-available/`的文件复制到新服务器中，然后按照前述教程进行镜像投射，再用certbot申请新的证书。
    

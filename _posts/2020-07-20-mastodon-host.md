@@ -6,11 +6,11 @@ image: elephant_throwing_cs.png
 catalog: true 
 category: 基础搭建
 #gif: mygif
-subtitle: "如果我实在不想碰程序方面的内容，只想出钱，怎么办？"
+description: "如果我实在不想碰程序方面的内容，只想出钱，怎么办？"
 customexcerpt: "Mastodon托管服务：我掏钱，他帮管。优点：省事，不用费心维护。缺点：完全受制于托管商，需要反复邮件沟通，完全无法魔改，数据依旧无法掌握在自己手中。如果实在无法自己建站，需要选择托管服务，那么有哪些托管商可以选择，又需要注意些什么呢？"
 ---
 
-**[前一篇博文](https://pullopen.github.io/2020/07/19/How-to-build-a-mastodon-instance.html){:target="_blank"}**从头到尾详细地和各位描述了如何搭建自己的Mastodon实例。但是人各有所长，如果有朋友一看到代码头就爆炸，又非常想拥有自己的实例，又该怎么办呢？
+**[前一篇博文](https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/07/19/How-to-build-a-mastodon-instance.html){:target="_blank"}**从头到尾详细地和各位描述了如何搭建自己的Mastodon实例。但是人各有所长，如果有朋友一看到代码头就爆炸，又非常想拥有自己的实例，又该怎么办呢？
 
 第一个方法：你可以求助你的朋友，让ta帮忙一起搭建实例。
 
@@ -38,7 +38,7 @@ customexcerpt: "Mastodon托管服务：我掏钱，他帮管。优点：省事�
 
 但是如果你采用了他的免费域名，那要换托管商就不是那么容易的事情了。**域名一旦启用，就很难更改**，到时候你就只能接受托管商提出的一切要求——这不就还是被人控制了吗？
 
-所以即便你选择了托管服务，你也最好到域名购买商那里购买自己的域名。具体事项可以参照 **[前一篇博文](https://pullopen.github.io/2020/07/19/How-to-build-a-mastodon-instance.html){:target="_blank"}**的第一部分。
+所以即便你选择了托管服务，你也最好到域名购买商那里购买自己的域名。具体事项可以参照 **[前一篇博文](https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/07/19/How-to-build-a-mastodon-instance.html){:target="_blank"}**的第一部分。
 
 ## 有哪些托管商？
 
@@ -74,7 +74,7 @@ customexcerpt: "Mastodon托管服务：我掏钱，他帮管。优点：省事�
 
 官方文档提及的最后一个托管商Nablahost我打不开它的网站，可能已经跑路。
 
-以上就是官方文档提及的各托管站的一个简要价格说明，希望能给大家一些帮助！但是依然是那句话：将一切交给托管商，也就将你的权利交给了它。如果想要真正掌握自己的社交网络，还是请参考[第一篇博文](https://pullopen.github.io/2020/07/19/How-to-build-a-mastodon-instance.html){:target="_blank"}自己搭建——真的不难！更重要的是，当亲手搭建的站点开始运营，这其中的快乐是难以想象的，谁试谁知道！
+以上就是官方文档提及的各托管站的一个简要价格说明，希望能给大家一些帮助！但是依然是那句话：将一切交给托管商，也就将你的权利交给了它。如果想要真正掌握自己的社交网络，还是请参考[第一篇博文](https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/07/19/How-to-build-a-mastodon-instance.html){:target="_blank"}自己搭建——真的不难！更重要的是，当亲手搭建的站点开始运营，这其中的快乐是难以想象的，谁试谁知道！
 
 *顺便，如果看到殆知阁开启了以mastodonhub.com域名为基础的托管站服务，请不要去。无论是审查还是跑路的风险都很高。*
 
