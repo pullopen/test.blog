@@ -7,7 +7,7 @@ post-img: universe2.png
 email: admin@pullopen.xyz
 description: ""
 keyword: "Mastodon, Fediverse"
-#url: "https://pullopen.github.io"              # your host, for absolute URL
+url: "https://pullopen.github.io"              # your host, for absolute URL
 baseurl: "/"  
 imgurl: "/assets/img"
 # baseurl: ""                             # 本地调试使用

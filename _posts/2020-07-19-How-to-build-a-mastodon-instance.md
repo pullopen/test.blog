@@ -7,7 +7,7 @@ catalog: true
 category: 基础搭建
 #gif: mygif
 subtitle: "没有IT背景的技术小白，如何搭建一个Mastodon实例？"
-customexcerpt: "从购买域名和服务器，到使用Digital-Ocean镜像一键建站：手把手教零基础的你如何将社交网络掌握在自己手中。"
+customexcerpt: "从购买域名和服务器，到使用Digital-Ocean镜像一键建站：手把手教零基础的你如何将社交网络掌握在自己手中。提示：本文最后一步限制了服务器供应商只能选择Digital Ocean，其最近超售严重，风评不佳。因此大家可以参考本站其他搭建文章，如通过Docker搭建，同样适合新手，选择余地更大。"
 ---
 
 首先，如果你点开了这个博客，那我相信你已经对Mastodon及整个Fediverse的概念有了一定了解，并且在一定程度上理解了这种去中心化的社交模式为何能够最大程度地避免资本剥削，本文在此不再赘述。引用奈奈一句通俗的话来说就是：
@@ -152,11 +152,11 @@ customexcerpt: "从购买域名和服务器，到使用Digital-Ocean镜像一键
 
 ## 3. 购买服务器
 
-如果你有精力跟着[官方文档](https://docs.joinmastodon.org/zh-cn/admin/prerequisites/){:target="_blank"}的命令一步一步亲自设置，那可选的服务器商范围很多，比如Vultr等等。也可以参考[O3O站长搭站指南](https://guide.mastodon.im/server){:target="_blank"}或[猫老师的这篇日志](https://malaxiaolongmao.github.io/%E5%B7%A5%E5%85%B7/2020/07/17/mastodon-instance-1/){:target="_blank"}。
+在这一步，如果你在之后愿意使用Docker搭建站点（详见本站的[Docker搭建指南](https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/10/19/Mastodon-on-Docker.html){:target="_blank"}，同样适合新手），或者跟着[官方文档](https://docs.joinmastodon.org/zh-cn/admin/prerequisites/){:target="_blank"}的一步一步用命令行搭建，那你可选的服务器商很多，如国人常用的Vultur、Digital Ocean，或者位于德国的Contabo、Hetzner等。你可以参考[主机测评网站](https://www.zhujiceping.com/){:target="_blank"}）以及[O3O站长搭站指南](https://guide.mastodon.im/server){:target="_blank"}。
 
-但如果你和我一样是零基础小白，那么请直接到[DigitalOcean](https://www.digitalocean.com){:target="_blank"}注册。
+而本文要介绍的是[DigitalOcean](https://www.digitalocean.com){:target="_blank"}一键安装，要求只能在DigitalOcean上注册。DigitalOcean本身也是比较老牌的服务器提供商，但价格不算优惠，且近来时有超售、压缩性能等现象，可能会影响用户体验，因此请仔细考虑后再选择这种方式。
 
-这里，在我注册时碰到了一个问题，就是注册后如果我选择使用PayPal，就会立刻锁定我的账号，但朋友并没有碰到这个问题，这可能与我PayPal账号地址与IP地址不统一有关。另外，可能会要求你通过第三方网站验证护照身份证信息，据说和使用Protonmail，同IP多账号，或者使用代理有关。
+在注册DigitalOcean时我碰到了一个问题，就是注册后如果我选择使用PayPal，就会立刻锁定我的账号，但朋友并没有碰到这个问题，这可能与我PayPal账号地址与IP地址不统一有关。另外，可能会要求你通过第三方网站验证护照身份证信息，据说和使用Protonmail，同IP多账号，或者使用代理有关。
 
 注册时，如果你不想填写真实的国家，请避开[这些国家](https://www.digitalocean.com/docs/billing/taxes/){:target="_blank"}，这些国家会对你征收税费。
 
@@ -166,7 +166,7 @@ customexcerpt: "从购买域名和服务器，到使用Digital-Ocean镜像一键
 
 ![Droplet购买](https://s1.ax1x.com/2020/07/19/URhrPf.png)
 
-下拉选择Plan。这里DO会默认把页面停在第二页（40刀/月），往前拉，就可以看到便宜的计划。对于个人实例，如果你不开全文搜索功能，那每月5刀足够。如果你要开启全文搜索或者有计划拉一些朋友，那推荐你选择每月10刀。
+下拉选择Plan。这里DO会默认把页面停在第二页（40刀/月），往前拉，就可以看到便宜的计划。对于个人实例，如果你不开全文搜索功能，那每月5刀足够。如果你要开启全文搜索或者有计划拉一些朋友，那推荐你选择每月10刀（1CPU，2G RAM）配置。
 ![DO_Plan](https://s1.ax1x.com/2020/07/19/URhzi6.png)
 
 下拉，选择服务器地址，Authentication一栏你如果没有任何知识基础就选择Password，如果你已经知道SSH是什么也可以选择SSH（更安全）。点击Create。
