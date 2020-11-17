@@ -64,7 +64,7 @@ RAILS_ENV=production bundle exec rake tmp:cache:clear
 
 ## 修改实例字数上限
 
-官方嘟文上限为500字，如果需要增加，请按照[这个Commit](https://github.com/pullopen/mastodon/commit/2bf275ba3b81e4c28d817511407680b0b7abc7fe){:target="_blank"}修改相应文件：` app/javascript/mastodon/features/compose/components/compose_form.js`（3处）、` app/serializers/rest/instance_serializer.rb`（2处）和` app/validators/status_length_validator.rb`（1处），将字数修改为你心仪的字数，随后进行precompile和重启。
+官方嘟文上限为500字，如果需要增加，请按照[这个Commit](https://github.com/pullopen/mastodon/commit/2bf275ba3b81e4c28d817511407680b0b7abc7fe){:target="_blank"}修改相应文件：`app/javascript/mastodon/features/compose/components/compose_form.js`（3处）、`app/serializers/rest/instance_serializer.rb`（2处）和`app/validators/status_length_validator.rb`（1处），将字数修改为你心仪的字数，随后进行precompile和重启。
 
 　　
 
