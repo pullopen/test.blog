@@ -288,7 +288,7 @@ systemctl restart mastodon-streaming       #偶尔需要
     
     现在请打开测试，您的网站速度有没有变快？每个人每个地区情况可能不同，对我而言确实有肉眼可见的速度提升，对于各位可能需要测试。如果速度反而变慢，可以直接在Cloudflare的DNS设定中将橘色的云朵按灰，即可取消代理。
 
-　　另外，更详细的设置可以参见 **[O3O搭站指南](https://guide.mastodon.im/cloudflare){:target="_blank"}**。
+　　更详细的设置可以参见 **[O3O搭站指南](https://guide.mastodon.im/cloudflare){:target="_blank"}**。
 
 
 - 无论如何，请仔细阅读 **[官方文档](https://docs.joinmastodon.org/zh-cn/admin/install/){:target="_blank"}**，里面的一切都很有用。
