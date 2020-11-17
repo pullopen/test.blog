@@ -166,8 +166,8 @@ Docker系统请参见前一篇文章。非Docker的话，你不能再按照官�
 在你的服务器端：
 
 ```bash
-git remote -v    #查看你的远程库名字
-git fetch --tags 官方远程库名字
+git remote -v    #查看远程库名字
+git fetch --tags 官方远程库名字（如origin）
 git merge 官方库名/版本号    #如origin/v3.2.1
 git push XXX（你的库） master    #将融合好的代码推到你自己的远程库
 ```
