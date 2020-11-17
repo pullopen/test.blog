@@ -137,15 +137,15 @@ systemctl reload nginx
 
 1. 修改中文json文件内容：
 
-```bash
-nano app/javascript/mastodon/locales/zh-CN.json
-```
+   ```bash
+   nano app/javascript/mastodon/locales/zh-CN.json
+   ```
 
 2. 到服务器删除编译好的js文件夹：
 
-```bash
-rm -rf public/packs
-```
+   ```bash
+   rm -rf public/packs
+   ```
 
 3. precompile和重启。
 
@@ -155,7 +155,7 @@ rm -rf public/packs
 
 根据[1234站长建议](https://1234.as/@a/104201233498936058){:target="_blank"}修改相应文件后precompile并重启。
 
-![](https://s1.ax1x.com/2020/07/13/Utefds.png)
+[![](https://s1.ax1x.com/2020/07/13/Utefds.png)](https://s1.ax1x.com/2020/07/13/Utefds.png){:target="_blank"}
 　　
 　　
 
