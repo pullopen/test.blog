@@ -2,7 +2,7 @@
 title: 进阶魔改：修改字数上限、媒体上限、投票上限、添加自定义主题、界面用语、非登陆用户有限显示，附阻止本站嘟文流入某站点方法
 layout: post
 tags: [进阶魔改, Mastodon]
-image: docker-logo-3.png
+image: mastodon-2.png
 catalog: true 
 category: 进阶魔改
 #gif: mygif
