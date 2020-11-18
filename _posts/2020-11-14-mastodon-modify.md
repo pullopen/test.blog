@@ -45,6 +45,7 @@ git merge XXX/master
 ```bash
 RAILS_ENV=production bundle exec rails assets:precompile
 exit
+
 systemctl restart mastodon-sidekiq
 systemctl reload mastodon-web
 systemctl restart mastodon-streaming
