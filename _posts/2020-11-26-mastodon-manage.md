@@ -2,7 +2,7 @@
 title: 如何装饰你的站点：自定义CSS、中继站和自定义表情
 layout: post
 tags: [站点维护, Mastodon, CSS, 中继]
-image: mastodon-2.png
+image: mastodon-3.png
 catalog: true 
 category: 站点维护
 #gif: mygif
