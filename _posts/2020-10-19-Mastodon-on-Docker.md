@@ -434,13 +434,13 @@ docker-compose up -d
 
 本步脚本由兔子写就，感谢ta！
 
-注册Scaleway，申请token，创建Bucket，此三步参考[Scaleway上云教程](https://pullopen.github.io/%E7%AB%99%E7%82%B9%E7%BB%B4%E6%8A%A4/2020/07/22/Move-mastodon-media-to-Scaleway.html){:target=blank}。
+首先，请注册Scaleway，申请token，创建Bucket，此三步可参考[Scaleway上云教程](https://pullopen.github.io/%E7%AB%99%E7%82%B9%E7%BB%B4%E6%8A%A4/2020/07/22/Move-mastodon-media-to-Scaleway.html){:target=blank}。但备份数据库和媒体文件上云最好不要使用同一个bucket，可以分别建立。
 
-在服务器中安装rclone、fuse和zip：
+在服务器中安装rclone和zip：
 
 ```bash
 curl https://rclone.org/install.sh | sudo bash
-apt install fuse zip -y
+apt install zip -y
 ```
 
 创建rclone配置文件夹
@@ -502,13 +502,23 @@ pg容器名一般为mastodon_db_1（通过docker ps查看），密码为你设�
 chmod 751 /backup.sh
 ```
 
-然后试运行一下，看看Scaleway中有没有zip文件生成。如果出现zip文件则成功。之后恢复则可参考[迁移教程](https://pullopen.github.io/%E7%AB%99%E7%82%B9%E7%BB%B4%E6%8A%A4/2020/10/21/migrate-Mastodon-to-Docker.html){:target=blank}。
+然后，
+
+```bash
+/backup.sh
+```
+
+试运行一下，看看Scaleway中有没有zip文件生成。如果出现zip文件则成功。
+
+之后如果想通过备份文件恢复，则可参考[迁移教程](https://pullopen.github.io/%E7%AB%99%E7%82%B9%E7%BB%B4%E6%8A%A4/2020/10/21/migrate-Mastodon-to-Docker.html){:target=blank}。
+
+随后，设置定时任务：
 
 ```bash
 crontab -e
 ```
 
-创建定时任务：
+选择nano编辑器，
 
 ```bash
 3 22    * * *   /backup.sh >> /backup.log
