@@ -66,6 +66,8 @@ RAILS_ENV=production bundle exec rake tmp:cache:clear
 
 官方嘟文上限为500字，如果需要增加，请按照[这个Commit](https://github.com/pullopen/mastodon/commit/2bf275ba3b81e4c28d817511407680b0b7abc7fe){:target="_blank"}修改相应文件：`app/javascript/mastodon/features/compose/components/compose_form.js`（3处）、`app/serializers/rest/instance_serializer.rb`（2处）和`app/validators/status_length_validator.rb`（1处），将字数修改为你心仪的字数，随后进行precompile和重启。
 
+**注意：（2020-12-01更新）：3.3.0版本后，`app/javascript/mastodon/features/compose/components/compose_form.js`修改会发生变化，请先接受官方文件，然后在该文件中将所有500改成你的字数上限，一共2处。**
+
 　　
 
 ## 修改媒体文件大小上限和分辨率上限

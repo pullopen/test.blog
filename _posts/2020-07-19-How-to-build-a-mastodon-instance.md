@@ -274,9 +274,11 @@ systemctl restart mastodon-streaming       #偶尔需要
     
     生效之后会有邮件通知，这时打开Cloudflare，进入你的域名。
     
-    推荐您点开“速度/Speed - 优化”，将下图Auto Minify的三个勾勾选上。
+    点开“速度/Speed - 优化”，下图Auto Minify的三个勾勾请勿选上。
     
     ![AutoMinify](https://s1.ax1x.com/2020/07/22/U7TYpF.png)
+
+    **注意（2020-12-01更新）：Auto Minify在3.3.0版本之后会影响网页打开，请勿勾选！**
     
     同时**请注意**，**Rocket Loader™**这个开关，请务必确保它**关闭**，否则你的Mastodon会变成白屏。
     
