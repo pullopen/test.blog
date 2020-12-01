@@ -177,7 +177,7 @@ customexcerpt: "Docker的缺点在于官方镜像灵活性较低。那么如果�
 
    ```bash
    git fetch --tags upstream
-   git merge upstream/v3.2.1(要升级的tag名)
+   git merge v3.2.1(要升级的tag名)
    ```
 
    进行融合操作，然后在GitHub Desktop上一键推送到你的远程库中，或者直接使用`git push`命令。
