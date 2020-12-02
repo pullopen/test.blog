@@ -138,15 +138,17 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
      nano docker-compose.yml
      ```
 
-     修改`db`部分，将`image`一行改成
+     如果你是从头建站，那么请修改`db`部分，将`image`一行改成
 
-     ```bash
+     ```ruby
      image: postgres:12.5-alpine
      ```
 
-     如果你原先的`.env.production`文件中未设置`DB_PASSWORD`，则需要在`db`部分最后一行后加上
+     （但如果你是想迁移站点，我本人不是很确定改成12.5是否能够成功，可以试试。)
 
-     ```bash
+     在`db`部分最后一行后加上
+
+     ```ruby
      environment:
         - POSTGRES_HOST_AUTH_METHOD=trust
      ```
