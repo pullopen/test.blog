@@ -2,7 +2,7 @@
 title: 如何升级Postgres数据库（Docker系统）
 layout: post
 tags: [Postgres, Mastodon, Docker]
-image: docker-logo.png
+image: postgres.png
 catalog: true 
 category: 站点维护
 #gif: mygif
