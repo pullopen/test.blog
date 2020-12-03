@@ -99,6 +99,7 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
      ```bash
      sudo ufw allow OpenSSH
      sudo ufw enable
+     
      sudo ufw allow http
      sudo ufw allow https
      ```
