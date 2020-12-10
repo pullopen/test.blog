@@ -20,7 +20,7 @@ customexcerpt: "由于众所周知的原因，中文站总容易出现大陆访�
 
 ## 被墙方式
 
-首先关于被墙方式的判断，可以参考bgme大佬的博文[《如何检测网站是否被防火墙屏蔽》](https://blog.bgme.me/index-2.html){:target:="_blank"}，而对于墙的机制，[维基百科](https://zh.wikipedia.org/wiki/%E9%98%B2%E7%81%AB%E9%95%BF%E5%9F%8E){:target:="_blank"}亦有详细描述。还可以通过[Analyzer](https://zh.greatfire.org/analyzer){:target:="_blank"}测试某网站被墙的方式。当然，上述都需要一定的计算机基础（aka我也看不太懂）。对于小白如我，大致考虑**两个层面**被墙：域名层面和IP层面。
+首先关于被墙方式的判断，可以参考bgme大佬的博文[《如何检测网站是否被防火墙屏蔽》](https://blog.bgme.me/index-2.html){:target="_blank"}，而对于墙的机制，[维基百科](https://zh.wikipedia.org/wiki/%E9%98%B2%E7%81%AB%E9%95%BF%E5%9F%8E){:target="_blank"}亦有详细描述。还可以通过[Analyzer](https://zh.greatfire.org/analyzer){:target="_blank"}测试某网站被墙的方式。当然，上述都需要一定的计算机基础（aka我也看不太懂）。对于小白如我，大致考虑**两个层面**被墙：域名层面和IP层面。
 
 　　
 
@@ -53,7 +53,7 @@ customexcerpt: "由于众所周知的原因，中文站总容易出现大陆访�
 
    1. `proxy_cache_path`这一行前面，包括这一行，都删掉。
 
-       [![rFI6B9.png](https://s3.ax1x.com/2020/12/10/rFI6B9.png)](https://s3.ax1x.com/2020/12/10/rFI6B9.png){:target:="_blank"}
+       [![rFI6B9.png](https://s3.ax1x.com/2020/12/10/rFI6B9.png)](https://s3.ax1x.com/2020/12/10/rFI6B9.png){:target="_blank"}
 
 
    2. 在`ssl_certificate`和`ssl_certificate_key`两行前各加一个#，先注释掉。
