@@ -53,7 +53,7 @@ customexcerpt: "由于众所周知的原因，中文站总容易出现大陆访�
 
    1. `proxy_cache_path`这一行前面，包括这一行，都删掉。
 
-   [![rFI6B9.png](https://s3.ax1x.com/2020/12/10/rFI6B9.png)](https://s3.ax1x.com/2020/12/10/rFI6B9.png){:target:="_blank"}
+      [![rFI6B9.png](https://s3.ax1x.com/2020/12/10/rFI6B9.png)](https://s3.ax1x.com/2020/12/10/rFI6B9.png){:target:="_blank"}
 
 
    2. 在`ssl_certificate`和`ssl_certificate_key`两行前各加一个#，先注释掉。
