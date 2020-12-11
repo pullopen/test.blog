@@ -77,6 +77,8 @@ customexcerpt: "Docker的缺点在于官方镜像灵活性较低。那么如果�
 
 ### 2. 在DockerHub中建立属于自己的镜像
 
+   * （2020-12-11补充）：在这一步之前，需要先按照[这个commit](https://github.com/Starainrt/mastodon/commit/77c19df36635f363ffa0f21c0eb9bcc171c31a52){:target="_blank"}，修改根目录里的`Gemfile.lock`，否则会出现搭建失败。
+
    * 在[DockerHub](https://hub.docker.com/){:target="_blank"}上注册账号，Account Setting - Security- Access Tokens创建密钥。
      
       [![DockerHub创建密钥](https://s1.ax1x.com/2020/11/01/B0fvEF.png)](https://s1.ax1x.com/2020/11/01/B0fvEF.png){:target="_blank"}
