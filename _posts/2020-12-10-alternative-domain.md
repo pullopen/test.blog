@@ -127,7 +127,7 @@ customexcerpt: "由于众所周知的原因，中文站总容易出现大陆访�
 
 ### 3. 在新服务器配置nginx文件
 
-   具体参见bgme教程[《使用Nginx反代Mastodon》](https://blog.bgme.me/posts/nginx-reverser-proxy-for-mastodon/)，这篇博文讲述了详细原理。此处仅摘抄大佬提供的一键脚本：
+   具体参见bgme教程[《使用Nginx反代Mastodon》](https://blog.bgme.me/posts/nginx-reverser-proxy-for-mastodon/){:target="_blank"}，这篇博文讲述了详细原理。此处仅摘抄大佬提供的一键脚本：
 
    ```bash
    nano fandai.sh
