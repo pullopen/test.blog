@@ -147,18 +147,44 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
 
      （但如果你是想迁移站点，我本人不是很确定改成12.5是否能够成功，可以试试。)
 
-     在`db`部分最后一行后加上
-
-     ```ruby
-     environment:
-        - POSTGRES_HOST_AUTH_METHOD=trust
-     ```
-
-
-     随后依次找到`web`、`streaming`、`sidekiq`分类，在每一类的`image: tootsuite/mastodon`后添加`:latest`或者你刚才拉取的版本号，变成`image: tootsuite/mastodon:latest`或`image: tootsuite/mastodon:v3.2.1`等等。
+     依次找到`web`、`streaming`、`sidekiq`分类，在每一类的`image: tootsuite/mastodon`后添加`:latest`或者你刚才拉取的版本号，变成`image: tootsuite/mastodon:latest`或`image: tootsuite/mastodon:v3.2.1`等等。
 
 
      ctrl+X退出保存。
+
+　　　
+
+### 4. 初始化PostgreSQL
+
+   刚才`docker-compose.yml`文件中，数据库（db）部分的地址为`./postgres:/var/lib/postgresql/data`，因此你的数据库绝对地址为`/home/mastodon/mastodon/postgres:/var/lib/postgresql/data`。
+
+   运行：
+
+   ```bash
+   docker run --name postgres12 -v /home/mastodon/mastodon/postgres:/var/lib/postgresql/data -e   POSTGRES_PASSWORD=你的PostgreSQL密码 --rm -d postgres:12.5-alpine
+   ```
+
+   执行完后，检查/home/mastodon/mastodon/postgres，应该出现postgres文件，不是空文件夹。
+
+   然后执行：
+
+   ```bash
+   docker exec -it postgres12 psql -U postgres
+   ```
+
+   输入：
+
+   ```psql
+   CREATE USER mastodon WITH PASSWORD '密码' CREATEDB;
+   ```
+
+   创建mastodon用户。
+
+   最后停止docker：
+   
+   ```bash
+   docker stop postgres12
+   ```
 
 　　
 
@@ -184,7 +210,9 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
 
      * Using Docker to run Mastodon? 是
 
-     * postsql和redis部分都直接回车
+     * postsql用户部分填mastodon，密码部分填刚刚设置的数据库密码
+     
+     * redis部分都直接回车
 
      * Store uploaded files on the cloud? 这个我们先填否，之后再参考[上云教程](https://pullopen.github.io/%E7%AB%99%E7%82%B9%E7%BB%B4%E6%8A%A4/2020/07/22/Move-mastodon-media-to-Scaleway.html){:target="_blank"}配置。
 
