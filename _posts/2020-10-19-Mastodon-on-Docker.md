@@ -156,7 +156,7 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
 
 ### 4. 初始化PostgreSQL
 
-   刚才`docker-compose.yml`文件中，数据库（db）部分的地址为`./postgres:/var/lib/postgresql/data`，因此你的数据库绝对地址为`/home/mastodon/mastodon/postgres:/var/lib/postgresql/data`。
+   刚才`docker-compose.yml`文件中，数据库（db）部分的地址为`./postgres:/var/lib/postgresql/data`，因此你的数据库绝对地址为`/home/mastodon/mastodon/postgres`。
 
    运行：
 
@@ -164,7 +164,7 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
    docker run --name postgres12 -v /home/mastodon/mastodon/postgres:/var/lib/postgresql/data -e   POSTGRES_PASSWORD=设置PostgreSQL管理员密码 --rm -d postgres:12.5-alpine
    ```
 
-   执行完后，检查/home/mastodon/mastodon/postgres，应该出现postgres文件，不是空文件夹。
+   执行完后，检查/home/mastodon/mastodon/postgres，应该出现postgres相关的多个文件，不是空文件夹。
 
    然后执行：
 

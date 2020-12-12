@@ -111,7 +111,11 @@ customexcerpt: "如果需要搬迁服务器，应该怎么做？本文以从非d
    DB_USER=mastodon
    ```
 
-   并且不设密码。
+   并且不设密码。建议添加一行，设置数据库密码：
+
+   ```ruby
+   DB_PASS=密码
+   ```
 
    进入docker db容器：
 
@@ -131,8 +135,8 @@ customexcerpt: "如果需要搬迁服务器，应该怎么做？本文以从非d
 
    进入数据库，依次输入以下几行，注意要包括分号：
 
-   ```bash
-   CREATE USER mastodon WITH PASSWORD '密码';         #没有密码则WITH PASSWORD部分不要。
+   ```psql
+   CREATE USER mastodon WITH PASSWORD '密码';
    GRANT ALL PRIVILEGES ON DATABASE mastodon_production TO mastodon;
    \q
    ```
