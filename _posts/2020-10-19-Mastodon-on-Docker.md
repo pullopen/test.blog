@@ -161,7 +161,7 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
    运行：
 
    ```bash
-   docker run --name postgres12 -v /home/mastodon/mastodon/postgres:/var/lib/postgresql/data -e   POSTGRES_PASSWORD=你的PostgreSQL密码 --rm -d postgres:12.5-alpine
+   docker run --name postgres12 -v /home/mastodon/mastodon/postgres:/var/lib/postgresql/data -e   POSTGRES_PASSWORD=设置PostgreSQL管理员密码 --rm -d postgres:12.5-alpine
    ```
 
    执行完后，检查/home/mastodon/mastodon/postgres，应该出现postgres文件，不是空文件夹。
@@ -175,7 +175,7 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
    输入：
 
    ```psql
-   CREATE USER mastodon WITH PASSWORD '密码' CREATEDB;
+   CREATE USER mastodon WITH PASSWORD '数据库密码（最好和PostgreSQL管理员密码不一样）' CREATEDB;
    ```
 
    创建mastodon用户。
@@ -210,7 +210,7 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
 
      * Using Docker to run Mastodon? 是
 
-     * postsql用户部分填mastodon，密码部分填刚刚设置的数据库密码
+     * postsql用户部分填mastodon，密码部分填刚刚设置的**数据库密码**
      
      * redis部分都直接回车
 
