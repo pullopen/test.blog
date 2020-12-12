@@ -82,16 +82,16 @@ ldd --version
 
    新建一个postgres12的容器：
 
-   如果你按照之前教程设置，没有设置数据库的密码：
-
-   ```
-   docker run --name postgres12 -v /当前文件夹绝对路径/postgres:/var/lib/postgresql/data -e POSTGRES_HOST_AUTH_METHOD=trust -d postgres:12.5-alpine
-   ```
-
    如果你设置了数据库的密码：
 
    ```bash
    docker run --name postgres12 -v /当前文件夹绝对路径/postgres:/var/lib/postgresql/data -e POSTGRES_PASSWORD=旧库密码 -d postgres:12.5-alpine
+   ```
+
+   如果你没有设置数据库的密码：
+
+   ```bash
+   docker run --name postgres12 -v /当前文件夹绝对路径/postgres:/var/lib/postgresql/data -e POSTGRES_HOST_AUTH_METHOD=trust -d postgres:12.5-alpine
    ```
 
    然后，`docker ps | grep postgres12 | awk '{print $1}'`查看`postgres12`一行最前面的代码，通过`docker cp`命令将刚才生成的备份拷贝入docker容器：
