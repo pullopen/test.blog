@@ -197,15 +197,37 @@ git push XXX（你的库） master    #将融合好的代码推到你自己的�
 在管理层面封禁一个站点，只能阻止对方的内容流入你自己的站点，并不能完全阻止本站内容流入对方站。如果有这样的需要，可以：
 
 ```bash
-nano /etc/nginx/sites-available/你的域名
+nano /etc/nginx/sites-available/你的站点配置文件（一般以域名命名）
 ```
 
-添加：
+在
+
+```nginx
+server {
+  listen 443 ssl http2;
+  server_name 你域名;
+```
+
+后面，添加：
 
 ```nginx
   if ($http_user_agent ~* "对方域名不带前后缀") {
         return 403;
    }
+```
+
+如果知道对方服务器IP地址，还可以在这一部分添加：
+
+```nginx
+deny 对方ip;
+```
+
+退出保存，`systemctl reload nginx`重启nginx。
+
+并且使用iptable封禁对方ip（root用户）：
+
+```bash
+iptables -I INPUT -s 对方ip -j DROP
 ```
 
 即可阻止对方站点对本站发出请求嘟文、搜索账号等操作，可与封禁联合使用。注意：如果你站和对方站点同时加入了同一个中继站，那么这个规则设置是无效的，因为对方将从中继站拉取你站的嘟文。
