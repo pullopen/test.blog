@@ -122,7 +122,7 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
 
 　　
 
-### 3. 拉取Mastodon镜像
+### 3. 拉取Mastodon镜像（2020-12-12修改)
 
    * 拉取镜像
 
@@ -154,14 +154,14 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
 
 　　　
 
-### 4. 初始化PostgreSQL
+### 4. 初始化PostgreSQL(2020-12-12修改)
 
    刚才`docker-compose.yml`文件中，数据库（db）部分的地址为`./postgres:/var/lib/postgresql/data`，因此你的数据库绝对地址为`/home/mastodon/mastodon/postgres`。
 
    运行：
 
    ```bash
-   docker run --name postgres12 -v /home/mastodon/mastodon/postgres:/var/lib/postgresql/data -e   POSTGRES_PASSWORD=设置PostgreSQL管理员密码 --rm -d postgres:12.5-alpine
+   docker run --name postgres12 -v /home/mastodon/mastodon/postgres:/var/lib/postgresql/data -e   POSTGRES_PASSWORD=设置数据库管理员密码 --rm -d postgres:12.5-alpine
    ```
 
    执行完后，检查/home/mastodon/mastodon/postgres，应该出现postgres相关的多个文件，不是空文件夹。
@@ -175,7 +175,7 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
    输入：
 
    ```psql
-   CREATE USER mastodon WITH PASSWORD '数据库密码（最好和PostgreSQL管理员密码不一样）' CREATEDB;
+   CREATE USER mastodon WITH PASSWORD '数据库密码（最好和数据库管理员密码不一样）' CREATEDB;
    ```
 
    创建mastodon用户。
@@ -186,9 +186,11 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
    docker stop postgres12
    ```
 
+   附：如果你参考了2020-12-12之前的教程，那个教程未对postgres设置密码，有一定的安全隐患，请参考本文新增附录看如何设置密码。
+
 　　
 
-### 5. 配置Mastodon
+### 5. 配置Mastodon（2020-12-12修改)
 
    * 配置文件
 
@@ -562,6 +564,62 @@ crontab -e
 ```
 
 具体时间自己设置，建议设置在半夜，注意服务器时区（通过`date`查看服务器时间）。
+
+
+　　
+
+　　
+
+## 附：如何修改数据库密码（2020-12-12新增）
+
+如果在2020-12-12前参考本教程，当时本教程未要求大家设置数据库密码，这样做有一定的安全风险。因此，如果你**已经建站完毕**，请参考本段添加数据库密码。
+
+关闭mastodon服务：
+
+```bash
+docker-compose down
+```
+
+`nano docker-compose.yml`修改，将之前教程要求你设置的
+
+```ruby
+environment:
+  - POSTGRES_HOST_AUTH_METHOD=trust
+```
+
+删掉，保存。
+
+`nano .env.production`修改，添加
+
+```ruby
+DB_PASS=数据库密码
+```
+
+保存。
+
+启动数据库并进入psql模式：
+
+```bash
+docker run --name postgres12 -v /home/mastodon/mastodon/postgres:/var/lib/postgresql/data --rm  -d  postgres:12.5-alpine
+docker exec -it postgres12 psql -U postgres
+```
+
+填入：
+
+```psql
+alter user mastodon with password '数据库密码';
+alter user postgres with password '数据库管理员密码（两者最好不要相同）';
+\q
+```
+
+停止数据库运行并启动mastodon：
+
+```bash
+docker stop postgres12
+docker-compose up -d
+```
+
+数据库管理员密码和数据库密码即添加完毕。
 
 　　
 
