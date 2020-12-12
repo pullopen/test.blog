@@ -188,7 +188,7 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
 
 　　
 
-### 4. 配置Mastodon
+### 5. 配置Mastodon
 
    * 配置文件
 
@@ -251,7 +251,7 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
 
 　　
 
-### 5. 安装并配置nginx
+### 6. 安装并配置nginx
 
    * 安装nginx
 
