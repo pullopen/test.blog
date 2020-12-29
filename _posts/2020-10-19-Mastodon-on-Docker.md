@@ -473,7 +473,9 @@ docker-compose up -d
 
 本步脚本由兔子写就，感谢ta！
 
-首先，请注册Scaleway，申请token，创建Bucket，此三步可参考[Scaleway上云教程](https://pullopen.github.io/%E7%AB%99%E7%82%B9%E7%BB%B4%E6%8A%A4/2020/07/22/Move-mastodon-media-to-Scaleway.html){:target=blank}。但备份数据库和媒体文件上云最好不要使用同一个bucket，可以分别建立。
+首先，请注册Scaleway，申请token，创建Bucket，此三步可参考[Scaleway上云教程](https://pullopen.github.io/%E7%AB%99%E7%82%B9%E7%BB%B4%E6%8A%A4/2020/07/22/Move-mastodon-media-to-Scaleway.html){:target=blank}。
+
+注意：下文提到的备份脚本会自动删除7天以前的文件，因此**请为备份数据库单独建立一个bucket，**不要和媒体文件使用同一个bucket！
 
 在服务器中安装rclone和zip：
 
@@ -533,7 +535,9 @@ rm -f ${origin}/backup.dump ${origin}/backup_${now}.zip
 /usr/bin/rclone --min-age 7d  delete ${target}
 ```
 
-pg容器名一般为mastodon_db_1（通过docker ps查看），密码为你设立的解压密码。保存。
+pg容器名一般为mastodon_db_1（通过docker ps查看），密码为你设立的解压密码。mastodon_production为你的数据库名，可至`.env.production`查看。
+
+保存。
 
 赋权：
 
@@ -547,7 +551,7 @@ chmod 751 /backup.sh
 /backup.sh
 ```
 
-试运行一下，看看Scaleway中有没有zip文件生成。如果出现zip文件则成功。
+试运行一下，看看Scaleway中有没有zip文件生成。如果出现zip文件且大小以mb计算，则成功。
 
 之后如果想通过备份文件恢复，则可参考[迁移教程](https://pullopen.github.io/%E7%AB%99%E7%82%B9%E7%BB%B4%E6%8A%A4/2020/10/21/migrate-Mastodon-to-Docker.html){:target=blank}。
 

@@ -167,31 +167,36 @@ transform: unset;
 .status__wrapper .status:first-child .status__avatar::before,
 .status__wrapper .status:first-child .status__avatar::after,
 .entry.h-entry .status__avatar div::before,
-.entry.h-entry .status__avatar div::after {
+.entry.h-entry .status__avatar div::after,
+.entry.entry-reblog .status__avatar div::before,
+.entry.entry-reblog .status__avatar div::after {
   content: "";
   display: inline-block;
-  border: 2.5px solid;
+  border: 4px solid;
   box-sizing: border-box;
   width: 50%;
   height: 50%;
-  background-color: #F0F8D2;
-  border-color: #D50886;
+  background-color: inherit;
+  border-color: inherit;
   position: absolute;
   z-index: 0;
 }
 
 .status__avatar::before,
-.entry.h-entry .status__avatar div::before {
+.entry.h-entry .status__avatar div::before,
+.entry.entry-reblog .status__avatar div::before {
   border-radius: 75% 0 75% 75%;
   transform: rotate(-37.6deg) skew(-30deg);
   right: 0;
 }
 
 .status__avatar::after,
-.entry.h-entry .status__avatar div::after {
+.entry.h-entry .status__avatar div::after,
+.entry.entry-reblog .status__avatar div::after {
   border-radius: 0 75% 75%;
   transform: rotate(37.6deg) skew(30deg);
   top: 0;
+  left: 0;
 }
 
 .detailed-status__display-name {
@@ -206,12 +211,12 @@ transform: unset;
 .detailed-status__display-avatar::after {
   content: "";
   display: inline-block;
-  border: 2.5px solid;
+  border: 4px solid;
   box-sizing: border-box;
   width: 24px;
   height: 24px;
-  background-color: #F0F8D2;
-  border-color: #D50886;
+  background-color: inherit;
+  border-color: inherit;
   position: absolute;
   z-index: 0;
 }
@@ -235,13 +240,15 @@ transform: unset;
 
 .status__avatar:hover::before,
 .detailed-status__display-avatar:hover::before,
-.entry.h-entry .status__avatar div:hover::before {
+.entry.h-entry .status__avatar div:hover::before,
+.entry.entry-reblog .status__avatar div:hover::before {
   animation: earwiggleright 1s infinite;
 }
 
 .status__avatar:hover::after,
 .detailed-status__display-avatar:hover::after,
-.entry.h-entry .status__avatar div:hover::after {
+.entry.h-entry .status__avatar div:hover::after,
+.entry.entry-reblog .status__avatar div:hover::after {
   animation: earwiggleleft 1s infinite;
 }
 
