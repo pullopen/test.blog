@@ -157,6 +157,9 @@ transform: unset;
 ```
 
 **为所有头像加上猫耳**
+
+[来源](https://gist.github.com/umonaca/8c6ceff6941dbb486006cb7d2975845b){:target="_blank"}
+
 ```css
 /*cat ears written by dmonad & neb*/
 .notification .status__avatar::before,
