@@ -110,6 +110,8 @@ systemctl reload nginx
 
 1. 进入`app/javascript`文件夹，将[本站](https://github.com/pullopen/mastodon/tree/master/app/javascript){:target="_blank"}的`fonts``images`和`styles`文件夹多出来的文件复制入你的代码库。
 
+   * 注意：`Win95`主题还需要在`./config/webpacker.yml`中加一行`- .gif`才可编译。
+
 2. 参照本站的`config/themes.yml`[文件](https://github.com/pullopen/mastodon/blob/master/config/themes.yml){:target="_blank"}添加。
 
 3. （可选）修改`config/locales/en.yml`和`config/locale/zh-CN.yml`的`themes`部分，给你的主题起英文名和中文名。注意这里需要按照原名的字母顺序排列。参考本站文件[en](https://github.com/pullopen/mastodon/blob/master/config/locales/en.yml){:target="_blank"}和[zh-CN](https://github.com/pullopen/mastodon/blob/master/config/locales/zh-CN.yml){:target="_blank"}。
