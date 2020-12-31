@@ -110,7 +110,7 @@ systemctl reload nginx
 
 1. 进入`app/javascript`文件夹，将[本站](https://github.com/pullopen/mastodon/tree/master/app/javascript){:target="_blank"}的`fonts``images`和`styles`文件夹多出来的文件复制入你的代码库。
 
-   * 注意：`Win95`主题还需要在`./config/webpacker.yml`中加一行`- .gif`才可编译。
+   * 注意：`Win95`主题还需要在`config/webpacker.yml`中加一行`- .gif`才可编译。
 
 2. 参照本站的`config/themes.yml`[文件](https://github.com/pullopen/mastodon/blob/master/config/themes.yml){:target="_blank"}添加。
 
@@ -160,6 +160,8 @@ systemctl reload nginx
 根据[1234站长建议](https://1234.as/@a/104201233498936058){:target="_blank"}修改相应文件后precompile并重启。
 
 [![](https://s1.ax1x.com/2020/07/13/Utefds.png)](https://s1.ax1x.com/2020/07/13/Utefds.png){:target="_blank"}
+
+* 注：V3.3.0后该方法失效。
 　　
 　　
 
