@@ -86,9 +86,9 @@ featured-condition-size: 1              # A tag will be featured if the size of 
 
 # Tags
 sidebar-tags: [{
-"Mastodon建站", 
-"Mastodon搭建", 
-"搭建Mastodon"
+Mastodon建站, 
+Mastodon搭建, 
+搭建Mastodon
 }]
 
 
