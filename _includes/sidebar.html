@@ -28,8 +28,12 @@
         </h5>
         <div class="short-about">
             {% if site.sidebar-avatar %}
-            <img src="{{site.baseurl}}{{site.sidebar-avatar}}" /> {% endif %} {% if site.sidebar-about-description %}
+            <img src="{{site.baseurl}}{{site.sidebar-avatar}}" /> {% endif %} 
+            {% if site.sidebar-about-description %}
             <p>{{site.sidebar-about-description}}</p>
+            {% endif %}
+            {% if site.tags %}
+            <p>{{site.tags}}</p>
             {% endif %}
 
             <!-- SNS Link -->
@@ -108,7 +112,7 @@
     <ul class="list-inline">
         {% for friend in site.friends %}
         <li>
-            <a href="{{friend.href}}" target="_blank">{{friend.title}}</a>
+            <a href="{{friend.href}}" target="_blank">{{friend.title}}</a><br>
         </li>
         {% endfor %}
     </ul>
