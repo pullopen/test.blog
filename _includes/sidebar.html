@@ -33,7 +33,9 @@
             <p>{{site.sidebar-about-description}}</p>
             {% endif %}
             {% if site.sidebar-tags %}
-            <p>{{site.sidebar-tags}}</p>
+                {% for tag in site.tags %}
+                <p>{{site.sidebar-tags}}</p>
+                {% endfor %}
             {% endif %}
 
             <!-- SNS Link -->
