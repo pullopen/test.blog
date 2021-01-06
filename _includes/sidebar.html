@@ -33,11 +33,13 @@
             <p>{{site.sidebar-about-description}}</p>
             {% endif %}
             {% if site.sidebar-tags %}
-                {% for sidebartag in site.sidebar-tags %}
-                #{{sidebartag }}
-                {% endfor %}
+                <p>
+                    {% for sidebartag in site.sidebar-tags %}
+                    #{{sidebartag }}
+                    {% endfor %}
+                </p>
             {% endif %}
-            <br>
+            
 
             <!-- SNS Link -->
             <ul class="list-inline">
