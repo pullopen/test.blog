@@ -33,8 +33,8 @@
             <p>{{site.sidebar-about-description}}</p>
             {% endif %}
             {% if site.sidebar-tags %}
-                {% for tag in site.tags %}
-                <p>{{site.sidebar-tags}}</p>
+                {% for sidebartag in site.sidebar-tags %}
+                <p>#{{site.sidebar-tags}}</p><br>
                 {% endfor %}
             {% endif %}
 
