@@ -157,12 +157,10 @@ systemctl reload nginx
 
 ## 主页对非登陆用户只显示10条嘟文
 
-根据[1234站长建议](https://1234.as/@a/104201233498936058){:target="_blank"}修改相应文件后precompile并重启。
+在v3.3.0版后，请根据[这个commit](https://github.com/orani-admin/mastodon/commit/e06d04b7acf42137efe5b8de9c4b83839537d723){:target="_blank"}修改相应文件后precompile并重启。
 
-[![](https://s1.ax1x.com/2020/07/13/Utefds.png)](https://s1.ax1x.com/2020/07/13/Utefds.png){:target="_blank"}
-
-* 注：V3.3.0后该方法失效。
 　　
+
 　　
 
 ## 在魔改之后进行升级
