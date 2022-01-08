@@ -10,7 +10,7 @@ description: "没有IT背景的技术小白，如何搭建一个Mastodon实例�
 customexcerpt: "从购买域名和服务器，到使用Digital-Ocean镜像一键建站：手把手教零基础的你如何将社交网络掌握在自己手中。提示：本文最后一步限制了服务器供应商只能选择Digital Ocean，其最近超售严重，风评不佳。因此大家可以参考本站其他搭建文章，如通过Docker搭建，同样适合新手，选择余地更大。"
 ---
 
-**注意：本文介绍的[DigitalOcean](https://www.digitalocean.com){:target="_blank"}一键安装，要求只能在DigitalOcean上注册。DigitalOcean本身也是比较老牌的服务器提供商，但价格不算优惠，且近来时有超售、压缩性能等现象，可能会影响用户体验，因此请仔细考虑后再选择。另外，DO的一键安装版本为3.1.3，而Mastodon现今版本已经为3.4以上，后续升级对新手也并不容易，因此不再推荐本方法，请从第3不开始移步[Docker搭站方案](https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/10/19/Mastodon-on-Docker.html){:target="_blank"}。**
+**注意：本文介绍的[DigitalOcean](https://www.digitalocean.com){:target="_blank"}一键安装，要求只能在DigitalOcean上注册。DigitalOcean本身也是比较老牌的服务器提供商，但价格不算优惠，且近来时有超售、压缩性能等现象，可能会影响用户体验，因此请仔细考虑后再选择。另外，DO的一键安装版本为3.1.3，而Mastodon最新版本已经为3.4以上，后续升级和维护对新手并不容易，因此不再推荐本方法，请从第3步开始移步[Docker搭站方案](https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/10/19/Mastodon-on-Docker.html){:target="_blank"}。**
 
 ---
 
