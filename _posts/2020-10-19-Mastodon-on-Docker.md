@@ -50,7 +50,7 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
 
 ## 如何在Docker上从头搭建Mastodon
 
-首先，购买域名、购买服务器、配置SMTP服务等，在此不再赘述，大家可以参考本站[之前的教程](https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/07/19/How-to-build-a-mastodon-instance.html){:target="_blank"}。
+首先，购买域名、购买服务器、配置SMTP服务等，大家可以参考本站[最早教程](https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/07/19/How-to-build-a-mastodon-instance.html){:target="_blank"}的前3步。
 
 本文所用服务器操作系统为**Ubuntu 18.04或Debian 10**，请各位于购买时确认。
 
@@ -99,7 +99,6 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
      ```bash
      sudo ufw allow OpenSSH
      sudo ufw enable
-     
      sudo ufw allow http
      sudo ufw allow https
      ```

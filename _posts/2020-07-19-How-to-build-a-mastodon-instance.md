@@ -1,5 +1,5 @@
 ---
-title: 技术小白如何搭建Mastodon实例
+title: 技术小白如何搭建Mastodon实例（不再推荐）
 layout: post
 tags: [基础搭建, Mastodon]
 image: mastodon-preview.jpg
@@ -8,6 +8,10 @@ category: 基础搭建
 #gif: mygif
 description: "没有IT背景的技术小白，如何搭建一个Mastodon实例？"
 customexcerpt: "从购买域名和服务器，到使用Digital-Ocean镜像一键建站：手把手教零基础的你如何将社交网络掌握在自己手中。提示：本文最后一步限制了服务器供应商只能选择Digital Ocean，其最近超售严重，风评不佳。因此大家可以参考本站其他搭建文章，如通过Docker搭建，同样适合新手，选择余地更大。"
+---
+
+**注意：本文介绍的[DigitalOcean](https://www.digitalocean.com){:target="_blank"}一键安装，要求只能在DigitalOcean上注册。DigitalOcean本身也是比较老牌的服务器提供商，但价格不算优惠，且近来时有超售、压缩性能等现象，可能会影响用户体验，因此请仔细考虑后再选择。另外，DO的一键安装版本为3.1.3，而Mastodon现今版本已经为3.4以上，后续升级对新手也并不容易，因此不再推荐本方法，请从第3不开始移步[Docker搭站方案](https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/10/19/Mastodon-on-Docker.html){:target="_blank"}。**
+
 ---
 
 首先，如果你点开了这个博客，那我相信你已经对Mastodon及整个Fediverse的概念有了一定了解，并且在一定程度上理解了这种去中心化的社交模式为何能够最大程度地避免资本剥削，本文在此不再赘述。引用奈奈一句通俗的话来说就是：
@@ -158,7 +162,7 @@ customexcerpt: "从购买域名和服务器，到使用Digital-Ocean镜像一键
 
 同样，无论你选择哪家服务器，请都**不要使用位于国内服务器**，最好**不要选择国内的服务器提供商**，否则你可能会面临无法与其他站点互联互通、甚至站点下线的风险。
 
-而本文要介绍的是[DigitalOcean](https://www.digitalocean.com){:target="_blank"}一键安装，要求只能在DigitalOcean上注册。DigitalOcean本身也是比较老牌的服务器提供商，但价格不算优惠，且近来时有超售、压缩性能等现象，可能会影响用户体验，因此请仔细考虑后再选择。
+而本文要介绍的是[DigitalOcean](https://www.digitalocean.com){:target="_blank"}一键安装，要求只能在DigitalOcean上注册。再次重申，DigitalOcean本身也是比较老牌的服务器提供商，但价格不算优惠，且近来时有超售、压缩性能等现象，可能会影响用户体验，因此请仔细考虑后再选择。另外，DO的一键安装版本为3.1.3，而Mastodon现今版本已经为3.4以上，后续升级对新手也并不容易，因此不再推荐本方法，请从这步开始移步**[Docker搭站方案](https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/10/19/Mastodon-on-Docker.html){:target="_blank"}**。以下内容仅作为存档。
 
 在注册DigitalOcean时我碰到了一个问题，就是注册后如果我选择使用PayPal，就会立刻锁定我的账号，但朋友并没有碰到这个问题，这可能与我PayPal账号地址与IP地址不统一有关。另外，可能会要求你通过第三方网站验证护照身份证信息，据说和使用Protonmail，同IP多账号，或者使用代理有关。
 
