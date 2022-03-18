@@ -76,6 +76,8 @@ RAILS_ENV=production bundle exec rake tmp:cache:clear
 
 如果需要修改，请参考[这个commit](https://github.com/pullopen/mastodon/commit/674f07ec6fb3e8433674cd5d5c73d3ef6937a881){:target="_blank"}修改相应文件并进行precompile和重启。这一步将压缩后像素上限提升至3686400（1920*1920）像素，图片上限提升至24M，视频为80M。
 
+**注意（2022-03-18更新）：如果先修改后再升级至v3.5.0版本，在merge之后，需要仔细检查`app/models/media_attachment.rb`，重新修改`IMAGE_LIMIT`和`VIDEO_LIMIT`两个参数，因为升级之后这两个参数更换了位置。**
+
 另外，如果服务器的CPU较小，在提高上限后，上传大型动图或者视频时你可能会遇到`504 Bad Gateway`的错误，这是因为转换格式所需要的时间太长，而nginx自动会在1分钟没有响应后断开连接。想要改善这种情况，除了升级服务器之外，你还可以修改nginx文件：
 
 ```bash
@@ -172,7 +174,7 @@ Docker系统请参见前一篇文章。非Docker的话，你不能再按照官�
 ```bash
 git remote -v    #查看远程库名字
 git fetch --tags 官方远程库名字（如origin）
-git merge 官方库名/版本号    #如origin/v3.2.1
+git merge 版本号    #如v3.2.1
 git push XXX（你的库） master    #将融合好的代码推到你自己的远程库
 ```
 
