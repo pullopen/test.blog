@@ -167,7 +167,9 @@ systemctl reload nginx
 
 官方文档曾给出[优化中文搜索的方法](https://docs.joinmastodon.org/admin/optional/elasticsearch/#search-optimization-for-other-languages){:target="_blank"}，但需要修改相应步骤后才能应用于docker上。
 
-1. 下载`elasticsearch-analysis-ik`及`elasticsearch-analysis-stconvert`插件，注意插件版本号与你`docker-compose.yml`中`elasticsearch`的版本号保持一致：
+1. 按照[官方文档的优化方法](https://docs.joinmastodon.org/admin/optional/elasticsearch/#search-optimization-for-other-languages){:target="_blank"}修改mastodon源代码（即修改`app/chewy/accounts_index.rb`、`/app/chewy/statuses_index.rb`和`/app/chewy/tags_index.rb`三个文件。用本教程之前所说的[docker魔改方法](https://pullopen.github.io/%E8%BF%9B%E9%98%B6%E9%AD%94%E6%94%B9/2020/11/01/Mastodon-on-Docker-2.html){:target="_blank"}推送。
+
+2. 下载`elasticsearch-analysis-ik`及`elasticsearch-analysis-stconvert`插件，注意插件版本号与你`docker-compose.yml`中`elasticsearch`的版本号保持一致：
 
    ```bash
    cd /home/mastodon/mastodon/elasticsearch
@@ -176,7 +178,7 @@ systemctl reload nginx
    wget https://github.com/medcl/elasticsearch-analysis-stconvert/releases/download/v${ES_VERSION}/elasticsearch-analysis-stconvert-${ES_VERSION}.zip
    ```
 
-2. `nano docker-entrypoint-es-plugins.sh` 新建插件安装脚本，输入内容：
+3. `nano docker-entrypoint-es-plugins.sh` 新建插件安装脚本，输入内容：
 
    ```bash
    #!/bin/bash
@@ -198,7 +200,7 @@ systemctl reload nginx
 
    赋予脚本运行权限。
 
-3. `cd ..` 返回上一级菜单，`nano docker-compose.yml`编辑该文件，在`es`部分的最后一行（即`        hard: -1`下一行）添加：
+4. `cd ..` 返回上一级菜单，`nano docker-compose.yml`编辑该文件，在`es`部分的最后一行（即`        hard: -1`下一行）添加：
 
    ```yaml
        entrypoint: /usr/share/elasticsearch/data/docker-entrypoint-es-plugins.sh
@@ -206,9 +208,10 @@ systemctl reload nginx
 
    `Ctrl + X`保存并退出。
 
-4. 按照[官方文档的优化方法](https://docs.joinmastodon.org/admin/optional/elasticsearch/#search-optimization-for-other-languages){:target="_blank"}修改mastodon源代码（即修改`app/chewy/accounts_index.rb`、`/app/chewy/statuses_index.rb`和`/app/chewy/tags_index.rb`三个文件。用本教程之前所说的[docker魔改方法](https://pullopen.github.io/%E8%BF%9B%E9%98%B6%E9%AD%94%E6%94%B9/2020/11/01/Mastodon-on-Docker-2.html){:target="_blank"}推送。
 
-5. `docker-compose down`关闭Mastodon所有服务。
+5. 如果此时新的镜像已经准备好：
+
+   `docker-compose down`关闭Mastodon所有服务。
 
    `cd elasticsearch`进入elasticsearch文件夹。
     
