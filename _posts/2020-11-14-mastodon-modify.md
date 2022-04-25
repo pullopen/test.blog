@@ -165,7 +165,7 @@ systemctl reload nginx
 
 ## Docker安装优化中文搜索（2022-04-25新增）
 
-官方文档曾给出[优化中文搜索的方法](https://docs.joinmastodon.org/admin/optional/elasticsearch/){:target="_blank"}，但需要修改相应步骤后才能应用于docker上。
+官方文档曾给出[优化中文搜索的方法](https://docs.joinmastodon.org/admin/optional/elasticsearch/#search-optimization-for-other-languages){:target="_blank"}，但需要修改相应步骤后才能应用于docker上。
 
 1. 下载`elasticsearch-analysis-ik`及`elasticsearch-analysis-stconvert`插件，注意插件版本号与你`docker-compose.yml`中`elasticsearch`的版本号保持一致：
 
@@ -206,7 +206,7 @@ systemctl reload nginx
 
    `Ctrl + X`保存并退出。
 
-4. 按照[官方文档的优化方法](https://docs.joinmastodon.org/admin/optional/elasticsearch/){:target="_blank"}最后一部分修改mastodon源代码（即修改`app/chewy/accounts_index.rb`、`/app/chewy/statuses_index.rb`和`/app/chewy/tags_index.rb`三个文件。用docker魔改方法推送。
+4. 按照[官方文档的优化方法](https://docs.joinmastodon.org/admin/optional/elasticsearch/#search-optimization-for-other-languages){:target="_blank"}修改mastodon源代码（即修改`app/chewy/accounts_index.rb`、`/app/chewy/statuses_index.rb`和`/app/chewy/tags_index.rb`三个文件。用docker魔改方法推送。
 
 5. `docker-compose down`关闭Mastodon所有服务。
 
@@ -235,7 +235,7 @@ export ES_VERSION=7.10.2     #版本号与elasticsearch版本号一致
 ./bin/elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v${ES_VERSION}/elasticsearch-analysis-ik-${ES_VERSION}.zip
 ```
 
-安装两个插件后，再按照[官方文档](https://docs.joinmastodon.org/admin/optional/elasticsearch/){:target="_blank"}进行魔改、precompile、重启、重新部署Elasticsearch索引。
+安装两个插件后，再按照[官方文档](https://docs.joinmastodon.org/admin/optional/elasticsearch/#search-optimization-for-other-languages){:target="_blank"}进行魔改、precompile、重启、重新部署Elasticsearch索引。
 
 　　
 
