@@ -226,6 +226,10 @@ systemctl reload nginx
 
    重新部署搜索，一般需要几个小时到几天时间不等。（如果有兴趣了解screen的话可以放在screen中运行，请自行搜索screen安装及使用教程。）
 
+   待部署完毕后，可尝试搜索，看是否较之前优化。
+
+　　
+
 
 附注：如果你是通过源代码安装或者一键安装，则需根据[官方文档](https://docs.joinmastodon.org/admin/optional/elasticsearch/){:target="_blank"}安装Elsasticsearch后，运行：
 
