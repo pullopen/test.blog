@@ -221,6 +221,10 @@ systemctl reload nginx
 
    `docker-compose up -d` 重启Mastodon。
 
+   此时可运行`docker logs mastodon_es_1 -f -t`查看日志，看两个插件是否安装成功，有无“Fail”/“Error”等报错。正常情况下，应该能在开头看见`Installed analysis-ik`和`Installed analysis-stconvert`两行。
+
+   检查无误后`Ctrl + C`退出日志。
+
 6. 运行
 
    ```bash
