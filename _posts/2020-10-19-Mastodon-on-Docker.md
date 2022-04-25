@@ -607,9 +607,9 @@ crontab -e
 
 　　
 
-## 附：如何修改数据库密码（2020-12-12新增）
+## 附：如何修改数据库密码（2022-04-25更新）
 
-如果在2020-12-12前参考本教程，当时本教程未要求大家设置数据库密码，这样做有一定的安全风险。因此，如果你**已经建站完毕**，请参考本段添加数据库密码。
+如果在2020-12-12前参考本教程，当时本教程未要求大家设置数据库密码，这样做有一定的安全风险。因此，如果你**已经建站完毕且未设置数据库密码**，请参考本段添加数据库密码。
 
 关闭mastodon服务：
 
@@ -619,7 +619,7 @@ docker-compose down
 
 `nano docker-compose.yml`修改，将之前教程要求你设置的
 
-```ruby
+```yaml
 environment:
   - POSTGRES_HOST_AUTH_METHOD=trust
 ```
@@ -628,7 +628,7 @@ environment:
 
 `nano .env.production`修改，添加
 
-```ruby
+```yaml
 DB_PASS=数据库密码
 ```
 
@@ -637,8 +637,8 @@ DB_PASS=数据库密码
 启动数据库并进入psql模式：
 
 ```bash
-docker run --name postgres12 -v /home/mastodon/mastodon/postgres:/var/lib/postgresql/data --rm  -d  postgres:12.5-alpine
-docker exec -it postgres12 psql -U postgres
+docker run --name postgres14 -v /home/mastodon/mastodon/postgres14:/var/lib/postgresql/data --rm  -d  postgres:14-alpine
+docker exec -it postgres14 psql -U postgres
 ```
 
 填入：
@@ -652,7 +652,7 @@ alter user postgres with password '数据库管理员密码（两者最好不要
 停止数据库运行并启动mastodon：
 
 ```bash
-docker stop postgres12
+docker stop postgres14
 docker-compose up -d
 ```
 
