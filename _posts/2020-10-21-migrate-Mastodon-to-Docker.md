@@ -250,6 +250,7 @@ customexcerpt: "如果需要搬迁服务器，应该怎么做？本文以从非d
    docker-compose up -d
    ```
 
+   随后重新建立elasticsearch索引。
 　　
 
 现在你的站点就迁移完毕啦！
@@ -262,7 +263,7 @@ customexcerpt: "如果需要搬迁服务器，应该怎么做？本文以从非d
 
 　　
 
-步骤和上文基本类似，但在第三步转移数据库时，仅需要将相应文件夹中的postgres和redis文件夹传输过去之后，对新服务器中的postgres文件夹赋权即可：
+步骤和上文基本类似，但在第3步转移数据库时，仅需要将相应文件夹中的postgres和redis文件夹传输过去之后，对新服务器中的postgres文件夹赋权即可：
 
 ```bash
 chown -R 70:70 ./postgres
@@ -270,13 +271,7 @@ chown -R 70:70 ./postgres
 
 不需要使用pg_dump和pg_restore命令。
 
-另外，如果本身设置就启动了全文搜索，同样需要重新对新服务器上的elsaticsearch文件夹赋权：
-
-```bash
-chown -R 1000:1000 ./elasticsearch
-```
-
-其他步骤同上。
+后续其他步骤同上。
 
 　　
 
