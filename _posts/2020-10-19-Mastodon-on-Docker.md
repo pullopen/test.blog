@@ -58,7 +58,7 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
 
 ### 1. 配置系统
 
-   * 配置ssh-key：
+  * 配置ssh-key：
 
     ```bash
     mkdir -p ~/.ssh
@@ -82,19 +82,19 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
     ```
 
 
-   * 安装常用命令：
+  * 安装常用命令：
 
     ```bash
     apt update && apt install wget rsync python git curl vim git ufw -y
     ```
 
 
-   * 配置SWAP，具体请参考[配置SWAP教程](https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04){:target="_blank"}。
+  * 配置SWAP，具体请参考[配置SWAP教程](https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04){:target="_blank"}。
 
     请让你的内存+SWAP至少达到4G以上。可以在root用户下通过`free -h`查看。
    
    
-   * 配置防火墙
+  * 配置防火墙
 
     ```bash
     sudo ufw allow OpenSSH
@@ -123,7 +123,7 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
 
 ### 3. 拉取Mastodon镜像（2020-12-12修改)
 
-   * 拉取镜像
+  * 拉取镜像
 
     ```bash
     mkdir -p /home/mastodon/mastodon
@@ -132,7 +132,7 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
     wget https://raw.githubusercontent.com/tootsuite/mastodon/master/docker-compose.yml
     ```
 
-   * 修改`docker-compose.yml`配置文件
+  * 修改`docker-compose.yml`配置文件
 
     ```bash
     nano docker-compose.yml
@@ -185,7 +185,7 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
 
 ### 5. 配置Mastodon（2022-04-25修改)
 
-   * 配置文件
+  * 配置文件
 
     在`/home/mastodon/mastodon`文件夹中创建空白`.env.production`文件：
 
@@ -271,13 +271,13 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
 
 
 
-   * 启动Mastodon
+  * 启动Mastodon
 
     ```bash
     docker-compose up -d
     ```
   
-   * 为相应文件夹赋权
+  * 为相应文件夹赋权
 
     ```bash
     chown 991:991 -R ./public
@@ -290,13 +290,13 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
 
 ### 6. 安装并配置nginx
 
-   * 安装nginx
+  * 安装nginx
 
     ```bash
     sudo apt install nginx -y
     ```
 
-   * 配置nginx
+  * 配置nginx
 
     ```bash
     nano /etc/nginx/sites-available/你的域名
@@ -332,7 +332,7 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
     ```
 
 
-  如果不放心，可以再至`/home/mastodon/mastodon`文件夹，运行`docker-compose up -d`重启mastodon。静静等待几分钟后，点开你的域名，你的站点就上线啦！
+如果不放心，可以再至`/home/mastodon/mastodon`文件夹，运行`docker-compose up -d`重启mastodon。静静等待几分钟后，点开你的域名，你的站点就上线啦！
 
 　　
 
