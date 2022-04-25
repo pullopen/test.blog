@@ -255,8 +255,6 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
 
     Below is your configuration, save it to an .env.production file outside Docker:
 
-    ```
-
     然后会出现.env.production配置，**请务必复制下来，先存到电脑里，等会儿要用。**
 
     之后会要你建立数据库和编译，都选是。最后建立管理员账号。
