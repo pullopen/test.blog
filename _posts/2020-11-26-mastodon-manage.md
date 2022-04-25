@@ -20,37 +20,9 @@ customexcerpt: "自定义CSS、中继站和自定义表情都是管理员可以�
 
 几个常用好用CSS：
 
-**长图补丁，让鼠标悬浮时自动放大长图并可上下滚动浏览，电脑手机均有效，推荐！！！）**
+### 长图补丁
 
-```css
-/*mastodon长图补丁 v2.1 by Shioko*/
-.image-loader {
-    align-items:center;
-}
-.zoomable-image {
-    display: flex;
-    height:auto;
-    max-height: 100%;
-    width: auto;
-    max-width: 98%;
-    overflow: auto !important;
-    align-items:center;
-}
-.zoomable-image:hover {
-    align-items: flex-start;
-}
-
-.zoomable-image img {
-    max-height: 100%;
-    max-width:100%;
-}
-.zoomable-image img:hover {
-    max-height: 2000%;
-    max-width:100%;
-}
-```
-
-注意：在3.2.2版本之后，官方加入了放大图片的按钮，可能会显得冗余，故可选择仅保留这一部分：
+在3.2.2版本之后，仅需保留此部分，可使具体图片铺满整个页面：
 
 ```css
 .image-loader {
@@ -69,7 +41,7 @@ customexcerpt: "自定义CSS、中继站和自定义表情都是管理员可以�
 }
 ```
 
-**让高级Web模式铺满整个页面（推荐！）**
+### 让高级Web模式铺满整个页面（推荐！）
 
 ```css
 /*variable width*/
@@ -80,7 +52,7 @@ div.column {
 }
 ```
 
-**Tag高亮显示（蓝色）**
+### Tag高亮显示（蓝色）
 
 ```css
 /*hashtag style blue by slashine 071320*/
@@ -101,7 +73,7 @@ margin-bottom: 2px;
 
 颜色可以通过修改background-color和border-color修改。
 
-**放大Emoji（固定放大）**
+### 放大Emoji（v3.5.0版本以前）
 
 ```css
 /*emoji enlarge written by bgme*/
@@ -123,7 +95,39 @@ margin-bottom: 2px;
 
 大小可以通过修改50px这个参数调整。
 
-**放大Emoji（鼠标悬停放大）**
+### 放大Emoji（v3.5.0版本以后）
+
+```css
+/*emoji enlarge written by bgme*/
+/* Custom extended information */
+.emoji_source > li > img {
+	width: 50px;
+	height: 50px;
+}
+
+/* emoji */
+.reply-indicator__content .emojione, 
+.status__content .emojione {
+	width: 50px !important;
+	height: 50px !important;
+}
+
+/* emoji selector */
+
+.emoji-mart-category .emoji-mart-emoji:hover span,
+.emoji-mart-category .emoji-mart-emoji-custom:hover img {
+	width: 45px !important;
+	height: 45px !important;
+}
+
+.emoji-mart-category .emoji-mart-emoji:hover {
+	margin: 0 -12px;
+}
+
+```
+
+
+### 放大Emoji（鼠标悬停放大，v3.5.0版本后可能需要相应修改）
 
 ```css
 /* START mastodon emoji scaling by @eh5@eh5.me */
@@ -156,7 +160,7 @@ transform: unset;
 /* END mastodon emoji scaling by @eh5@eh5.me */
 ```
 
-**为所有头像加上猫耳**
+### 为所有头像加上猫耳
 
 [来源](https://gist.github.com/umonaca/8c6ceff6941dbb486006cb7d2975845b){:target="_blank"}
 
@@ -272,7 +276,19 @@ transform: unset;
 }
 ```
 
-通过修改background-color和border-color修改颜色。
+通过修改background-color和border-color修改猫耳颜色。
+
+
+### 添加注册理由说明
+
+```css
+/* 注册提示 */
+label[for=registration_user_invite_request_attributes_text]:after {
+  content: '【具体注册提示，如“请说说你的爱好”或者“本站头图是什么？”';
+  color:#003B6F;
+}
+
+```
 
 　　
 
