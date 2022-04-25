@@ -227,13 +227,13 @@ systemctl reload nginx
 
 附注：如果你是通过源代码安装或者一键安装，则需根据[官方文档](https://docs.joinmastodon.org/admin/optional/elasticsearch/)安装Elsasticsearch后，运行：
 
-    ```bash
-    cd /usr/share/elasticsearch
-    bin/elasticsearch --version     #查看Elasticsearch版本号
-    export ES_VERSION=7.10.2     #版本号与elasticsearch版本号一致
-    ./bin/elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v${ES_VERSION}/elasticsearch-analysis-ik-${ES_VERSION}.zip
-    ./bin/elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v${ES_VERSION}/elasticsearch-analysis-ik-${ES_VERSION}.zip
-    ```
+ ```bash
+ cd /usr/share/elasticsearch
+ bin/elasticsearch --version     #查看Elasticsearch版本号
+ export ES_VERSION=7.10.2     #版本号与elasticsearch版本号一致
+ ./bin/elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v${ES_VERSION}/elasticsearch-analysis-ik-${ES_VERSION}.zip
+ ./bin/elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v${ES_VERSION}/elasticsearch-analysis-ik-${ES_VERSION}.zip
+ ```
 
 安装两个插件后，再按照[官方文档](https://docs.joinmastodon.org/admin/optional/elasticsearch/)进行魔改、precompile、重启、重新部署Elasticsearch索引。
 
