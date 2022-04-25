@@ -160,7 +160,7 @@ customexcerpt: "从购买域名和服务器，到使用Digital-Ocean镜像一键
 
 在这一步，如果你在之后愿意使用Docker搭建站点（详见本站的[Docker搭建指南](https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/10/19/Mastodon-on-Docker.html){:target="_blank"}，同样适合新手），或者跟着[官方文档](https://docs.joinmastodon.org/zh-cn/admin/prerequisites/){:target="_blank"}的一步一步用命令行搭建，那你可选的服务器商很多，如国人常用的Vultur、Digital Ocean，或者位于德国的Contabo、Hetzner等。你可以参考[主机测评网站](https://www.zhujiceping.com/){:target="_blank"}）以及[O3O站长搭站指南](https://guide.mastodon.im/server){:target="_blank"}。
 
-同样，无论你选择哪家服务器，请都**不要使用位于国内服务器**，最好**不要选择国内的服务器提供商**，否则你可能会面临无法与其他站点互联互通、甚至站点下线的风险。
+同样，无论你选择哪家服务器，请都**不要使用位于国内的服务器**，最好**不要选择国内的服务器提供商**，否则你可能会面临无法与其他站点互联互通、甚至站点下线的风险。
 
 而本文要介绍的是[DigitalOcean](https://www.digitalocean.com){:target="_blank"}一键安装，要求只能在DigitalOcean上注册。再次重申，DigitalOcean本身也是比较老牌的服务器提供商，但价格不算优惠，且近来时有超售、压缩性能等现象，可能会影响用户体验，因此请仔细考虑后再选择。另外，DO的一键安装版本为3.1.3，而Mastodon现今版本已经为3.4以上，后续升级对新手也并不容易，因此不再推荐本方法，请从这步开始移步**[Docker搭站方案](https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/10/19/Mastodon-on-Docker.html){:target="_blank"}**。以下内容仅作为存档。
 
