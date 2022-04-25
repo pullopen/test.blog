@@ -300,7 +300,7 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
     nano /etc/nginx/sites-available/你的域名
     ```
 
-    网页打开[nginx模板](https://github.com/tootsuite/mastodon/blob/master/dist/nginx.conf){:target="_blank"}，将其中的example.com替换成自己域名，将20和43行的`/home/mastodon/live/public`改成`/home/mastodon/mastodon/public`，注意保留`ssl_certificate`和`ssl_certificate_key`前的#，并且在复制到服务器中保存。
+    网页打开[nginx模板](https://github.com/tootsuite/mastodon/blob/master/dist/nginx.conf){:target="_blank"}，将其中的example.com替换成自己域名，将20和43行的`/home/mastodon/live/public`改成`/home/mastodon/mastodon/public`，注意保留`ssl_certificate`和`ssl_certificate_key`前的#号，并且在复制到服务器中保存。
 
     投射镜像文件：
 
