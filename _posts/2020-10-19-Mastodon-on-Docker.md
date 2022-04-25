@@ -55,7 +55,7 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
 这三步为建站基础，请大家参考本站[最早教程](https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/07/19/How-to-build-a-mastodon-instance.html){:target="_blank"}的前3步逐一完成。
 
 
-其中，服务器可在任何一家服务器提供商购买，不必局限于（也不推荐）DigitalOcean，国人常用的Vultur、Digital Ocean，或者位于德国的Contabo、Hetzner等都可以。你可以参考[主机测评网站](https://www.zhujiceping.com/){:target="_blank"}）蹲服务器折扣，[O3O站长搭站指南](https://www.notion.so/68b0e4bb0b9e4fa5a9dd74d03b71a328){:target="_blank"}有更详细的指导意见。
+其中，服务器可在任何一家服务器提供商购买，不必局限于（也不推荐）DigitalOcean。其他如国人常用的Vultur、Digital Ocean，或者位于德国的Contabo、Hetzner等都可以。你可以参考[主机测评网站](https://www.zhujiceping.com/){:target="_blank"}蹲服务器折扣。此外，[O3O站长搭站指南](https://www.notion.so/68b0e4bb0b9e4fa5a9dd74d03b71a328){:target="_blank"}有更详细的指导意见。
 
 购买时选择操作系统为**Ubuntu 18.04或Debian 10**即可。本文教程均以此系统为准。
 
