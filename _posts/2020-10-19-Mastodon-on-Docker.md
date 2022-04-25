@@ -302,6 +302,10 @@ docker stop postgres14
 
 ### 6. 安装并配置nginx
 
+在这一步之前，请记得到您购买域名的网站（如NameCheap），在DNS设置中添加一个**A Record**，Host填写@（如果没有子域名需求），Value填写你服务器的IP地址，将你设定的域名指向你的服务器。
+
+**请注意：此时你的DNS Setting里除了你刚才在邮箱配置和本步骤中亲自设置的内容之外，别的任何由域名商自动生成内容请都删光。**
+
 * 安装nginx
 
   ```bash
@@ -314,15 +318,15 @@ docker stop postgres14
   nano /etc/nginx/sites-available/你的域名
   ```
 
-  网页打开[nginx模板](https://github.com/tootsuite/mastodon/blob/master/dist/nginx.conf){:target="_blank"}，将其中的example.com替换成自己域名，将20和43行的`/home/mastodon/live/public`改成`/home/mastodon/mastodon/public`，注意保留`ssl_certificate`和`ssl_certificate_key`前的#号，并且在复制到服务器中保存。
+  网页打开[nginx模板](https://raw.githubusercontent.com/mastodon/mastodon/main/dist/nginx.conf){:target="_blank"}，将其中的example.com替换成自己域名，将20和43行的`/home/mastodon/live/public`改成`/home/mastodon/mastodon/public`，复制到服务器中保存。
 
-  投射镜像文件：
+  随后配置镜像文件
 
   ```bash
   ln -s /etc/nginx/sites-available/你的域名 /etc/nginx/sites-enabled/
   ```
 
-  重启nginx：
+  `nginx -t`检查，无误后重启（如果提示ssl证书问题，请在包含ssl的行前加#号先行注释掉，配置完ssl证书后再改回来）：
 
   ```bash
   systemctl reload nginx
@@ -330,21 +334,35 @@ docker stop postgres14
 
 * 配置SSL证书
 
-  安装certbot：
-
   ```bash
-  sudo snap install core; sudo snap refresh core    #如果没有snap则 apt install snapd 安装
+  apt install snapd
+  sudo snap install core; sudo snap refresh core
   sudo snap install --classic certbot
   sudo ln -s /snap/bin/certbot /usr/bin/certbot
-  sudo certbot --nginx -d 你的域名
+  sudo certbot certonly --nginx -d 你的域名
   ```
 
-  再重启nginx
+* 重启nginx
+
+  重新打开nginx配置文件，将`ssl_certificate`和`ssl_certificate_key`两行前的#号（以及你刚才添加的#号）删除。
+
+  `nginx -t`检查是否有错误。
+
+  如果没有错误，则可重启nginx：
 
   ```bash
   systemctl reload nginx
   ```
 
+* 检查证书更新
+
+  最后，可通过
+
+  ```bash
+  certbot renew --dry-run
+  ```
+
+  检查证书是否能自动更新。
 
 如果不放心，可以再至`/home/mastodon/mastodon`文件夹，运行`docker-compose up -d`重启mastodon。静静等待几分钟后，点开你的域名，你的站点就上线啦！
 
