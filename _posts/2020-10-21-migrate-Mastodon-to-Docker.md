@@ -201,14 +201,12 @@ customexcerpt: "如果需要搬迁服务器，应该怎么做？本文以从非d
    ```bash
    cd /home/mastodon/mastodon
    docker-compose down
-   docker-compose run --rm web rails assets:precompile              #编译
    docker-compose run --rm web bin/tootctl feeds build              #构建用户首页时间流
    docker-compose up -d
    ```
 
-   *注：我是根据官方文档在`tootctl feeds build`前面加了一步`docker-compose run --rm web rails assets:precompile`进行编译，但我自己操作时，结果显示为“Everything is up-to-date. Nothing to do”，怀疑这一步对docker系统并无必要？大家可以先不执行试试，如果不行再`docker-compose down`，编译后重启。也期待大家的反馈。
 
-   如果你在新服务器上的版本高于原先版本，根据官方升级指导，可能需要进行
+   如果你在新服务器上的版本高于原先版本，需要根据官方升级指导增加步骤，可能需要进行
 
    ```bash
    docker-compose run --rm web rails db:migrate
