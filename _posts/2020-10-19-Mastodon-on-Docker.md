@@ -326,7 +326,7 @@ docker stop postgres14
   ln -s /etc/nginx/sites-available/你的域名 /etc/nginx/sites-enabled/
   ```
 
-  `nginx -t`检查，无误后重启（如果提示ssl证书问题，请在包含ssl的行前加#号先行注释掉，配置完ssl证书后再改回来）：
+  `nginx -t`检查，无误后重启（如果提示ssl证书问题，请在`listen 443 ssl http2;`、`listen [::]:443 ssl http2;`等包含ssl的行前加#号先行注释掉，配置完ssl证书后再改回来）：
 
   ```bash
   systemctl reload nginx
