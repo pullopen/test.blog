@@ -214,6 +214,8 @@ systemctl reload nginx
     
    `rm -rf nodes`删除nodes文件夹。
 
+   `docker pull xxxxxx/mastodon:latest`重新拉取修改后新的镜像（版本号随你推送的版本号调整）。
+
    `docker-compose up -d` 重启Mastodon。
 
 6. 运行
