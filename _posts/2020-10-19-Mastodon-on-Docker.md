@@ -611,6 +611,39 @@ crontab -e
 
 具体时间自己设置，建议设置在半夜，注意服务器时区（通过`date`查看服务器时间）。
 
+　　
+
+　　
+
+## 利用Cloudflare提升网站速度
+
+请注意，Cloudflare目前在大陆也时常被阻拦，未必能起到加速作用。是否能提高速度，需要根据服务器本身的在大陆的连接速度判断。
+
+步骤如下：
+
+到[Cloudflare官网](https://www.cloudflare.com/){:target="_blank"}注册账号，选择Add Website输入你自己的域名，Cloudflare会自动读取你的DNS记录并且要求你修改域名服务器（NameServer）。如果你是NameCheap上购买的域名，则点开你的域名，在Domain那一栏下面选择Custom DNS，填入Cloudflare提供的两个NameServer，静静等待生效即可。如果是其他地方购买的域名，Cloudflare也提供了相应[教程](https://support.cloudflare.com/hc/zh-cn/articles/205195708-%E5%B0%86%E6%82%A8%E7%9A%84%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9B%B4%E6%94%B9%E4%B8%BA-Cloudflare){:target="_blank"}，通常非常简单就能完成。
+    
+![NameCheap设置](https://s1.ax1x.com/2020/07/22/U7oZrR.png)
+    
+生效之后会有邮件通知，这时打开Cloudflare，进入你的域名。
+    
+点开“速度/Speed - 优化”，下图Auto Minify的三个勾勾请勿选上。
+    
+![AutoMinify](https://s1.ax1x.com/2020/07/22/U7TYpF.png)
+
+**注意（2020-12-01更新）：Auto Minify在3.3.0版本之后会影响网页打开，请勿勾选！**
+    
+同时**请注意**，**Rocket Loader™**这个开关，请务必确保它**关闭**，否则你的Mastodon会变成白屏。
+    
+![RocketLoader](https://s1.ax1x.com/2020/07/22/U7T79S.png)
+    
+打开**SSL设置**，将模式改成Full/完全：
+    
+![SSLSetting](https://s1.ax1x.com/2020/07/23/UXkujS.png)
+    
+现在请打开测试，您的网站速度有没有变快？每个人每个地区情况可能不同，对我而言确实有肉眼可见的速度提升，对于各位可能需要测试。如果速度反而变慢，可以直接在Cloudflare的DNS设定中将橘色的云朵按灰，即可取消代理。
+
+更详细的设置可以参见 **[O3O搭站指南](https://guide.mastodon.im/cloudflare){:target="_blank"}**。
 
 　　
 
