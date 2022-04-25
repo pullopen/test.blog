@@ -1,5 +1,5 @@
 ---
-title: 如何升级Postgres数据库（Docker系统）
+title: Docker系统如何升级Postgres数据库（已过时，仅作为存档）
 layout: post
 tags: [Postgres, Mastodon, Docker]
 image: postgres.png
@@ -9,6 +9,10 @@ category: 站点维护
 description: "如何升级Postgres数据库"
 customexcerpt: "在v3.3.0版本之后，如果使用较早版本的Postgres数据库，在迁移时会出现可能发生错误的提示。这是由于系统自带的`glibc`某次大升级，使数据库处理数据的方式发生变化，因此可能导致数据库不连续。官方给出了检查和解决方案，但由于官方给出的docker-compose.yml文件中数据库版本还是Postgres 9.6，无法运行官方检查使用的插件。因此可以选择对Postgres数据库进行升级后再检查。"
 ---
+
+
+**注意（2022-03-18更新）：官方自3.5.0版本后将`docker-compose.yml`的postgres版本号升级成了14，升级步骤见[这份教程](https://github.com/mastodon/mastodon/pull/16947)，本文仅作为存档！**
+
 
 本升级教程依旧是@star@b612.me兔子老师的手把手指导记录。
 
@@ -28,7 +32,6 @@ ldd --version
 
 因此，可以直接选择对Postgres数据库进行升级并重新编码数据库。思路是：将数据库文件从二进制导出变为文本，将数据库升级后再导回数据库重新编码为二进制。重新编码之后数据库的索引版本将与系统保持一致，不会再出现不适配的问题，用官方的检查方案进行检查也不会有任何问题。
 
-**注意（2022-03-18更新）：官方自3.5.0版本后将`docker-compose.yml`的postgres版本号升级成了14，升级步骤见[这份教程](https://github.com/mastodon/mastodon/pull/16947)，本文仅作为存档。**
 
 　　
 
