@@ -312,3 +312,30 @@ iptables -I INPUT -s 对方ip -j DROP
 
 即可阻止对方站点对本站发出请求嘟文、搜索账号等操作，可与封禁联合使用。注意：如果你站和对方站点同时加入了同一个中继站，那么这个规则设置是无效的，因为对方将从中继站拉取你站的嘟文。另外，这些方法也并不能防止从第三方的中转，只能尽量减少嘟文的读取。
 
+
+## 附：屏蔽国内浏览器及搜索爬虫（2022-04-25更新）
+
+**注意：此方法有一定机率误伤使用国内手机的用户，请务必全面通知后再使用！**
+
+两种方法：
+
+如果使用Cloudflare：可在“防火墙规则”中添加：如果
+
+```
+(http.host eq "【站点地址】" and not lower(http.user_agent) contains "feedly" and not lower(http.user_agent) contains "pleroma") and ((lower(http.user_agent) contains "2345") or (lower(http.user_agent) contains "360") or (lower(http.user_agent) contains "ali-") or (lower(http.user_agent) contains "alipay") or (lower(http.user_agent) contains "baidu") or (lower(http.user_agent) contains "bingbot") or (lower(http.user_agent) contains "bytespider") or (lower(http.user_agent) contains "coolnovo") or (lower(http.user_agent) contains "duckduckgo") or (lower(http.user_agent) contains "easou") or (lower(http.user_agent) contains "facebook") or (lower(http.user_agent) contains "google") or (lower(http.user_agent) contains "huawei") or (lower(http.user_agent) contains "iaskspider") or (lower(http.user_agent) contains "iqiyi") or (lower(http.user_agent) contains "jike") or (lower(http.user_agent) contains "lbbrowser") or (lower(http.user_agent) contains "liebao") or (lower(http.user_agent) contains "maxthon") or (lower(http.user_agent) contains "meizu") or (lower(http.user_agent) contains "metasr") or (lower(http.user_agent) contains "micromessenger") or (lower(http.user_agent) contains "miui") or (lower(http.user_agent) contains "miuibrowser") or (lower(http.user_agent) contains "msnbot") or (lower(http.user_agent) contains "oneplus") or (lower(http.user_agent) contains "oppo") or (lower(http.user_agent) contains "qihoo") or (lower(http.user_agent) contains "qiyu") or (lower(http.user_agent) contains "qq") or (lower(http.user_agent) contains "saayaa") or (lower(http.user_agent) contains "se 1.x") or (lower(http.user_agent) contains "se 2.x") or (lower(http.user_agent) contains "sina") or (lower(http.user_agent) contains "sogou") or (lower(http.user_agent) contains "soso") or (lower(http.user_agent) contains "taobao") or (lower(http.user_agent) contains "taobrowser") or (lower(http.user_agent) contains "tencent") or (lower(http.user_agent) contains "teoma") or (lower(http.user_agent) contains "the world") or (lower(http.user_agent) contains "twitter") or (lower(http.user_agent) contains "ucweb") or (lower(http.user_agent) contains "vivo") or (lower(http.user_agent) contains "wechat") or (lower(http.user_agent) contains "weibo") or (lower(http.user_agent) contains "xiaomi") or (lower(http.user_agent) contains "yahoo") or (lower(http.user_agent) contains "yandexbot") or (lower(http.user_agent) contains "yisou") or (lower(http.user_agent) contains "yodao") or (lower(http.user_agent) contains "youdao") or (lower(http.user_agent) contains "zte"))
+```
+
+则阻止。
+
+如果不使用cloudflare，则可在nginx的配置文件的`server { }`括号中添加：
+
+```
+  if ($http_user_agent ~* (2345|360|ali-|alipay|archive|baidu|bingbot|bytespider|coolnovo|duckduckgo|easou|facebook|google|huawei|iaskspider|iqiyi|jike|lbbrowser|liebao|maxthon|meizu|metasr|micromessenger|miui|miuibrowser|msnbot|oneplus|oppo|qihoo|qiyu|qq|saayaa|se\ 1.x|se\ 2.x|sina|sogou|soso|taobao|taobrowser|tencent|teoma|the\ world|twitter|ucweb|vivo|wechat|weibo|xiaomi|yahoo|yandexbot|yisou|yodao|youdao|zte)) {
+      return 403;
+  }
+```
+
+
+
+
+
