@@ -128,7 +128,7 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
     ```bash
     mkdir -p /home/mastodon/mastodon
     cd /home/mastodon/mastodon
-    docker pull tootsuite/mastodon:latest     #如果需要升级到某稳定版本，请将latest改成v3.2.1等版本号。
+    docker pull tootsuite/mastodon:latest     #如果需要升级到某稳定版本，请将latest改成v3.5.1等版本号。
     wget https://raw.githubusercontent.com/tootsuite/mastodon/master/docker-compose.yml
     ```
 
@@ -147,7 +147,7 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
 
 ### 4. 初始化PostgreSQL（2022-04-25修改）
 
-  **（在v3.5.0以后，请注意Postgres文件夹所在位置有所修改！）**
+  **（在v3.5.0以后，请注意Postgres文件夹所在位置有所修改，从原本的postgres改为了postgres14。本教程已更新。）**
 
   刚才`docker-compose.yml`文件中，数据库（db）部分的地址为`./postgres14:/var/lib/postgresql/data`，因此你的数据库绝对地址为`/home/mastodon/mastodon/postgres14`。
 
@@ -183,7 +183,13 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
 
 　　
 
-### 5. 配置Mastodon（2022-04-25修改)
+### 5. 配置邮件服务
+
+  请参考[第一篇教程](https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/07/19/How-to-build-a-mastodon-instance.html#2-%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1)的“邮件服务”部分配置。
+
+　　
+
+### 6. 配置Mastodon（2022-04-25修改)
 
   * 配置文件
 
@@ -199,7 +205,7 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
     docker-compose run --rm web bundle exec rake mastodon:setup
     ```
 
-    随后会出现下列问题（此处参考[此方更新版教程](https://tech.konata.co/2022-02-10-build-a-mastodon/){:target="_blank"}：
+    随后会出现下列问题（此处参考[此方更新版教程](https://tech.konata.co/2022-02-10-build-a-mastodon/){:target="_blank"}）：
 
     Domain name: 你的域名
 
@@ -229,9 +235,9 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
 
     Redis configuration works! 🎆
 
-    Do you want to store uploaded files on the cloud? 这个我们先填No，之后再参考[上云教程](https://pullopen.github.io/%E7%AB%99%E7%82%B9%E7%BB%B4%E6%8A%A4/2020/07/22/Move-mastodon-media-to-Scaleway.html){:target="_blank"}配置。
+    Do you want to store uploaded files on the cloud? 这个我们先填No，未来再参考[上云教程](https://pullopen.github.io/%E7%AB%99%E7%82%B9%E7%BB%B4%E6%8A%A4/2020/07/22/Move-mastodon-media-to-Scaleway.html){:target="_blank"}配置。
 
-    Do you want to send e-mails from localhost? No，这一部分设置参考[第一篇教程](https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/07/19/How-to-build-a-mastodon-instance.html){:target="_blank"}的“邮件服务”部分。
+    Do you want to send e-mails from localhost? No，然后根据刚才配置的邮件服务填写（下文为举例）。
 
     SMTP server: smtp.zoho.eu
 
@@ -286,7 +292,7 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
 
 　　
 
-### 6. 安装并配置nginx
+### 7. 安装并配置nginx
 
   * 安装nginx
 
