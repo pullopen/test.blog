@@ -50,9 +50,16 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
 
 ## 如何在Docker上从头搭建Mastodon
 
-首先，购买域名、购买服务器、配置SMTP服务等，大家可以参考本站[最早教程](https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/07/19/How-to-build-a-mastodon-instance.html){:target="_blank"}的前3步。
+### 0. 购买域名、购买服务器、配置SMTP服务
 
-本文所用服务器操作系统为**Ubuntu 18.04或Debian 10**，请各位于购买时确认。
+这三步为建站基础，请大家参考本站[最早教程](https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/07/19/How-to-build-a-mastodon-instance.html){:target="_blank"}的前3步逐一完成。
+
+
+其中，服务器可在任何一家服务器提供商购买，不必局限于（也不推荐）DigitalOcean，国人常用的Vultur、Digital Ocean，或者位于德国的Contabo、Hetzner等都可以。你可以参考[主机测评网站](https://www.zhujiceping.com/){:target="_blank"}）蹲服务器折扣，[O3O站长搭站指南](https://www.notion.so/68b0e4bb0b9e4fa5a9dd74d03b71a328){:target="_blank"}有更详细的指导意见。
+
+购买时选择操作系统为**Ubuntu 18.04或Debian 10**即可。本文教程均以此系统为准。
+
+无论你选择哪家服务器，请都**不要使用位于国内服务器**，最好**不要选择国内的服务器提供商**，否则你可能会面临无法与其他站点互联互通、甚至站点下线的风险。
 
 　　
 
@@ -183,13 +190,7 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
 
 　　
 
-### 5. 配置邮件服务
-
-  请参考[第一篇教程](https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/07/19/How-to-build-a-mastodon-instance.html#2-%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1)的“邮件服务”部分配置。
-
-　　
-
-### 6. 配置Mastodon（2022-04-25修改)
+### 5. 配置Mastodon（2022-04-25修改)
 
   * 配置文件
 
@@ -292,7 +293,7 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
 
 　　
 
-### 7. 安装并配置nginx
+### 6. 安装并配置nginx
 
   * 安装nginx
 
