@@ -67,281 +67,283 @@ Mastodon系统较为庞大，如果运行一个单人实例，请保证内存至
 
 ### 1. 配置系统
 
-  * 配置ssh-key：
+* 配置ssh-key：
 
-    ```bash
-    mkdir -p ~/.ssh
-    nano ~/.ssh/authorized_keys
-    ```
+  ```bash
+  mkdir -p ~/.ssh
+  nano ~/.ssh/authorized_keys
+  ```
 
-    将通过各种方法（如Xshell、PuTTy等软件）生成的ssh-rsa公钥粘贴入其中。随后通过ssh-key密钥方式登录。
+  将通过各种方法（如Xshell、PuTTy等软件）生成的ssh-rsa公钥粘贴入其中。随后通过ssh-key密钥方式登录。
 
-    为了安全，官方推荐将ssh密码登录方式关闭（不影响通过VNC、DigitalOcean Console等方式登录，**请确保此时你的SSH是依靠密钥而不是密码登录，否则你设置完毕后会被踢出去**）：
+  为了安全，官方推荐将ssh密码登录方式关闭（不影响通过VNC、DigitalOcean Console等方式登录，**请确保此时你的SSH是依靠密钥而不是密码登录，否则你设置完毕后会被踢出去**）：
 
-    ```bash
-    nano /etc/ssh/sshd_config
-    ```
+  ```bash
+  nano /etc/ssh/sshd_config
+  ```
 
-    找到`PasswordAuthentication`一行，将其前面的#删掉（取消注释），在后面将yes改成no。
+  找到`PasswordAuthentication`一行，将其前面的#删掉（取消注释），在后面将yes改成no。
 
-    重启sshd：
+  重启sshd：
 
-    ```bash
-    systemctl restart sshd
-    ```
-
-
-  * 安装常用命令：
-
-    ```bash
-    apt update && apt install wget rsync python git curl vim git ufw -y
-    ```
+  ```bash
+  systemctl restart sshd
+  ```
 
 
-  * 配置SWAP，具体请参考[配置SWAP教程](https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04){:target="_blank"}。
+* 安装常用命令：
 
-    请让你的内存+SWAP至少达到4G以上。可以在root用户下通过`free -h`查看。
+  ```bash
+  apt update && apt install wget rsync python git curl vim git ufw -y
+  ```
+
+
+* 配置SWAP，具体请参考[配置SWAP教程](https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04){:target="_blank"}。
+
+  请让你的内存+SWAP至少达到4G以上。可以在root用户下通过`free -h`查看。
    
    
-  * 配置防火墙
+* 配置防火墙
 
-    ```
-    sudo ufw allow OpenSSH
-    sudo ufw enable
-    ```
+  ```
+  sudo ufw allow OpenSSH
+  sudo ufw enable
+  ```
 
-    打开防火墙，随后打开80和443端口：
+  打开防火墙，随后打开80和443端口：
 
-    ```
-    sudo ufw allow http
-    sudo ufw allow https
-    ```
+  ```
+  sudo ufw allow http
+  sudo ufw allow https
+  ```
 
-    然后可以通过`sudo ufw status`检查防火墙状态，你应该会看到80和443端口的显示。
+  然后可以通过`sudo ufw status`检查防火墙状态，你应该会看到80和443端口的显示。
 
 　　
 
 ### 2. 安装docker和docker-compose
 
-  注意：这里第一步使用了官方提供的一键脚本安装docker。如果你对此感到不放心，请通过[官网步骤](https://docs.docker.com/engine/install/ubuntu/){:target="_blank"}自行安装，同样也是复制粘贴命令行。
+注意：这里第一步使用了官方提供的一键脚本安装docker。如果你对此感到不放心，请通过[官网步骤](https://docs.docker.com/engine/install/ubuntu/){:target="_blank"}自行安装，同样也是复制粘贴命令行。
 
 
-  ```bash
-  bash <(curl -L https://get.docker.com/)
-  sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-  sudo chmod +x /usr/local/bin/docker-compose
-  ```
+```bash
+bash <(curl -L https://get.docker.com/)
+sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+```
 
 
 　　
 
 ### 3. 拉取Mastodon镜像（2022-04-25修改)
 
-  * 拉取镜像
+* 拉取镜像
 
-    ```bash
-    mkdir -p /home/mastodon/mastodon
-    cd /home/mastodon/mastodon
-    docker pull tootsuite/mastodon:latest     #如果需要升级到某稳定版本，请将latest改成v3.5.1等版本号。
-    wget https://raw.githubusercontent.com/tootsuite/mastodon/master/docker-compose.yml
-    ```
+  ```bash
+  mkdir -p /home/mastodon/mastodon
+  cd /home/mastodon/mastodon
+  docker pull tootsuite/mastodon:latest     #如果需要升级到某稳定版本，请将latest改成v3.5.1等版本号。
+  wget https://raw.githubusercontent.com/tootsuite/mastodon/master/docker-compose.yml
+  ```
 
-  * 修改`docker-compose.yml`配置文件
+* 修改`docker-compose.yml`配置文件
 
-    ```bash
-    nano docker-compose.yml
-    ```
+  ```bash
+  nano docker-compose.yml
+  ```
 
-    依次找到`web`、`streaming`、`sidekiq`分类，在每一类的`image: tootsuite/mastodon`后添加`:latest`或者你刚才拉取的版本号，变成`image: tootsuite/mastodon:latest`或`image: tootsuite/mastodon:v3.5.1`等等。
+  依次找到`web`、`streaming`、`sidekiq`分类，在每一类的`image: tootsuite/mastodon`后添加`:latest`或者你刚才拉取的版本号，变成`image: tootsuite/mastodon:latest`或`image: tootsuite/mastodon:v3.5.1`等等。
 
 
-    `ctrl+X`退出保存。
+  `ctrl+X`退出保存。
 
 　　　
 
 ### 4. 初始化PostgreSQL（2022-04-25修改）
 
-  **（在v3.5.0以后，请注意Postgres文件夹所在位置有所修改，从原本的postgres改为了postgres14。本教程已更新。）**
+**（在v3.5.0以后，请注意Postgres文件夹所在位置有所修改，从原本的postgres改为了postgres14。本教程已更新。）**
 
-  刚才`docker-compose.yml`文件中，数据库（db）部分的地址为`./postgres14:/var/lib/postgresql/data`，因此你的数据库绝对地址为`/home/mastodon/mastodon/postgres14`。
+刚才`docker-compose.yml`文件中，数据库（db）部分的地址为`./postgres14:/var/lib/postgresql/data`，因此你的数据库绝对地址为`/home/mastodon/mastodon/postgres14`。
 
-  运行：
+运行：
 
-  ```bash
-  docker run --name postgres14 -v /home/mastodon/mastodon/postgres14:/var/lib/postgresql/data -e   POSTGRES_PASSWORD=设置数据库管理员密码 --rm -d postgres:14-alpine
-  ```
+```bash
+docker run --name postgres14 -v /home/mastodon/mastodon/postgres14:/var/lib/postgresql/data -e   POSTGRES_PASSWORD=设置数据库管理员密码 --rm -d postgres:14-alpine
+```
 
-  执行完后，检查/home/mastodon/mastodon/postgres14，应该出现postgres相关的多个文件，不是空文件夹。
+执行完后，检查/home/mastodon/mastodon/postgres14，应该出现postgres相关的多个文件，不是空文件夹。
 
-  然后执行：
+然后执行：
 
-  ```bash
-  docker exec -it postgres14 psql -U postgres
-  ```
+```bash
+docker exec -it postgres14 psql -U postgres
+```
 
-  输入：
+输入：
 
-  ```psql
-  CREATE USER mastodon WITH PASSWORD '数据库密码（最好和数据库管理员密码不一样）' CREATEDB;
-  ```
+```psql
+CREATE USER mastodon WITH PASSWORD '数据库密码（最好和数据库管理员密码不一样）' CREATEDB;
+```
 
-  创建mastodon用户。
+创建mastodon用户。
 
-  最后停止docker：
+最后停止docker：
    
-  ```bash
-  docker stop postgres14
-  ```
+```bash
+docker stop postgres14
+```
 
-  附：如果你参考了2020-12-12之前的教程，那个教程未对postgres设置密码，有一定的安全隐患，请参考本文新增附录看如何设置密码。
+附：如果你参考了2020-12-12之前的教程，那个教程未对postgres设置密码，有一定的安全隐患，请参考本文新增附录看如何设置密码。
 
 　　
 
 ### 5. 配置Mastodon（2022-04-25修改)
 
-  * 配置文件
+* 配置文件
 
-    在`/home/mastodon/mastodon`文件夹中创建空白`.env.production`文件：
+  在`/home/mastodon/mastodon`文件夹中创建空白`.env.production`文件：
 
-    ```bash
-    touch .env.production
-    ```
+  ```bash
+  touch .env.production
+  ```
 
-    root用户内，运行
+  root用户内，运行
 
-    ```bash
-    docker-compose run --rm web bundle exec rake mastodon:setup
-    ```
+  ```bash
+  docker-compose run --rm web bundle exec rake mastodon:setup
+  ```
 
-    随后会出现下列问题（此处参考[此方更新版教程](https://tech.konata.co/2022-02-10-build-a-mastodon/){:target="_blank"}）：
+  随后会出现下列问题（此处参考[此方更新版教程](https://tech.konata.co/2022-02-10-build-a-mastodon/){:target="_blank"}）：
 
-    Domain name: 你的域名
+  Domain name: 你的域名
 
-    Single user mode disables registrations and redirects the landing page to your public profile.
+  Single user mode disables registrations and redirects the landing page to your public profile.
 
-    Do you want to enable single user mode? No
+  Do you want to enable single user mode? No
 
-    Are you using Docker to run Mastodon? Yes
+  Are you using Docker to run Mastodon? Yes
 
-    PostgreSQL host: mastodon_db_1
+  PostgreSQL host: mastodon_db_1
 
-    PostgreSQL port: 5432
+  PostgreSQL port: 5432
 
-    Name of PostgreSQL database: mastodon
+  Name of PostgreSQL database: mastodon
 
-    Name of PostgreSQL user: mastodon
+  Name of PostgreSQL user: mastodon
 
-    Password of PostgreSQL user: （这里写上面你给mastodon设置的数据库密码）
+  Password of PostgreSQL user: （这里写上面你给mastodon设置的数据库密码）
 
-    Database configuration works! 🎆
+  Database configuration works! 🎆
 
-    Redis host: mastodon_redis_1
+  Redis host: mastodon_redis_1
 
-    Redis port: 6379
+  Redis port: 6379
 
-    Redis password: （这里是直接回车，没有密码）
+  Redis password: （这里是直接回车，没有密码）
 
-    Redis configuration works! 🎆
+  Redis configuration works! 🎆
 
-    Do you want to store uploaded files on the cloud? 这个我们先填No，未来再参考[上云教程](https://pullopen.github.io/%E7%AB%99%E7%82%B9%E7%BB%B4%E6%8A%A4/2020/07/22/Move-mastodon-media-to-Scaleway.html){:target="_blank"}配置。
+  Do you want to store uploaded files on the cloud? 这个我们先填No，未来再参考[上云教程](https://pullopen.github.io/%E7%AB%99%E7%82%B9%E7%BB%B4%E6%8A%A4/2020/07/22/Move-mastodon-media-to-Scaleway.html){:target="_blank"}配置。
 
-    Do you want to send e-mails from localhost? No，然后根据刚才配置的邮件服务填写（下文为举例）。
+  Do you want to send e-mails from localhost? No，然后根据刚才配置的邮件服务填写（下文为举例）。
 
-    SMTP server: smtp.zoho.eu
+  SMTP server: smtp.zoho.eu
 
-    SMTP port: 587
+  SMTP port: 587
 
-    SMTP username: 你的zoho管理员邮箱地址
+  SMTP username: 你的zoho管理员邮箱地址
 
-    SMTP password: 你的zoho管理员密码
+  SMTP password: 你的zoho管理员密码
 
-    SMTP authentication: plain
+  SMTP authentication: plain
 
-    SMTP OpenSSL verify mode: none
+  SMTP OpenSSL verify mode: none
 
-    E-mail address to send e-mails "from": 你的zoho管理员邮箱地址
+  E-mail address to send e-mails "from": 你的zoho管理员邮箱地址
 
-    Send a test e-mail with this configuration right now? no
+  Send a test e-mail with this configuration right now? no
 
-    This configuration will be written to .env.production
+  This configuration will be written to .env.production
 
-    Save configuration? Yes
+  Save configuration? Yes
 
-    Below is your configuration, save it to an .env.production file outside Docker:
+  Below is your configuration, save it to an .env.production file outside Docker:
 
-    然后会出现.env.production配置，**请务必复制下来，先存到电脑里，等会儿要用。**
+  然后会出现.env.production配置，**请务必复制下来，先存到电脑里，等会儿要用。**
 
-    之后会要你建立数据库和编译，都选是。最后建立管理员账号。
+  之后会要你建立数据库和编译，都选是。最后建立管理员账号。
 
-    一切成功之后，记得**立刻马上：**
+  一切成功之后，记得**立刻马上：**
 
-    ```bash
-    nano .env.production
-    ```
+  ```bash
+  nano .env.production
+  ```
 
-    把你刚才复制下来的配置保存进去。
+  把你刚才复制下来的配置保存进去。
 
 
 
-  * 启动Mastodon
+* 启动Mastodon
 
-    ```bash
-    docker-compose up -d
-    ```
+  ```bash
+  docker-compose up -d
+  ```
   
-  * 为相应文件夹赋权
+* 为相应文件夹赋权
 
-    ```bash
-    chown 991:991 -R ./public
-    chown -R 70:70 ./postgres
-    docker-compose down
-    docker-compose up -d
-    ```
+  ```bash
+  chown 991:991 -R ./public
+  chown -R 70:70 ./postgres
+  docker-compose down
+  docker-compose up -d
+  ```
 
 　　
 
 ### 6. 安装并配置nginx
 
-  * 安装nginx
+* 安装nginx
 
-    ```bash
-    sudo apt install nginx -y
-    ```
+  ```bash
+  sudo apt install nginx -y
+  ```
 
-  * 配置nginx
+* 配置nginx
 
-    ```bash
-    nano /etc/nginx/sites-available/你的域名
-    ```
+  ```bash
+  nano /etc/nginx/sites-available/你的域名
+  ```
 
-    网页打开[nginx模板](https://github.com/tootsuite/mastodon/blob/master/dist/nginx.conf){:target="_blank"}，将其中的example.com替换成自己域名，将20和43行的`/home/mastodon/live/public`改成`/home/mastodon/mastodon/public`，注意保留`ssl_certificate`和`ssl_certificate_key`前的#号，并且在复制到服务器中保存。
+  网页打开[nginx模板](https://github.com/tootsuite/mastodon/blob/master/dist/nginx.conf){:target="_blank"}，将其中的example.com替换成自己域名，将20和43行的`/home/mastodon/live/public`改成`/home/mastodon/mastodon/public`，注意保留`ssl_certificate`和`ssl_certificate_key`前的#号，并且在复制到服务器中保存。
 
-    投射镜像文件：
+  投射镜像文件：
 
-    ```bash
-    ln -s /etc/nginx/sites-available/你的域名 /etc/nginx/sites-enabled/
-    ```
+  ```bash
+  ln -s /etc/nginx/sites-available/你的域名 /etc/nginx/sites-enabled/
+  ```
 
-    重启nginx：
+  重启nginx：
 
-    ```bash
-    systemctl reload nginx
-    ```
+  ```bash
+  systemctl reload nginx
+  ```
 
-    安装certbot：
+* 配置SSL证书
 
-    ```bash
-    sudo snap install core; sudo snap refresh core    #如果没有snap则 apt install snapd 安装
-    sudo snap install --classic certbot
-    sudo ln -s /snap/bin/certbot /usr/bin/certbot
-    sudo certbot --nginx -d 你的域名
-    ```
+  安装certbot：
 
-    再重启nginx
+  ```bash
+  sudo snap install core; sudo snap refresh core    #如果没有snap则 apt install snapd 安装
+  sudo snap install --classic certbot
+  sudo ln -s /snap/bin/certbot /usr/bin/certbot
+  sudo certbot --nginx -d 你的域名
+  ```
 
-    ```bash
-    systemctl reload nginx
-    ```
+  再重启nginx
+
+  ```bash
+  systemctl reload nginx
+  ```
 
 
 如果不放心，可以再至`/home/mastodon/mastodon`文件夹，运行`docker-compose up -d`重启mastodon。静静等待几分钟后，点开你的域名，你的站点就上线啦！
@@ -431,38 +433,38 @@ docker-compose up -d
 
 在docker中使用tootctl管理命令行的方式有三种：
 
-  * **进入docker系统后操作**
+* **进入docker系统后操作**
 
-    `docker ps`查看你的容器名字，如果你按照刚才设置，那你的容器名字一般为mastodon_web_1。
+  `docker ps`查看你的容器名字，如果你按照刚才设置，那你的容器名字一般为mastodon_web_1。
 
-    ```bash
-    cd /home/mastodon/mastodon
-    docker exec -it mastodon_web_1 /bin/bash    #或者将“mastodon_web_1”替换为你的容器名。
-    ```
+  ```bash
+  cd /home/mastodon/mastodon
+  docker exec -it mastodon_web_1 /bin/bash    #或者将“mastodon_web_1”替换为你的容器名。
+  ```
 
-    进入docker系统mastodon用户，然后在其中进行相应的tootctl操作。
+  进入docker系统mastodon用户，然后在其中进行相应的tootctl操作。
 
-    注：如果需要进入docker系统的root用户进行一些软件安装，则需输入`docker exec --user root -it mastodon_web_1 /bin/bash`。
+  注：如果需要进入docker系统的root用户进行一些软件安装，则需输入`docker exec --user root -it mastodon_web_1 /bin/bash`。
 
-  * **在/home/mastodon/mastodon文件夹操作**
+* **在/home/mastodon/mastodon文件夹操作**
 
-    首先进入/home/mastodon/mastodon，然后
+  首先进入/home/mastodon/mastodon，然后
 
-    ```bash
-    docker-compose run --rm web bin/tootctl 具体命令
-    ```
+  ```bash
+  docker-compose run --rm web bin/tootctl 具体命令
+  ```
 
-    进行操作。
+  进行操作。
 
-  * **在任意位置操作**
+* **在任意位置操作**
 
-    在任意位置：
+  在任意位置：
 
-    ```bash
-    docker exec mastodon_web_1 tootctl 具体命令
-    ```
+  ```bash
+  docker exec mastodon_web_1 tootctl 具体命令
+  ```
 
-    需要注意的是，这则具体命令需要包括所有必须的参数，并且如果命令本身会要求你进行后续输入，则无法完成（比如self-distruct命令无法通过该步骤完成。）
+  需要注意的是，这则具体命令需要包括所有必须的参数，并且如果命令本身会要求你进行后续输入，则无法完成（比如self-distruct命令无法通过该步骤完成。）
 
 　　
 
