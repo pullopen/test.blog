@@ -541,7 +541,7 @@ docker-compose up -d
 
 本步脚本由兔子写就，感谢ta！
 
-首先，请注册Scaleway，申请token，创建Bucket，此三步可参考[Scaleway上云教程](https://pullopen.github.io/%E7%AB%99%E7%82%B9%E7%BB%B4%E6%8A%A4/2020/07/22/Move-mastodon-media-to-Scaleway.html){:target=blank}。
+首先，请注册Scaleway，申请token，创建Bucket，此三步可参考[Scaleway上云教程](https://pullopen.github.io/%E7%AB%99%E7%82%B9%E7%BB%B4%E6%8A%A4/2020/07/22/Move-mastodon-media-to-Scaleway.html){:target="_blank"}。
 
 注意：下文提到的备份脚本会自动删除7天以前的文件，因此**请为备份数据库单独建立一个bucket，**不要和媒体文件使用同一个bucket！
 
