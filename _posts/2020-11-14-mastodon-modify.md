@@ -206,7 +206,7 @@ systemctl reload nginx
 
    `Ctrl + X`保存并退出。
 
-4. 按照[官方文档的优化方法](https://docs.joinmastodon.org/admin/optional/elasticsearch/#search-optimization-for-other-languages){:target="_blank"}修改mastodon源代码（即修改`app/chewy/accounts_index.rb`、`/app/chewy/statuses_index.rb`和`/app/chewy/tags_index.rb`三个文件。用docker魔改方法推送。
+4. 按照[官方文档的优化方法](https://docs.joinmastodon.org/admin/optional/elasticsearch/#search-optimization-for-other-languages){:target="_blank"}修改mastodon源代码（即修改`app/chewy/accounts_index.rb`、`/app/chewy/statuses_index.rb`和`/app/chewy/tags_index.rb`三个文件。用本教程之前所说的[docker魔改方法](https://pullopen.github.io/%E8%BF%9B%E9%98%B6%E9%AD%94%E6%94%B9/2020/11/01/Mastodon-on-Docker-2.html){:target="_blank"}推送。
 
 5. `docker-compose down`关闭Mastodon所有服务。
 
