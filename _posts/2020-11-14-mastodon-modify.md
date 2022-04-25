@@ -1,5 +1,5 @@
 ---
-title: 进阶魔改：修改字数上限、媒体上限、投票上限、添加自定义主题、界面用语、非登陆用户有限显示，附阻止本站嘟文流入某站点方法
+title: 进阶魔改：修改字数上限、媒体上限、投票上限、添加自定义主题、界面用语、非登陆用户有限显示、优化中文搜索，附阻止本站嘟文流入某站点方法
 layout: post
 tags: [进阶魔改, Mastodon]
 image: mastodon-2.png
@@ -162,6 +162,79 @@ systemctl reload nginx
 在v3.3.0版后，请根据[这个commit](https://github.com/orani-admin/mastodon/commit/e06d04b7acf42137efe5b8de9c4b83839537d723){:target="_blank"}修改相应文件后precompile并重启。
 
 　　
+
+## Docker安装优化中文搜索（2022-04-25新增）
+
+官方文档曾给出[优化中文搜索的方法](https://docs.joinmastodon.org/admin/optional/elasticsearch/)，但需要修改相应步骤后才能应用于docker上。
+
+1. 下载`elasticsearch-analysis-ik`及`elasticsearch-analysis-stconvert`插件，注意插件版本号与你`docker-compose.yml`中`elasticsearch`的版本号保持一致：
+
+    ```bash
+    cd /home/mastodon/mastodon/elasticsearch
+    export ES_VERSION=7.10.2     #版本号与elasticsearch版本号一致
+    wget https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v${ES_VERSION}/elasticsearch-analysis-ik-${ES_VERSION}.zip
+    wget https://github.com/medcl/elasticsearch-analysis-stconvert/releases/download/v${ES_VERSION}/elasticsearch-analysis-stconvert-${ES_VERSION}.zip
+    ```
+
+2. `nano docker-entrypoint-es-plugins.sh` 新建插件安装脚本，输入内容：
+
+    ```bash
+    #!/bin/bash
+    # setting up prerequisites
+
+    export ES_VERSION=7.10.2     #版本号与elasticsearch版本号一致
+
+    yes | elasticsearch-plugin install file:/usr/share/elasticsearch/data/elasticsearch-analysis-ik-${ES_VERSION}.zip
+    elasticsearch-plugin install file:/usr/share/elasticsearch/data/elasticsearch-analysis-stconvert-${ES_VERSION}.zip
+
+    exec /usr/local/bin/docker-entrypoint.sh
+    ```
+
+    `Ctrl + X`保存并退出。运行：
+
+    ```bash
+    chmod u+x docker-entrypoint-es-plugins.sh
+    ```
+
+    赋予脚本运行权限。
+
+3. `cd ..` 返回上一级菜单，`nano docker-compose.yml`编辑该文件，在`es`部分的最后一行（即`        hard: -1`下一行）添加：
+
+    ```yaml
+        entrypoint: /usr/share/elasticsearch/data/docker-entrypoint-es-plugins.sh
+    ```
+
+    `Ctrl + X`保存并退出。
+
+
+* 附注（Docker安装无需此步）：上述三步仅Docker安装方法需要使用。如果你是通过源代码安装或者一键安装，则需根据[官方文档](https://docs.joinmastodon.org/admin/optional/elasticsearch/)安装Elsasticsearch后，运行：
+
+    ```bash
+    cd /usr/share/elasticsearch
+    bin/elasticsearch --version     #查看Elasticsearch版本号
+    export ES_VERSION=7.10.2     #版本号与elasticsearch版本号一致
+    ./bin/elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v${ES_VERSION}/elasticsearch-analysis-ik-${ES_VERSION}.zip
+    ./bin/elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v${ES_VERSION}/elasticsearch-analysis-ik-${ES_VERSION}.zip
+    ```
+
+
+4. 按照[官方文档的优化方法](https://docs.joinmastodon.org/admin/optional/elasticsearch/)最后一部分修改mastodon源代码（即修改`app/chewy/accounts_index.rb`、`/app/chewy/statuses_index.rb`和`/app/chewy/tags_index.rb`三个文件。用docker魔改方法推送。
+
+5. `docker-compose down`关闭Mastodon所有服务。
+
+    `cd elasticsearch`进入elasticsearch文件夹。
+    
+    `rm -rf nodes`删除nodes文件夹。
+
+    `docker-compose up -d` 重启Mastodon。
+
+6. 运行
+
+    ```bash
+    docker-compose run --rm web bin/tootctl search deploy
+    ```
+
+    重新部署搜索，一般需要几个小时到几天时间不等。（如果有兴趣了解screen的话可以放在screen中运行，请自行搜索screen安装及使用教程。）
 
 　　
 
