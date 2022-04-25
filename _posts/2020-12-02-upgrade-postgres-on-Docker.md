@@ -7,7 +7,7 @@ catalog: true
 category: 站点维护
 #gif: mygif
 description: "如何升级Postgres数据库"
-customexcerpt: "在v3.3.0版本之后，如果使用较早版本的Postgres数据库，在迁移时会出现可能发生错误的提示。这是由于系统自带的`glibc`某次大升级，使数据库处理数据的方式发生变化，因此可能导致数据库不连续。官方给出了检查和解决方案，但由于官方给出的docker-compose.yml文件中数据库版本还是Postgres 9.6，无法运行官方检查使用的插件。因此可以选择对Postgres数据库进行升级后再检查。"
+customexcerpt: "本文已作废。官方自3.5.0版本后将`docker-compose.yml`的postgres版本号升级成了14，升级步骤见[这份教程](https://github.com/mastodon/mastodon/pull/16947)，本文仅作为存档保存。"
 ---
 
 
