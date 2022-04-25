@@ -7,11 +7,13 @@ catalog: true
 category: 站点维护
 #gif: mygif
 description: "如何升级Postgres数据库"
-customexcerpt: "本文已作废。官方自3.5.0版本后将`docker-compose.yml`的postgres版本号升级成了14，升级步骤见[这份教程](https://github.com/mastodon/mastodon/pull/16947)，本文仅作为存档保存。"
+customexcerpt: "本文已作废。官方自3.5.0版本后将`docker-compose.yml`的postgres版本号升级成了14，升级步骤见这份教程(https://github.com/mastodon/mastodon/pull/16947)，本文仅作为存档保存。"
 ---
 
 
 **注意（2022-03-18更新）：官方自3.5.0版本后将`docker-compose.yml`的postgres版本号升级成了14，升级步骤见[这份教程](https://github.com/mastodon/mastodon/pull/16947)，本文仅作为存档！**
+
+**如果依然需要参考本教程，则需注意在v3.5.0后：1. postgres版本升级为14。2. postgres文件夹地址发生改变，改为了postgres14。**
 
 
 本升级教程依旧是@star@b612.me兔子老师的手把手指导记录。
