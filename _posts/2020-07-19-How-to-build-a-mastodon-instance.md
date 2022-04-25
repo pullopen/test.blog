@@ -166,6 +166,8 @@ customexcerpt: "从购买域名和服务器，到使用Digital-Ocean镜像一键
 
 **以下内容仅作为存档。**
 
+---
+
 在注册DigitalOcean时我碰到了一个问题，就是注册后如果我选择使用PayPal，就会立刻锁定我的账号，但朋友并没有碰到这个问题，这可能与我PayPal账号地址与IP地址不统一有关。另外，可能会要求你通过第三方网站验证护照身份证信息，据说和使用Protonmail，同IP多账号，或者使用代理有关。
 
 注册时，如果你不想填写真实的国家，请避开[这些国家](https://www.digitalocean.com/docs/billing/taxes/){:target="_blank"}，这些国家会对你征收税费。
