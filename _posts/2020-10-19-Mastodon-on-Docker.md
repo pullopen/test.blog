@@ -105,7 +105,7 @@ Mastodon系统较为庞大，如果运行一个单人实例，请保证内存至
    
   * 配置防火墙
 
-    ```bash
+    ```
     sudo ufw allow OpenSSH
     sudo ufw enable
     sudo ufw allow http
