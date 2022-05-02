@@ -187,6 +187,12 @@ CREATE USER mastodon WITH PASSWORD '数据库密码（最好和数据库管理�
 
 创建mastodon用户。
 
+```
+\q
+```
+
+退出数据库。
+
 最后停止docker：
    
 ```bash
