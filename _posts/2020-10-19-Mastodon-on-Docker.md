@@ -292,6 +292,7 @@ docker stop postgres14
 * 启动Mastodon
 
   ```bash
+  docker-compose down
   docker-compose up -d
   ```
   
