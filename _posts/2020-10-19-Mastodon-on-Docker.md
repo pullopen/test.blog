@@ -300,7 +300,7 @@ docker stop postgres14
 
   ```bash
   chown 991:991 -R ./public
-  chown -R 70:70 ./postgres
+  chown -R 70:70 ./postgres14
   docker-compose down
   docker-compose up -d
   ```
