@@ -544,7 +544,7 @@ docker-compose up -d
   source ~/.bashrc
   ```
 
-  之后tootctl相关命令均可直接缩写，且数据库相关命令也可通过`tootctl psql`直接进入。
+  之后tootctl相关命令均可在进入`/home/mastodon/mastodon/`后缩写为`tootctl xxx`，且数据库相关命令也可通过`tootctl psql`进入。
 
 
 
