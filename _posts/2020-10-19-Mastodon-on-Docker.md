@@ -503,7 +503,7 @@ docker-compose up -d
 
   编辑脚本内容为：
 
-  ```sh
+  ```
   #!/bin/bash
   lpwd=$PWD
   mypath=`dirname $0`
