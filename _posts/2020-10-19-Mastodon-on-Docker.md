@@ -492,6 +492,62 @@ docker-compose up -d
 
   需要注意的是，这则具体命令需要包括所有必须的参数，并且如果命令本身会要求你进行后续输入，则无法完成（比如self-distruct命令无法通过该步骤完成。）
 
+* **使用脚本简化命令**
+
+  可参考[这篇文章](https://blog.tantalum.life/posts/how-to-run-your-mastodon-by-docker/#%E4%BD%BF%E7%94%A8alias%E8%84%9A%E6%9C%AC%E7%BC%A9%E5%86%99tootctl%E5%91%BD%E4%BB%A4)修改：
+
+  ```bash
+  cd /home/mastodon/mastodon
+  nano tootctl.sh
+  ```
+
+  编辑脚本内容为：
+
+  ```bash
+  #!/bin/bash
+  lpwd=$PWD
+  mypath=`dirname $0`
+  cd $mypath
+  if [ $# -ge 1 ]
+  then
+	  case $1 in 
+	  	"restart")
+	  		docker-compose restart
+	  	;;
+	  	"reload")
+	  		docker-compose down && docker-compose up -d
+	  	;;
+  		"stop")
+	  		docker-compose down
+	  	;;
+  		"start")
+	  		docker-compose up -d
+	  	;;
+	  	"psql")
+	  		docker-compose exec db $*
+	  	;;
+	  	*)
+	  		docker-compose run --rm web bin/tootctl $*
+	  	;;
+  	esac
+  else
+  	echo "please use tootctl help for help"
+  fi
+  cd $lpwd
+  ```
+
+  随后执行：
+
+  ```bash
+  chmod +x /home/mastodon/mastodon/tootctl.sh
+  echo "alias tootctl='/home/mastodon/mastodon/tootctl.sh' " >> ~/.bashrc 
+  source ~/.bashrc
+  ```
+
+  之后tootctl相关命令均可直接缩写，且数据库相关命令也可通过`tootctl psql`直接进入。
+
+
+
 　　
 
 　　
