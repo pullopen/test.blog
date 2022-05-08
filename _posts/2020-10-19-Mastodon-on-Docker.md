@@ -494,7 +494,7 @@ docker-compose up -d
 
 * **使用脚本简化命令**
 
-  可参考[这篇文章](https://blog.tantalum.life/posts/how-to-run-your-mastodon-by-docker/#%E4%BD%BF%E7%94%A8alias%E8%84%9A%E6%9C%AC%E7%BC%A9%E5%86%99tootctl%E5%91%BD%E4%BB%A4)：
+  可参考[这篇文章](https://blog.tantalum.life/posts/how-to-run-your-mastodon-by-docker/#%E4%BD%BF%E7%94%A8alias%E8%84%9A%E6%9C%AC%E7%BC%A9%E5%86%99tootctl%E5%91%BD%E4%BB%A4){:target="_blank"}：
 
   ```bash
   cd /home/mastodon/mastodon
