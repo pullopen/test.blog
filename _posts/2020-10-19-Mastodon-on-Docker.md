@@ -457,7 +457,7 @@ docker-compose up -d
 
 ### 使用管理命令行
 
-在docker中使用tootctl管理命令行的方式有三种：
+在docker中使用[tootctl管理命令行](https://docs.joinmastodon.org/admin/tootctl/){:target="_blank"}的方式有三种：
 
 * **进入docker系统后操作**
 
