@@ -108,7 +108,6 @@ systemctl reload nginx
 
 ## 添加自定义主题
 
-可以考虑直接从本人站点拿主题来使用：
 
 1. 进入`app/javascript`文件夹，将[本站](https://github.com/pullopen/mastodon/tree/master/app/javascript){:target="_blank"}的`fonts``images`和`styles`文件夹多出来的文件复制入你的代码库。
 
@@ -136,6 +135,8 @@ systemctl reload nginx
 然后在下面加上css代码后进行上述2、3、4步骤。
 
 如果你只是想修改配色，可以采用`neon-city`模板（有图片背景）、`sakura`模板（浅色）和`forest`模板（深色），对颜色进行修改。
+
+本站所用主题中，To the Moon、Stardew Valley、Black Cat、Café、Flora主题为鳗鱼站站长[@barbara@rhabarberbarbara.bar](https://rhabarberbarbara.bar/@barbara){:target="_blank"}原创，请向ta申请授权。其余主题可在开源的前提下使用和修改。
 
 　　
 
