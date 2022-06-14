@@ -108,7 +108,7 @@ systemctl reload nginx
 
 ## 添加自定义主题
 
-本站所用主题中，To the Moon、Stardew Valley、Black Cat、Café、Flora主题为鳗鱼站站长[@barbara@rhabarberbarbara.bar](https://rhabarberbarbara.bar/@barbara){:target="_blank"}原创，请向ta申请授权。其余主题可在开源的前提下使用和修改。
+本站所用主题中，To the Moon、Stardew Valley、Black Cat、Café、Flora主题为rhabarberbarbara站站长[@barbara@rhabarberbarbara.bar](https://rhabarberbarbara.bar/@barbara){:target="_blank"}原创，请向ta申请授权。其余主题可在开源的前提下使用和修改。
 
 1. 进入`app/javascript`文件夹，将[本站](https://github.com/pullopen/mastodon/tree/master/app/javascript){:target="_blank"}的`fonts``images`和`styles`文件夹多出来的文件复制入你的代码库。
 
