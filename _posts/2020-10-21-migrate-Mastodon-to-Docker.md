@@ -93,6 +93,7 @@ customexcerpt: "如果需要搬迁服务器，应该怎么做？本文以从非d
 
    ```bash
    cd /home/mastodon/mastodon
+   docker-compose up -d db
    docker ps | grep mastodon_db | awk '{print $1}'
    ```
 
@@ -266,7 +267,7 @@ customexcerpt: "如果需要搬迁服务器，应该怎么做？本文以从非d
 步骤和上文基本类似，但在第3步转移数据库时，仅需要将相应文件夹中的postgres和redis文件夹传输过去之后，对新服务器中的postgres文件夹赋权即可：
 
 ```bash
-chown -R 70:70 ./postgres
+chown -R 70:70 ./postgres14
 ```
 
 不需要使用pg_dump和pg_restore命令。
