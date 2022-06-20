@@ -154,6 +154,8 @@ sudo chmod +x /usr/local/bin/docker-compose
 
   依次找到`web`、`streaming`、`sidekiq`分类，在每一类的`image: tootsuite/mastodon`后添加`:latest`或者你刚才拉取的版本号，变成`image: tootsuite/mastodon:latest`或`image: tootsuite/mastodon:v3.5.1`等等。
 
+  此外，官方的`docker-compose.yml`文件里写的是7.17.4，但目前elasticsearch的最高版本为7.10.2，需要修改。
+
 
   `ctrl+X`退出保存。
 
