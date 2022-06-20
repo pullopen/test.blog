@@ -546,8 +546,25 @@ docker-compose up -d
 
   之后tootctl相关命令均可在进入`/home/mastodon/mastodon/`后缩写为`tootctl xxx`，且数据库相关命令也可通过`tootctl psql`进入。
 
+　　
 
+　　
 
+###  定时清理媒体文件
+
+```
+crontab -e
+```
+
+选择编辑器为nano或者你习惯的编辑器，随后输入：
+
+```
+20 03    * * 1   docker exec mastodon_web_1 tootctl media remove-orphans
+20 04    * * 2   docker exec mastodon_web_1 tootctl media remove --days=7
+20 05    * * 3   docker exec mastodon_web_1 tootctl preview_cards remove
+```
+
+具体清理时间可以自己设置（参考[Crontab教程](https://www.runoob.com/w3cnote/linux-crontab-tasks.html){:target="_blank"}，上述表示在**服务器时间**周一/二/三相应时间执行媒体清理命令。
 　　
 
 　　
