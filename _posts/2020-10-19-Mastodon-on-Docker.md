@@ -205,7 +205,7 @@ docker stop postgres14
 
 　　
 
-### 5. 配置Mastodon（2022-04-25修改)
+### 5. 配置Mastodon（2022-11-21修改)
 
 * 配置文件
 
@@ -279,7 +279,9 @@ docker stop postgres14
 
   然后会出现.env.production配置，**请务必复制下来，先存到电脑里，等会儿要用。**
 
-  之后会要你建立数据库和编译，都选是。最后建立管理员账号。
+  之后会要你建立数据库和编译，都选是。
+  
+  **更新：在4.0.2版本，因为一些bug，请先不要建立管理员帐号，稍后再使用tootctl工具建立！**
 
   一切成功之后，记得**立刻马上：**
 
@@ -288,6 +290,12 @@ docker stop postgres14
   ```
 
   把你刚才复制下来的配置保存进去。
+
+  **更新：在4.0.2版本，需要在`.env.production`中增加一行：**
+
+  ```
+  REDIS_URL=redis://@mastodon_redis_1:6379
+  ```
 
 
 
@@ -309,7 +317,7 @@ docker stop postgres14
 
 　　
 
-### 6. 安装并配置nginx
+### 6. 安装并配置nginx（2022-11-21修改）
 
 在这一步之前，请记得到您购买域名的网站（如NameCheap），在DNS设置中添加一个**A Record**，Host填写@（如果没有子域名需求），Value填写你服务器的IP地址，将你设定的域名指向你的服务器。
 
@@ -327,7 +335,7 @@ docker stop postgres14
   nano /etc/nginx/sites-available/你的域名
   ```
 
-  网页打开[nginx模板](https://raw.githubusercontent.com/mastodon/mastodon/main/dist/nginx.conf){:target="_blank"}，将其中的example.com替换成自己域名，将20和43行的`/home/mastodon/live/public`改成`/home/mastodon/mastodon/public`，复制到服务器中保存。
+  网页打开[nginx模板](https://raw.githubusercontent.com/mastodon/mastodon/main/dist/nginx.conf){:target="_blank"}，将其中的example.com替换成自己域名，将20和43行的`/home/mastodon/live/public`改成`/home/mastodon/mastodon/public`，**更新：**并将`try_files $uri =404;`修改为`try_files $uri @proxy;`，复制到服务器中保存。
 
   随后配置镜像文件
 
@@ -375,6 +383,11 @@ docker stop postgres14
 
 如果不放心，可以再至`/home/mastodon/mastodon`文件夹，运行`docker-compose up -d`重启mastodon。静静等待几分钟后，点开你的域名，你的站点就上线啦！
 
+**更新：此时可通过tootctl工具建立管理员帐户：**
+
+  ```bash
+  docker exec mastodon_web_1 tootctl accounts create USERNAME --email EMAIL --confirmed --role Owner
+  ```
 　　
 
 　　
