@@ -96,6 +96,23 @@ customexcerpt: "Docker的缺点在于官方镜像灵活性较低。那么如果�
    
    随后，你就可以通过GitHub Desktop将自己库中的代码下载下来，在VS中进行代码魔改后，再直接提交（commit）并推送（push）到GitHub网站你的远程库中，非常方便。
 
+   需要注意的是，此时你如果直接修改main分支，那么你的改动是基于官方的最前沿开发进程，可能会出现一些意外的bug。如果你希望仅在之前的稳定版本基础上进行魔改，则需要下述步骤：
+
+   在本地电脑中，Github软件 - 相应repository - 右键 - Open in Command Prompt：
+  
+   [![](https://s1.ax1x.com/2020/11/01/B0oUoT.png)](https://s1.ax1x.com/2020/11/01/B0oUoT.png){:target="_blank"}
+
+   在命令行中：
+
+   ```bash
+   git checkout -b newbranch tags/v4.1.4   #根据最新的稳定版本创建新分支
+   git branch --delete main   #删除本地的main分支
+   git branch -m newbranch main  #将新分支重命名为main
+   git push origin main -f    #将新的main分支强制推送到你的github库中
+   ```
+
+   这样就可以将你的main分支强行设置为之前的稳定版本。
+
    按照mastodon采用的AGPL3.0协议，站长作为服务提供者，任何对源代码的改动都要开源，并在站内公开repo地址。可在`.env.production`文件里加一行配置：
 
    ```ruby
@@ -122,7 +139,9 @@ customexcerpt: "Docker的缺点在于官方镜像灵活性较低。那么如果�
 
       随后提交修改。
 
-      此时点开上方的“Action”面板，应该就能看到workflow已经开始运作。其中耗时最长的就是build-image的workflow，一般每次重新编译需要3个多小时。
+      上述步骤也可以在你自己电脑上的github desktop中完成。修改之后只需要commit、push即可推送到远程github库。
+
+      此时点开上方的“Action”面板，应该就能看到workflow已经开始运作。其中耗时最长的就是build-image的workflow，一般每次修改后重新编译需要3个多小时。
 
       如果你后续魔改的代码中出现错误，编译失败，则可以点开具体的编译过程，搜索“ERROR”，一般能够找到错误的原因——不要慌，反正不是在你自己的机器上折腾，弄不坏。
 
