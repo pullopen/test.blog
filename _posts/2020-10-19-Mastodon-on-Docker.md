@@ -57,7 +57,7 @@ customexcerpt: "Docker的优点在于搭建、升级方便，维护起来也更�
 
 其中，服务器可在任何一家服务器提供商购买，不必局限于（也不推荐）DigitalOcean。其他如国人常用的Vultur、Digital Ocean，或者位于德国的Contabo、Hetzner等都可以。你可以参考[主机测评网站](https://www.zhujiceping.com/){:target="_blank"}蹲服务器折扣。此外，[O3O站长搭站指南](https://www.notion.so/68b0e4bb0b9e4fa5a9dd74d03b71a328){:target="_blank"}有更详细的指导意见。
 
-购买时选择操作系统为**Ubuntu 18.04或Debian 10**即可。本文教程均以此系统为准。
+购买时选择操作系统为**Ubuntu 20.04或Debian 10**以上即可。本文教程均以此系统为准。
 
 无论你选择哪家服务器，请都**不要使用位于国内的服务器**，最好**不要选择国内的服务器提供商**，否则你可能会面临无法与其他站点互联互通、甚至站点下线的风险。
 

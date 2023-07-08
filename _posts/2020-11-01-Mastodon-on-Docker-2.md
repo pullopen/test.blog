@@ -66,31 +66,35 @@ customexcerpt: "Docker的缺点在于官方镜像灵活性较低。那么如果�
    docker commit -m "【改动内容摘要】" 【容器id】 tootsuite/mastodon:【当前mastodon版本号】
    ```
 
-   而下一次升级之后，所有改动都需要重新执行此步，非常麻烦，所以仅适用于临时调试。
+   但这个方法的缺点在于，在未来的升级中，所有改动都需要重新执行此步，非常麻烦，所以该方法更适用于临时调试和紧急升级，可与后文讲述的方法结合。
 
 
 2. 先升级代码，然后在自己机器中用`docker-compose build`编译镜像。
 
-   此方法的编译过程每次都要等待很久，对小机器也是一种考验，完全丢失了docker方法的优点。
+   此方法的编译过程每次都要等待很久，对小机器也是一种考验，完全丢失了docker方法的优点。不推荐。
    
 
 因此，在各位大佬的帮助和兔子手把手指导下，本文会重点介绍**第三种方法**：利用GitHub进行镜像编译，再将编译好的镜像拉到自己的服务器中直接使用。
 
 　　
 
-### 1. 在GitHub上创建自己站点的分支并进行代码魔改
+### 1. 在GitHub上创建自己站点的分支并进行代码魔改（2023-07-08修改）
 
    如果你已经通过前述教程用Docker安装了Mastodon，那么你的站点应当是尚未经过魔改的官方稳定版本。所以在注册GitHub账号后，推荐你到[官方GitHub页面](https://github.com/tootsuite/mastodon){:target="_blank"}，在右上角点击“Fork”按钮，将官方代码复制到你自己的库中。
 
-   随后，在自己的个人电脑推荐安装两个软件：
+   随后，在自己的个人电脑推荐安装三个软件：
+
+   * **[Git](https://git-scm.com/downloads){:target="_blank"}**，基础代码软件，后文大量内容需要用到。
    
-   * GitHub官方出的 **[GitHub Desktop](https://desktop.github.com/){:target="_blank"}**，包括命令行Git，也能可视化历史改动过程并且可以方便地对某次改动进行逆转（Revert）：这个功能非常实用。
+   * GitHub官方出的 **[GitHub Desktop](https://desktop.github.com/){:target="_blank"}**，可以进行很多可视化的git操作，非常实用。
      
    * **[Visual Studio Code](https://code.visualstudio.com/){:target="_blank"}**，可以用来编辑代码。虽然记事本也能对付，但是万一哪次魔改代码时merge失败出现冲突（conflict），VS可以直接定位到错误地点，并且提示你一键接受新改动/保留旧改动/两者都接受，不用再自己尝试修改代码。
 
    [![GitHubDesktop界面](https://s1.ax1x.com/2020/11/01/B0Woy6.png)](https://s1.ax1x.com/2020/11/01/B0Woy6.png){:target="_blank"}
 
-   在安装完这两个软件之后，你就可以通过GitHub Desktop将自己库中的代码下载下来，在VS中进行代码魔改后，再直接提交（commit）并推送（push）到GitHub网站你的远程库中，非常方便。
+   在安装完这3个软件之后，请按照[Git设置指南](https://docs.github.com/en/get-started/quickstart/set-up-git#setting-up-git){:target="_blank"}中**“Setting up Git”**部分设置好本地git的用户名（username）和邮箱（email address）。
+   
+   随后，你就可以通过GitHub Desktop将自己库中的代码下载下来，在VS中进行代码魔改后，再直接提交（commit）并推送（push）到GitHub网站你的远程库中，非常方便。
 
    按照mastodon采用的AGPL3.0协议，站长作为服务提供者，任何对源代码的改动都要开源，并在站内公开repo地址。可在`.env.production`文件里加一行配置：
 
@@ -100,41 +104,27 @@ customexcerpt: "Docker的缺点在于官方镜像灵活性较低。那么如果�
 
 　　
 
-### 2. 在DockerHub中建立属于自己的镜像
-
-   * （2020-12-11补充）：在这一步之前，需要先按照[这个commit](https://github.com/Starainrt/mastodon/commit/77c19df36635f363ffa0f21c0eb9bcc171c31a52){:target="_blank"}，修改根目录里的`Gemfile.lock`，否则会出现搭建失败。
+### 2. 在DockerHub中建立属于自己的镜像（2023-07-08修改）
 
    * 在[DockerHub](https://hub.docker.com/){:target="_blank"}上注册账号，Account Setting - Security- Access Tokens创建密钥。
      
       [![DockerHub创建密钥](https://s1.ax1x.com/2020/11/01/B0fvEF.png)](https://s1.ax1x.com/2020/11/01/B0fvEF.png){:target="_blank"}
 
-   * 回到GitHub，打开你自己的代码，Settings - Secrets - New Secret，创建“DOCKER_USERNAME”和“DOCKER_PASSWORD”字段，输入你的DockerHub用户名和密钥。
+   * 回到GitHub，打开你自己的代码，Settings - Secrets and variables - Action - New repository secret，创建“DOCKERHUB_USERNAME”和“DOCKERHUB_TOKEN”字段，输入你的DockerHub用户名和密钥。
      
-      [![GitHub创建NewSecrets](https://s1.ax1x.com/2020/11/01/B0W1zt.png)](https://s1.ax1x.com/2020/11/01/B0W1zt.png){:target="_blank"}
+      [![GitHub创建NewSecrets](https://s1.ax1x.com/2023/07/08/pCgibDS.png)](https://s1.ax1x.com/2023/07/08/pCgibDS.png){:target="_blank"}
 
-      [![DOCKER_USERNAME&DOCKER_PASSWORD](https://s1.ax1x.com/2020/11/01/B0WqTe.png)](https://s1.ax1x.com/2020/11/01/B0WqTe.png){:target="_blank"}
+      [![DOCKERHUB_USERNAME&DOCKERHUB_TOKEN](https://s1.ax1x.com/2023/07/08/pCgiHu8.png)](https://s1.ax1x.com/2023/07/08/pCgiHu8.png){:target="_blank"}
 
-   * 点击Action：
-      
-      [![](https://s1.ax1x.com/2020/11/01/B0hdvq.png)](https://s1.ax1x.com/2020/11/01/B0hdvq.png){:target="_blank"}
+   * 在你自己的mastodon库中，打开`.github/workflows/build-image.yml`，修改如下5处部位：
 
-      下拉点击More：
+      [![修改build-image.yml](https://s1.ax1x.com/2023/07/08/pCgFwqS.png)](https://s1.ax1x.com/2023/07/08/pCgFwqS.png){:target="_blank"}
 
-      [![](https://s1.ax1x.com/2020/11/01/B0hsVU.png)](https://s1.ax1x.com/2020/11/01/B0hsVU.png){:target="_blank"}
+      随后提交修改。
 
-      找到Docker Image项目，点击Set up this workflow：
+      此时点开上方的“Action”面板，应该就能看到workflow已经开始运作。其中耗时最长的就是build-image的workflow，一般每次重新编译需要3个多小时。
 
-      [![](https://s1.ax1x.com/2020/11/01/B0h2G9.png)](https://s1.ax1x.com/2020/11/01/B0h2G9.png){:target="_blank"}
-
-      会自动创建`docker-image.yml`文件，将自动生成内容删除后，将 **[模板](https://github.com/Starainrt/mastodon/blob/b612/.github/workflows/docker-image.yml){:target="_blank"}**复制进去。修改图中内容：图中的b612修改为你的分支名（一般为master），repository修改为“你的DOCKERHUB用户名/mastodon”，tag修改为你想标记的tag（如具体版本号或者latest），然后点击commit提交。
-
-      [![修改docker-image.yml](https://s1.ax1x.com/2020/11/01/B04WFg.png)](https://s1.ax1x.com/2020/11/01/B04WFg.png){:target="_blank"}
-
-      如果没有问题，此时点开Action，应该能看到一个Workflow正在运行中。此时GitHub正在编译你的代码。一般等个20分钟，编译就会完成。从此以后，每次你推送一个代码改动，GitHub都会自动编译并且将镜像文件推送到DockerHub中，如果不需要，可以“...”取消workflow。
-
-      如果没有出现编译，则需要检查你的`docker-image.yml`是否设置正确。
-      
-      如果代码中出现错误，编译失败，则可以点开具体的编译过程，搜索“ERROR”，一般能够找到错误的原因——不要慌，反正不是在你自己的机器上折腾，弄不坏。
+      如果你后续魔改的代码中出现错误，编译失败，则可以点开具体的编译过程，搜索“ERROR”，一般能够找到错误的原因——不要慌，反正不是在你自己的机器上折腾，弄不坏。
 
 　　
 
@@ -144,7 +134,7 @@ customexcerpt: "Docker的缺点在于官方镜像灵活性较低。那么如果�
    
    ```bash
    cd /home/mastodon/mastodon        #进入所在文件夹
-   docker pull 你的DOCKERHUB用户名/mastodon:你设置的TAG名        #比如 docker pull starainrt/mastodon:latest
+   docker pull 你的DOCKERHUB用户名/mastodon:edge        #edge为最新编码的tag，如果需要创建特定版本的tag，在后文中有说明如何推送
    nano docker-compose.yml
    ```
 
@@ -166,25 +156,26 @@ customexcerpt: "Docker的缺点在于官方镜像灵活性较低。那么如果�
 
 ## 未来如果想要魔改……
 
-   未来如果魔改，只需要在电脑中修改好代码，一口气push到GitHub中，GitHub会自动编译并且推送到DockerHub中去。如果你设置的tag一直都是latest，那么每次只要等待编译完成后：
+   未来如果魔改，只需要在电脑中修改好代码，一口气push到GitHub中，GitHub会自动编译并且推送到DockerHub中去。
+   
+   如果你设置的tag一直都是edge，那么每次只要等待编译完成后：
 
    ```bash
    cd /home/mastodon/mastodon
-   docker pull 你的DOCKERHUB用户名/mastodon:lastest
+   docker pull 你的DOCKERHUB用户名/mastodon:edge
    docker-compose up -d
    ```
 
    即可。
-   
-   如果对`docker-image.yml`中的tag有所改动，则需相应修改服务器中`docker-compose.yml`中的tag名。
+
    
 　　
 
 　　
 
-## 升级
+## 升级（2023-07-08修改）
 
-   升级其实也就是另一种意义的魔改。在本地电脑中，右键-Open in Command Prompt：
+   升级其实也就是另一种意义的魔改。在本地电脑中，Github软件 - 相应repository - 右键 - Open in Command Prompt：
   
    [![](https://s1.ax1x.com/2020/11/01/B0oUoT.png)](https://s1.ax1x.com/2020/11/01/B0oUoT.png){:target="_blank"}
 
@@ -204,27 +195,35 @@ customexcerpt: "Docker的缺点在于官方镜像灵活性较低。那么如果�
 
    ```bash
    git fetch --tags upstream
-   git merge v3.2.1(要升级的tag名)
+   git merge v4.1.4   #要升级的tag名
    ```
 
-   进行融合操作，然后在GitHub Desktop上一键推送到你的远程库中，或者直接使用`git push`命令。
+   进行融合操作。
 
-   万一出现冲突，GitHub Desktop会显示出所有你冲突的文件，会提示你依次转到Visual Studio Code中解决。只要选择接受哪一方的改动即可。
+   如果新代码与你的魔改出现冲突，GitHub Desktop会显示出所有你冲突的文件，会提示你依次转到Visual Studio Code中解决。只要选择接受哪一方的改动即可。
 
    注：GitHub在有些地方被墙或者速度很慢，可以使用代理（[cmd代理设置教程](https://blog.csdn.net/BXD1314/article/details/78486992?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.edu_weight&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.edu_weight){:target="_blank"}）。如有必要，可以将这一步完全转到服务器上使用git命令行进行。这里可以参考[廖雪峰Git入门教程](https://www.liaoxuefeng.com/wiki/896043488029600){:target="_blank"}和[命令详解](https://git-scm.com/book/zh/v2/){:target="_blank"}，本文不再赘述。
 
-   推送到远程库后，后续操作则和上一部分一样：待编译完成后，
+   这样推送后编译（build）的结果是更新“edge”这个tag。但是，如果你希望每个版本都创建标注相应tag的容器，方便未来回退，那么在完成上述步骤的推送后还需要增加几步：
+
+   ```bash
+   git tag -f v4.1.4   #将相应tag标注在你最新提交的修改上
+   git push origin v4.1.4    #将这个tag推送到远程github库中
+   ```
+
+   这之后，你点开自己在github上的库，可以看到相应的tag，在Action栏目中可以看到正在对该tag进行编译。
+
+   [![](https://s1.ax1x.com/2023/07/08/pCgk6Te.png)](https://s1.ax1x.com/2023/07/08/pCgk6Te.png){:target="_blank"}
+
+   推送到远程库后，后续操作则和上一部分一样：待编译完成后，在你的服务器中
 
    ```bash
    cd /home/mastodon/mastodon
-   docker pull 你的DOCKERHUB用户名/mastodon:lastest
+   docker pull 你的DOCKERHUB用户名/mastodon:edge      #edge为最新改动的tag，也可以设置为相应版本号如v4.1.4      
    docker-compose up -d
    ```
 
    然后根据官方升级指示，看是否需要执行其他步骤如`docker-compose run --rm web rails db:migrate`等。
-
-   同样，如果对`docker-image.yml`中的tag有所改动，则需相应修改服务器中`docker-compose.yml`中的tag名。
-
 　　
 
 　　
