@@ -26,7 +26,7 @@ customexcerpt: "如果需要搬迁服务器，应该怎么做？本文以从非d
 
 ### 1. 在新服务器中安装Mastodon
 
-   请依照[Docker安装Mastodon教程](https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/10/19/Mastodon-on-Docker.html){:target="_blank"}，在新服务器中安装mastodon，**到“配置Mastodon”一步前停下。**
+   请依照[Docker安装Mastodon教程](https://pullopen.github.io/%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA/2020/10/19/Mastodon-on-Docker.html){:target="_blank"}，在新服务器中安装mastodon，**到“配置Mastodon”一步前停下。**建议与旧服务器保持一致的版本号。
 
 　　
 
@@ -54,6 +54,7 @@ customexcerpt: "如果需要搬迁服务器，应该怎么做？本文以从非d
    ```ruby
    DB_HOST=db
    REDIS_HOST=redis
+   REDIS_URL=redis://@mastodon_redis_1:6379
    ES_HOST=es
    ```
 
@@ -112,7 +113,7 @@ customexcerpt: "如果需要搬迁服务器，应该怎么做？本文以从非d
    DB_USER=mastodon
    ```
 
-   并且不设密码。建议添加一行，设置数据库密码：
+   并且未曾设密码。建议添加一行，设置数据库密码：
 
    ```ruby
    DB_PASS=数据库密码
@@ -207,13 +208,13 @@ customexcerpt: "如果需要搬迁服务器，应该怎么做？本文以从非d
    ```
 
 
-   如果你在新服务器上的版本高于原先版本，需要根据官方升级指导增加步骤，可能需要进行
+   如果你在新服务器上的版本高于原先版本，需要根据官方升级指导增加步骤，根据官方升级指南操作即可。如：
 
    ```bash
    docker-compose run --rm web rails db:migrate
    ```
 
-   等步骤。
+   等步骤。但为确保平稳搬运，建议在新服务器上先维持和旧服务器相同的版本，等运行稳定后再行升级。
 
 　　
 

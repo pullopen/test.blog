@@ -142,8 +142,8 @@ sudo chmod +x /usr/local/bin/docker-compose
   ```bash
   mkdir -p /home/mastodon/mastodon
   cd /home/mastodon/mastodon
-  docker pull tootsuite/mastodon:latest     #如果需要升级到某稳定版本，请将latest改成v3.5.1等版本号。
-  wget https://raw.githubusercontent.com/tootsuite/mastodon/master/docker-compose.yml
+  docker pull mastodon/mastodon:latest     #如果需要升级到某稳定版本，请将latest改成v3.5.1等版本号。
+  wget https://raw.githubusercontent.com/mastodon/mastodon/master/docker-compose.yml
   ```
 
 * 修改`docker-compose.yml`配置文件
@@ -152,7 +152,7 @@ sudo chmod +x /usr/local/bin/docker-compose
   nano docker-compose.yml
   ```
 
-  依次找到`web`、`streaming`、`sidekiq`分类，在每一类的`image: tootsuite/mastodon`后添加`:latest`或者你刚才拉取的版本号，变成`image: tootsuite/mastodon:latest`或`image: tootsuite/mastodon:v3.5.1`等等。
+  依次找到`web`、`streaming`、`sidekiq`分类，在每一类的`image: mastodon/mastodon`后添加`:latest`或者你刚才拉取的版本号，变成`image: mastodon/mastodon:latest`或`image: mastodon/mastodon:v3.5.1`等等。
 
   此外，官方的`docker-compose.yml`文件里写的是7.17.4，但目前elasticsearch的最高版本为7.10.2，需要修改。
 
@@ -590,7 +590,7 @@ crontab -e
 
 ```bash
 cd /home/mastodon/mastodon
-docker pull tootsuite/mastodon:latest     #或者将latest改成版本号如v3.2.1
+docker pull mastodon/mastodon:latest     #或者将latest改成版本号如v3.2.1
 ```
 
 如果你升级的是特定版本，则需要编辑docker-compose.yml，将web、streaming、sidekiq三部分的版本号改成相应版本。如果是latest则无需改动。
