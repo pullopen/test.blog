@@ -135,14 +135,14 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 　　
 
-### 3. 拉取Mastodon镜像（2022-04-25修改)
+### 3. 拉取Mastodon镜像（2022-07-15修改)
 
 * 拉取镜像
 
   ```bash
   mkdir -p /home/mastodon/mastodon
   cd /home/mastodon/mastodon
-  docker pull ghcr.io/mastodon/mastodon:latest     #如果需要升级到某稳定版本，请将latest改成v3.5.1等版本号。
+  docker pull ghcr.io/mastodon/mastodon:latest     #如果需要升级到某稳定版本，请将latest改成v4.1.4等版本号。
   wget https://raw.githubusercontent.com/mastodon/mastodon/main/docker-compose.yml
   ```
 
@@ -152,10 +152,7 @@ sudo chmod +x /usr/local/bin/docker-compose
   nano docker-compose.yml
   ```
 
-  依次找到`web`、`streaming`、`sidekiq`分类，在每一类的`image: ghcr.io/mastodon/mastodon`后添加`:latest`或者你刚才拉取的版本号，变成`image: ghcr.io/mastodon/mastodon:latest`或`image: ghcr.io/mastodon/mastodon:v3.5.1`等等。
-
-  此外，官方的`docker-compose.yml`文件里写的是7.17.4，但目前elasticsearch的最高版本为7.10.2，需要修改。
-
+  依次找到`web`、`streaming`、`sidekiq`分类，在每一类的`image: ghcr.io/mastodon/mastodon`后添加`:latest`或者你刚才拉取的版本号，变成`image: ghcr.io/mastodon/mastodon:latest`或`image: ghcr.io/mastodon/mastodon:v4.1.4`等等。
 
   `ctrl+X`退出保存。
 
@@ -205,7 +202,7 @@ docker stop postgres14
 
 　　
 
-### 5. 配置Mastodon（2022-11-21修改)
+### 5. 配置Mastodon（2022-11-21修改）
 
 * 配置文件
 
