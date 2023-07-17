@@ -99,7 +99,7 @@ customexcerpt: "如果你的服务器硬盘容量较小，那你可能需要注�
 
      内容为：
 
-     ```json
+     ```
      {
         "Version":"2012-10-17",
         "Statement":[
