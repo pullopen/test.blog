@@ -40,7 +40,7 @@ customexcerpt: "如果你的服务器硬盘容量较小，那你可能需要注�
 
 - 注册完毕后，在控制面板右上角点击**Create**，选择**Create an OS Bucket**，开始创建。
 
-- 命名，选择地区（巴黎/阿姆斯特丹），公开性选择Private即可，创建。
+- 命名，选择地区（巴黎/阿姆斯特丹），公开性选择Private，创建。
 
 　　
 
@@ -57,7 +57,7 @@ customexcerpt: "如果你的服务器硬盘容量较小，那你可能需要注�
 - 打开服务器，进入root用户。输入：
 
      ```bash
-     apt install python-pip
+     apt install python3-pip
      pip install awscli
      ```
 
@@ -79,15 +79,15 @@ customexcerpt: "如果你的服务器硬盘容量较小，那你可能需要注�
 - 进入mastodon用户的live文件夹，运行同步命令：
 
      ```bash
-     cd live      #进入live文件夹
+     cd live      #进入live文件夹，docker用户进入你docker-compose.yml所在文件夹
      RAILS_ENV=production bin/tootctl media remove
-     RAILS_ENV=production bin/tootctl media remove-orphans       #清理外站缓存和无嘟文媒体，为一会儿的迁移减少工作量
+     RAILS_ENV=production bin/tootctl media remove-orphans       #清理外站缓存和无嘟文媒体，为一会儿的迁移减少工作量，docker用户请用docker专用tootctl命令
      aws s3 sync public/system s3://【你的bucket名】/ --endpoint-url=https://s3.fr-par.scw.cloud --acl public-read        
      ```
 
-     请注意最后一步命令，如果你选择的是巴黎则url为https://s3.fr-par.scw.cloud ，阿姆斯特丹则需更换为https://s3.nl-ams.scw.cloud 。另外**请务必不要遗漏最后的`--acl public-read`，**因为如果不加这一句，上传的所有文件都会设置为私有，无法显示。
+     请注意最后一步命令，如果你选择的是巴黎则url为https://s3.fr-par.scw.cloud ，阿姆斯特丹则需更换为https://s3.nl-ams.scw.cloud 。另外**请不要遗漏最后的`--acl public-read`，**因为如果不加这一句，上传的所有文件都会设置为私有，无法显示。
 
-     （万一你遗漏了最后这个，让所有媒体文件都变成私有了怎么办呢？一种方法是像我当时那样把原来的媒体库删掉从头再来，另一种方法可以试试[这里](https://stackoverflow.com/questions/53726701/how-to-update-acl-for-all-s3-objects-in-a-folder-with-aws-cli){:target="_blank"}提到的方法，但是我没试过，不保证有效。）
+     如果你遗漏了`--acl public-read`问题也不大，现在Scaleway支持上传policy，可以在Policy中设置为文件可读。设置可使用aws工具，稍后补充。
 
      迁移需要等待一段时间，开着窗口即可。
 
@@ -103,7 +103,7 @@ customexcerpt: "如果你的服务器硬盘容量较小，那你可能需要注�
      ![DNS设置](https://s1.ax1x.com/2020/07/22/UHSzUe.png)
 
 
-- 找到自己的nginx配置文件，如果你和我一样都是在Digital Ocean上直接用的一键安装包，那么该文件应该位于root用户的/etc/nginx文件夹里。
+- 找到自己的nginx配置文件，该文件一般位于root用户的/etc/nginx文件夹里。
 
 
      ```bash
@@ -111,61 +111,7 @@ customexcerpt: "如果你的服务器硬盘容量较小，那你可能需要注�
      nano /etc/nginx/sites-available/media      #修改nginx文件
      ```
 
-     * *2020-07-28 附注：官方文档在最近一次升级后也为大家提供了 **[Nginx设置模板](https://docs.joinmastodon.org/admin/optional/object-storage-proxy/){:target="_blank"}**，可以参考官方文档进行设置，本文仅作补充和存档。*
-
-     * *2020-11-14 补充：官方文档后来经过一次修改，我本人使用修改前的nginx设置可以顺利生效，但是改成修改以后的就无法显示图片，暂时没有排查出原因。因此如果按照官方文档设置不能生效，那么作为备选方案，请找到`set $s3_backend`一行将后面设置为 `'https://s3.fr-par.scw.cloud';`（根据你自己bucket地区不同改变），找到后面的`proxy_pass`一行，将官方的`$s3_backend$uri`改成`$s3_backend/YOUR-MEDIA-BUCKET$uri`（填入自己的bucket名）。*
-
-     - 添加以下部分。注意
-         - 修改其中所有的MEDIA.YOUR.DOMAIN为**自己的实例媒体域名**（一共三处）。
-         
-         - 在location一行后面，修改YOUR-MEDIA-BUCKET修改为**自己的bucket名**。
-         
-         - 最后一行 https://s3.fr-par.scw.cloud/YOUR-MEDIA-BUCKET/ 按照**自己的bucket地区和bucket名**进行修改。
-         
-     如果你修改正确，一共应该有**5个地方**需要修改。
-
-
-     ```nginx
-     proxy_cache_path /tmp/nginx_mstdn_media levels=1:2 keys_zone=mastodon_media:100m max_size=1g inactive=24h;
- 
-     server {
-         listen 80;
-         listen [::]:80;
-         server_name MEDIA.YOUR.DOMAIN;
-         return 301 https://MEDIA.YOUR.DOMAIN$request_uri;
- 
-         access_log /dev/null;
-         error_log /dev/null;
-     }
- 
-     server {
-         listen 443 ssl http2;
-         listen [::]:443 ssl http2;
-         server_name MEDIA.YOUR.DOMAIN;
- 
-         access_log /var/log/nginx/mstdn-media-access.log;
-         error_log /var/log/nginx/mstdn-media-error.log;
- 
-         location /YOUR-MEDIA-BUCKET/ {
-                proxy_cache mastodon_media;
-                proxy_cache_revalidate on;
-                proxy_buffering on;
-                proxy_cache_use_stale error timeout updating http_500 http_502 http_503 http_504;
-                proxy_cache_background_update on;
-                proxy_cache_lock on;
-                proxy_cache_valid 1d;
-                proxy_cache_valid 404 1h;
-                proxy_ignore_headers Cache-Control;
-                add_header X-Cached $upstream_cache_status;
-                add_header 'Access-Control-Allow-Origin' '*';
-                proxy_pass https://s3.fr-par.scw.cloud/YOUR-MEDIA-BUCKET/;
-         }
- 
-     }
-
-     ```
-
-     * 注意：Mastodon3.2.0版本后，需要在location部分加上一行`add_header 'Access-Control-Allow-Origin' '*';`，上面的模板已经加入，在这之前设置的朋友请自行检查。
+     官方文档为大家提供了 **[Nginx设置模板](https://docs.joinmastodon.org/admin/optional/object-storage-proxy/){:target="_blank"}**，可以参考官方文档进行设置，修改其中的“files.example.com”为你的媒体域名，“YOUR_BUCKET_NAME.YOUR_S3_HOSTNAME”为“【你的bucket名】.s3.nl-ams或者fr-par.scw.cloud”。
 
      建立镜像文件：
 
