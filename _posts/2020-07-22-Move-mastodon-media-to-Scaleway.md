@@ -87,9 +87,49 @@ customexcerpt: "如果你的服务器硬盘容量较小，那你可能需要注�
 
      请注意最后一步命令，如果你选择的是巴黎则url为https://s3.fr-par.scw.cloud ，阿姆斯特丹则需更换为https://s3.nl-ams.scw.cloud 。另外**请不要遗漏最后的`--acl public-read`，**因为如果不加这一句，上传的所有文件都会设置为私有，无法显示。
 
-     如果你遗漏了`--acl public-read`问题也不大，现在Scaleway支持上传policy，可以在Policy中设置为文件可读。设置可使用aws工具，稍后补充。
-
      迁移需要等待一段时间，开着窗口即可。
+
+     如果你遗漏了`--acl public-read`问题也不大，现在Scaleway支持设置Bucket Policy，可以在Policy中设置为公开可读。可使用aws-cli工具设置policy：
+
+     先建立一个`media-policy.json`文件：
+
+     ```bash
+     nano media-policy.json
+     ```
+
+     内容为：
+
+     ```json
+     {
+        "Version":"2012-10-17",
+        "Statement":[
+          {
+            "Sid":"AddPerm",
+            "Effect":"Allow",
+            "Principal":
+              {
+                "AWS":"*"
+              },
+            "Action":"s3:GetObject",
+            "Resource":"arn:aws:s3:::你的bucket名/*"
+          }
+        ]
+     }
+     ```
+
+     随后上传policy：
+
+     ```bash
+     aws s3api put-bucket-policy --bucket 你的bucket名 --policy file://media-policy.json
+     ```
+
+     可以用get-bucket-policy验证：
+
+     ```bash
+     aws s3api get-bucket-policy --bucket 你的bucket名
+     ```
+
+     看policy是否生效。
 
 　　
 
@@ -111,7 +151,7 @@ customexcerpt: "如果你的服务器硬盘容量较小，那你可能需要注�
      nano /etc/nginx/sites-available/media      #修改nginx文件
      ```
 
-     官方文档为大家提供了 **[Nginx设置模板](https://docs.joinmastodon.org/admin/optional/object-storage-proxy/){:target="_blank"}**，可以参考官方文档进行设置，修改其中的“files.example.com”为你的媒体域名，“YOUR_BUCKET_NAME.YOUR_S3_HOSTNAME”为“【你的bucket名】.s3.nl-ams或者fr-par.scw.cloud”。
+     官方文档为大家提供了 **[Nginx设置模板](https://docs.joinmastodon.org/admin/optional/object-storage-proxy/){:target="_blank"}**，可以参考官方文档进行设置，修改其中的“files.example.com”为你的媒体域名，“YOUR_BUCKET_NAME.YOUR_S3_HOSTNAME”为“【你的bucket名】.s3.nl-ams.scw.cloud或者s3.fr-par.scw.cloud”。
 
      建立镜像文件：
 
@@ -138,7 +178,7 @@ customexcerpt: "如果你的服务器硬盘容量较小，那你可能需要注�
 
 ```bash
 su - mastodon     #再次进入mastodon用户
-cd live
+cd live            #docker用户进入docker-compose.yml所在文件夹
 nano .env.production     #编辑.env.production
 ```
 
