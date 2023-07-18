@@ -66,7 +66,7 @@ customexcerpt: "如果你的服务器硬盘容量较小，那你可能需要注�
 - 进入mastodon用户并调试aws-cli
 
      ```bash
-     su - mastodon        #进入mastodon用户
+     su - mastodon        #进入mastodon用户，docker用户不需要
      aws configure        #调试
      ```
 
@@ -74,7 +74,7 @@ customexcerpt: "如果你的服务器硬盘容量较小，那你可能需要注�
 
 　　
 
-## 魔法步骤：同步已有媒体！
+## 魔法步骤：同步已有媒体！（2023-07-18修改）
 
 - 进入mastodon用户的live文件夹，运行同步命令：
 
@@ -85,11 +85,11 @@ customexcerpt: "如果你的服务器硬盘容量较小，那你可能需要注�
      aws s3 sync public/system s3://【你的bucket名】/ --endpoint-url=https://s3.fr-par.scw.cloud --acl public-read        
      ```
 
-     请注意最后一步命令，如果你选择的是巴黎则url为https://s3.fr-par.scw.cloud ，阿姆斯特丹则需更换为https://s3.nl-ams.scw.cloud 。另外**请不要遗漏最后的`--acl public-read`，**因为如果不加这一句，上传的所有文件都会设置为私有，无法显示。
+     请注意最后一步命令，如果你选择的是巴黎则url为https://s3.fr-par.scw.cloud ，阿姆斯特丹则需更换为https://s3.nl-ams.scw.cloud 。
 
      迁移需要等待一段时间，开着窗口即可。
 
-     如果你遗漏了`--acl public-read`问题也不大，现在Scaleway支持设置Bucket Policy，可以在Policy中设置为公开可读。可使用aws-cli工具设置policy：
+     如果你遗漏了`--acl public-read`问题也不大，现在Scaleway支持设置Bucket Policy，可以在Policy中设置为文件公开可读。可使用aws-cli工具设置policy：
 
      先建立一个`media-policy.json`文件：
 
@@ -133,7 +133,7 @@ customexcerpt: "如果你的服务器硬盘容量较小，那你可能需要注�
 
 　　
 
-## 设置Nginx（可选）
+## 设置Nginx（可选，2023-07-18修改）
 
 这一步是可选步骤，但是设置Nginx一方面可以使你媒体打开的速度和打开你网址的速度变得一样（亦即同样可以使用Cloudflare加速），另一方面，也可以大大节省媒体库流量部分的费用，所以推荐大家可以一起设置。
 
@@ -177,7 +177,7 @@ customexcerpt: "如果你的服务器硬盘容量较小，那你可能需要注�
 ## 修改.env.production
 
 ```bash
-su - mastodon     #再次进入mastodon用户
+su - mastodon     #再次进入mastodon用户，docker用户不需要
 cd live            #docker用户进入docker-compose.yml所在文件夹
 nano .env.production     #编辑.env.production
 ```
@@ -198,7 +198,7 @@ S3_REGION=fr-par  【根据你的地址进行相应改变】
 现在，再运行一次魔法步骤，确保你操作期间所有的媒体已经上传：
 
 ```bash
-aws s3 sync public/system s3://【你的bucket名】/ --endpoint-url=https://s3.fr-par.scw.cloud --acl public-read  
+aws s3 sync public/system s3://【你的bucket名】/ --endpoint-url=https://s3.fr-par.scw.cloud --acl public-read    #根据地址修改
 ```
 
 重启Mastodon
@@ -206,7 +206,7 @@ aws s3 sync public/system s3://【你的bucket名】/ --endpoint-url=https://s3.
 ```bash
 exit
 systemctl restart mastodon-sidekiq
-systemctl reload mastodon-web
+systemctl reload mastodon-web   #docker用户使用docker-compose down && docker-compose up -d
 ```
 
 
@@ -219,7 +219,7 @@ systemctl reload mastodon-web
 
 ```bash
 su - mastodon
-cd live
+cd live      #docker用户打开docker-compose.yml所在文件夹
 rm -rf public/system
 ```
 
@@ -229,7 +229,7 @@ rm -rf public/system
 
 　　
 
-以上是将媒体文件转移到Scaleway云储存的方法。 **[O3O搭站指南](https://guide.mastodon.im/media){:target="_blank"}**对这一步也有详尽的描述，步骤稍有不同，没有通过nginx而是通过设置CHAME跳转的方式。如果你需要转移到其他的储存如Wasabi，请具体参考 **[这个教程](https://stanislas.blog/2018/05/moving-mastodon-media-files-to-wasabi-object-storage/){:target="_blank"}**，前面需要增加设置Policy的过程。
+以上是将媒体文件转移到Scaleway云储存的方法。 **[O3O搭站指南](https://guide.mastodon.im/media){:target="_blank"}**对这一步也有详尽的描述，步骤稍有不同，没有通过nginx而是通过设置CHAME跳转的方式。另外本篇主要参考 **[这个教程](https://stanislas.blog/2018/05/moving-mastodon-media-files-to-wasabi-object-storage/){:target="_blank"}**进行了修改。
 
 
 
