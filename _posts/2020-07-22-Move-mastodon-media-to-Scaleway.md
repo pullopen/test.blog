@@ -82,7 +82,7 @@ customexcerpt: "如果你的服务器硬盘容量较小，那你可能需要注�
      cd live      #进入live文件夹，docker用户进入你docker-compose.yml所在文件夹
      RAILS_ENV=production bin/tootctl media remove
      RAILS_ENV=production bin/tootctl media remove-orphans       #清理外站缓存和无嘟文媒体，为一会儿的迁移减少工作量，docker用户请用docker专用tootctl命令
-     aws s3 sync public/system s3://【你的bucket名】/ --endpoint-url=https://s3.fr-par.scw.cloud --acl public-read        
+     aws s3 sync ./public/system s3://【你的bucket名】 --endpoint-url=https://s3.fr-par.scw.cloud --acl public-read        
      ```
 
      请注意最后一步命令，如果你选择的是巴黎则url为https://s3.fr-par.scw.cloud ，阿姆斯特丹则需更换为https://s3.nl-ams.scw.cloud 。
@@ -198,7 +198,7 @@ S3_REGION=fr-par  【根据你的地址进行相应改变】
 现在，再运行一次魔法步骤，确保你操作期间所有的媒体已经上传：
 
 ```bash
-aws s3 sync public/system s3://【你的bucket名】/ --endpoint-url=https://s3.fr-par.scw.cloud --acl public-read    #根据地址修改
+aws s3 sync ./public/system s3://【你的bucket名】 --endpoint-url=https://s3.fr-par.scw.cloud --acl public-read    #根据地址修改
 ```
 
 重启Mastodon
