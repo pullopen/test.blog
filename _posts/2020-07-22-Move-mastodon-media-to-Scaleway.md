@@ -146,32 +146,47 @@ customexcerpt: "如果你的服务器硬盘容量较小，那你可能需要注�
 - 找到自己的nginx配置文件，该文件一般位于root用户的/etc/nginx文件夹里。
 
 
-     ```bash
-     exit                            #进入root用户
-     nano /etc/nginx/sites-available/media      #修改nginx文件
-     ```
+  ```bash
+  exit                            #进入root用户
+  nano /etc/nginx/sites-available/media      #修改nginx文件
+  ```
 
-     官方文档为大家提供了 **[Nginx设置模板](https://docs.joinmastodon.org/admin/optional/object-storage-proxy/){:target="_blank"}**，可以参考官方文档进行设置，修改其中的“files.example.com”为你的媒体域名，“YOUR_BUCKET_NAME.YOUR_S3_HOSTNAME”为“【你的bucket名】.s3.nl-ams.scw.cloud或者s3.fr-par.scw.cloud”。
+  官方文档为大家提供了 **[Nginx设置模板](https://docs.joinmastodon.org/admin/optional/object-storage-proxy/){:target="_blank"}**，可以参考官方文档进行设置，修改其中的“files.example.com”为你的媒体域名，“YOUR_BUCKET_NAME.YOUR_S3_HOSTNAME”为“【你的bucket名】.s3.nl-ams.scw.cloud或者s3.fr-par.scw.cloud”。
 
-     建立镜像文件：
 
-     ```bash
-     ln -s /etc/nginx/sites-available/media /etc/nginx/sites-enabled/media
-     ```
+- 安装证书
+  ```bash
+  sudo certbot certonly --nginx -d 你的媒体域名
+  ```
+
+- 修改nginx文件
+
+  ```bash
+  nano /etc/nginx/sites-available/media
+  ```
+
+  在nginx文件的最后半个`}`上方添加证书：
+
+  ```
+  ssl_certificate /etc/letsencrypt/live/你的媒体域名/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/你的媒体域名/privkey.pem;
+  ```
+
+  `Ctrl+X`保存。
+
+- 建立镜像文件：
+
+  ```bash
+  ln -s /etc/nginx/sites-available/media /etc/nginx/sites-enabled/media
+  ```
 
 
 - 重启Nginx
 
-     ```bash
-     sudo nginx -s reload
-     ```
-
-- 安装证书
-     ```bash
-     sudo certbot --nginx -d 你的媒体域名
-     systemctl reload nginx
-     ```
-
+  ```bash
+  nginx -t   #检查是否有报错
+  systemctl reload nginx
+  ```
 　　
 
 ## 修改.env.production
@@ -193,6 +208,7 @@ S3_PROTOCOL=https
 S3_HOSTNAME=MEDIA.YOUR.DOMAIN  【你的媒体域名】
 S3_ENDPOINT=https://s3.fr-par.scw.cloud/  【根据你的地址进行相应改变】
 S3_REGION=fr-par  【根据你的地址进行相应改变】
+S3_ALIAS_HOST=MEDIA.YOUR.DOMAIN【如果使用nginx代理，则需加上这一行】
 ```
 
 现在，再运行一次魔法步骤，确保你操作期间所有的媒体已经上传：
