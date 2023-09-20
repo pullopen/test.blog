@@ -105,7 +105,7 @@ customexcerpt: "Docker的缺点在于官方镜像灵活性较低。那么如果�
    在命令行中：
 
    ```bash
-   git checkout -b newbranch tags/v4.1.4   #根据最新的稳定版本创建新分支
+   git checkout -b newbranch tags/v4.1.8   #根据最新的稳定版本创建新分支
    git branch --delete main   #删除本地的main分支
    git branch -m newbranch main  #将新分支重命名为main
    git push origin main -f    #将新的main分支强制推送到你的github库中
@@ -121,7 +121,7 @@ customexcerpt: "Docker的缺点在于官方镜像灵活性较低。那么如果�
 
 　　
 
-### 2. 在DockerHub中建立属于自己的镜像（2023-07-08修改）
+### 2. 在DockerHub中建立属于自己的镜像（2023-09-20修改）
 
    * 在[DockerHub](https://hub.docker.com/){:target="_blank"}上注册账号，Account Setting - Security- Access Tokens创建密钥。
      
@@ -133,15 +133,28 @@ customexcerpt: "Docker的缺点在于官方镜像灵活性较低。那么如果�
 
       [![DOCKERHUB_USERNAME&DOCKERHUB_TOKEN](https://s1.ax1x.com/2023/07/08/pCgiHu8.png)](https://s1.ax1x.com/2023/07/08/pCgiHu8.png){:target="_blank"}
 
-   * 在你自己的mastodon库中，打开`.github/workflows/build-image.yml`，修改如下5处部位：
+   * 在你本地的mastodon库中，打开`.github/workflows/build-container-image.yml`，修改如下部位（适用于v4.1.7以上）：
 
-      [![修改build-image.yml](https://s1.ax1x.com/2023/07/08/pCgFwqS.png)](https://s1.ax1x.com/2023/07/08/pCgFwqS.png){:target="_blank"}
+      [![修改build-container-image.yml_1](https://z1.ax1x.com/2023/09/20/pPIAAYD.png)](https://z1.ax1x.com/2023/09/20/pPIAAYD.png){:target="_blank"}
 
-      随后提交修改。
+      [![修改build-container-image.yml_2](https://z1.ax1x.com/2023/09/20/pPIA61J.png)](https://z1.ax1x.com/2023/09/20/pPIA61J.png){:target="_blank"}
 
-      上述步骤也可以在你自己电脑上的github desktop中完成。修改之后只需要commit、push即可推送到远程github库。
+      打开`.github/workflows/build-releases.yml`，修改如下部位：
 
-      此时点开上方的“Action”面板，应该就能看到workflow已经开始运作。其中耗时最长的就是build-image的workflow，一般每次修改后重新编译需要3个多小时。
+      [![修改build-releases.yml](https://z1.ax1x.com/2023/09/20/pPIEVEV.png)](https://z1.ax1x.com/2023/09/20/pPIEVEV.png){:target="_blank"}
+
+      其他`workflows`文件夹中以`build-`开头的文件同样作类似的用户名修改。
+
+      在命令行中：
+
+      ```bash
+      git tag -f v4.1.8          #目前所在tag位置移动到你刚才修改处
+      git push origin v4.1.8 -f    #将新的v4.1.8 tag强制推送到你的github库中
+      ```
+      
+      将修改推送至Github。
+
+      此时点开Github你仓库上方的“Action”面板，应该就能看到workflow已经开始运作。其中耗时最长的就是build-image的workflow，一般每次修改后重新编译需要10多分钟。
 
       如果你后续魔改的代码中出现错误，编译失败，则可以点开具体的编译过程，搜索“ERROR”，一般能够找到错误的原因——不要慌，反正不是在你自己的机器上折腾，弄不坏。
 
@@ -153,7 +166,7 @@ customexcerpt: "Docker的缺点在于官方镜像灵活性较低。那么如果�
    
    ```bash
    cd /home/mastodon/mastodon        #进入所在文件夹
-   docker pull 你的DOCKERHUB用户名/mastodon:edge        #edge为最新编码的tag，如果需要创建特定版本的tag，在后文中有说明如何推送
+   docker pull 你的DOCKERHUB用户名/mastodon:latest        #latest为最新编码的tag，如果需要创建特定版本的tag，在后文中有说明如何推送
    nano docker-compose.yml
    ```
 
@@ -177,11 +190,11 @@ customexcerpt: "Docker的缺点在于官方镜像灵活性较低。那么如果�
 
    未来如果魔改，只需要在电脑中修改好代码，一口气push到GitHub中，GitHub会自动编译并且推送到DockerHub中去。
    
-   如果你设置的tag一直都是edge，那么每次只要等待编译完成后：
+   如果你设置的tag一直都是latest，那么每次只要等待编译完成后：
 
    ```bash
    cd /home/mastodon/mastodon
-   docker pull 你的DOCKERHUB用户名/mastodon:edge
+   docker pull 你的DOCKERHUB用户名/mastodon:latest
    docker-compose up -d
    ```
 
@@ -214,7 +227,7 @@ customexcerpt: "Docker的缺点在于官方镜像灵活性较低。那么如果�
 
    ```bash
    git fetch --tags upstream
-   git merge v4.1.4   #要升级的tag名
+   git merge v4.1.8   #要升级的tag名
    ```
 
    进行融合操作。
@@ -223,11 +236,11 @@ customexcerpt: "Docker的缺点在于官方镜像灵活性较低。那么如果�
 
    注：GitHub在有些地方被墙或者速度很慢，可以使用代理（[cmd代理设置教程](https://blog.csdn.net/BXD1314/article/details/78486992?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.edu_weight&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.edu_weight){:target="_blank"}）。如有必要，可以将这一步完全转到服务器上使用git命令行进行。这里可以参考[廖雪峰Git入门教程](https://www.liaoxuefeng.com/wiki/896043488029600){:target="_blank"}和[命令详解](https://git-scm.com/book/zh/v2/){:target="_blank"}，本文不再赘述。
 
-   这样推送后编译（build）的结果是更新“edge”这个tag。但是，如果你希望每个版本都创建标注相应tag的容器，方便未来回退，那么在完成上述步骤的推送后还需要增加几步：
+   随后，修改tag位置并推送：
 
    ```bash
-   git tag -f v4.1.4   #将相应tag标注在你最新提交的修改上
-   git push origin v4.1.4    #将这个tag推送到远程github库中
+   git tag -f v4.1.8   #将相应tag标注在你最新提交的修改上
+   git push origin v4.1.8    #将这个tag推送到远程github库中
    ```
 
    这之后，你点开自己在github上的库，可以看到相应的tag，在Action栏目中可以看到正在对该tag进行编译。
@@ -238,7 +251,7 @@ customexcerpt: "Docker的缺点在于官方镜像灵活性较低。那么如果�
 
    ```bash
    cd /home/mastodon/mastodon
-   docker pull 你的DOCKERHUB用户名/mastodon:edge      #edge为最新改动的tag，也可以设置为相应版本号如v4.1.4      
+   docker pull 你的DOCKERHUB用户名/mastodon:latest      #latest为最新改动的tag，也可以设置为相应版本号如v4.1.8      
    docker-compose up -d
    ```
 
